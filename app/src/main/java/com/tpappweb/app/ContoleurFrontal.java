@@ -1,6 +1,7 @@
 package com.tpappweb.app;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.tpappweb.app.entites.Utilistateur;
+import org.springframework.web.bind.annotation.*;
 
 
 public class ContoleurFrontal {
@@ -10,4 +11,8 @@ public class ContoleurFrontal {
     public String welcome(){
         return "index";
     }
+
+
+
+
 }

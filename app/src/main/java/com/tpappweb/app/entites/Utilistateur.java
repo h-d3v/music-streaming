@@ -5,7 +5,7 @@ import java.util.List;
 public class Utilistateur {
     private String pseudo;
     private String courriel;
-    private String motPase;
+    private String motPasse;
     private List<Utilistateur> abonnes;
     private List<PlayList> playLists;
     private List<Commentaire> commentaires;
@@ -45,12 +45,12 @@ public class Utilistateur {
         this.courriel = courriel;
     }
 
-    public String getMotPase() {
-        return motPase;
+    public String getMotPasse() {
+        return motPasse;
     }
 
-    public void setMotPase(String motPase) {
-        this.motPase = motPase;
+    public void setMotPasse(String motPasse) {
+        this.motPasse = motPasse;
     }
 
     public List<Utilistateur> getAbonnes() {

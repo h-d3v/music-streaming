@@ -27,11 +27,11 @@
             <div class="modal-header">
                 <h4 class="modal-title">Inscrivez-vous</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
             <div class="modal-body">
-                <form method="post">
-                    <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur" /></div>
-                    <div class="form-group"><input type="email" class="form-control" name="email" placeholder="adresse@courriel.ca" /></div>
-                    <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Mot de passe" /></div>
-                    <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Entrez le mot de passe une seconde fois" /></div>
+                <form method="post" action="/add">
+                    <div class="form-group"><input type="text" class="form-control" name="pseudo" placeholder="Nom d'utilisateur" /></div>
+                    <div class="form-group"><input type="email" class="form-control" name="courriel" placeholder="adresse@courriel.ca" /></div>
+                    <div class="form-group"><input type="password" class="form-control" name="motPasse" placeholder="Mot de passe" /></div>
+                    <div class="form-group"><input type="password" class="form-control" name="password2" placeholder="Entrez le mot de passe une seconde fois" /></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">S'inscrire</button></div></form>
             </div>
             <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Fermer</button></div>
