@@ -2,7 +2,7 @@ package com.tpappweb.app.entites;
 
 public class Titre {
     private long id;
-    private Auteur auteur;
+    private Artiste artiste;
 
     public long getId() {
         return id;
@@ -12,12 +12,12 @@ public class Titre {
         this.id = id;
     }
 
-    public Auteur getAuteur() {
-        return auteur;
+    public Artiste getArtiste() {
+        return artiste;
     }
 
-    public void setAuteur(Auteur auteur) {
-        this.auteur = auteur;
+    public void setArtiste(Artiste artiste) {
+        this.artiste = artiste;
     }
 
     public String getUrl() {

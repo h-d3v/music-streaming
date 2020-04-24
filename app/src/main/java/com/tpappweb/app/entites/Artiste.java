@@ -2,11 +2,11 @@ package com.tpappweb.app.entites;
 
 import java.util.List;
 
-public class Auteur {
+public class Artiste {
     private String nom;
     private String biographie;
     private List<Titre> listeTitres;
-    private long id;
+    private int id;
     private String urlPhoto;
 
     public String getNom() {
@@ -33,11 +33,11 @@ public class Auteur {
         this.listeTitres = listeTitres;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
