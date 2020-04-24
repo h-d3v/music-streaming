@@ -1,7 +1,7 @@
 DROP DATABASE  IF EXISTS rosetube;
 CREATE DATABASE rosetube;
 USE rosetube;
-CREATE TABLE Artiste (id int(10) NOT NULL AUTO_INCREMENT, nom varchar(10) NOT NULL, prenom varchar(10), biographie text, pays varchar(255), PRIMARY KEY (id));
+CREATE TABLE Artiste (id int(10) NOT NULL AUTO_INCREMENT, nom varchar(10) NOT NULL, prenom varchar(10), biographie text, pays varchar(255), urlPhoto varchar(255), PRIMARY KEY (id));
 CREATE TABLE Commentaire (Titreid int(10) NOT NULL, Utilisateurpseudo varchar(255) NOT NULL, id int(10) NOT NULL AUTO_INCREMENT, commentaire text NOT NULL, `date` int(10) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE LikeOuDislike (id int(10) NOT NULL AUTO_INCREMENT, likeOuDislike int(10) NOT NULL, Titreid int(10) NOT NULL, Utilisateurpseudo varchar(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE Playlist (id int(10) NOT NULL AUTO_INCREMENT, Utilisateurpseudo varchar(255) NOT NULL, Nom varchar(255) NOT NULL, dateCreation date NOT NULL, PRIMARY KEY (id));

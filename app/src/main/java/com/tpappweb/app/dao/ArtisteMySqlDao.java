@@ -1,5 +1,6 @@
 package com.tpappweb.app.dao;
 
+import com.tpappweb.app.dao.romappers.ArtisteRowMapper;
 import com.tpappweb.app.entites.Artiste;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ArtisteMySqlDao extends MySQLDAO<Artiste> {
 
    @Autowired
-    private JdbcTemplate jdbcTemplate= new JdbcTemplate();
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public boolean create(Artiste x) {
@@ -23,10 +24,9 @@ public class ArtisteMySqlDao extends MySQLDAO<Artiste> {
     }
 
     @Override
-    public Artiste findById(int id) {
-        String sql = "SELECT id, nom, prenom, biographie, pays, urlPhoto FROM artiste WHERE id = ?";
-        RowMapper<Artiste> rowMapper = new BeanPropertyRowMapper<>(Artiste.class);
-        Artiste artiste = jdbcTemplate.queryForObject(sql, rowMapper, id);
+    public Artiste findById(Object id) {
+        String sql = "SELECT id, nom, prenom, biographie, pays, urlPhoto FROM Artiste WHERE id = ?";
+        Artiste artiste =(Artiste) jdbcTemplate.queryForObject(sql , new Object[]{id} ,new BeanPropertyRowMapper(Artiste.class));
         return artiste;
     }
 
@@ -43,6 +43,8 @@ public class ArtisteMySqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public List<Artiste> findAll() {
-        return null;
+        String sql = "SELECT id, nom, prenom, biographie, pays, urlPhoto FROM Artiste";
+        List<Artiste> artistes= jdbcTemplate.query(sql,new BeanPropertyRowMapper(Artiste.class));
+        return artistes;
     }
 }

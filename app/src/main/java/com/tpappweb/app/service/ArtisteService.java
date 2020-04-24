@@ -6,6 +6,8 @@ import com.tpappweb.app.service.interfaces.IArtisteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArtisteService implements IArtisteService {
 
@@ -32,4 +34,11 @@ public class ArtisteService implements IArtisteService {
     public void deleteArtiste(int id) {
 
     }
+
+    @Override
+    public List<Artiste> trouverTous() {
+        return artisteMySqlDao.findAll();
+    }
+
+
 }
