@@ -19,6 +19,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
+    <script src="js/myAjax.js"></script>
+
 
 </head>
 
@@ -31,7 +33,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Inscrivez-vous</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
             <div class="modal-body">
-                <form method="post" action="/add">
+                <form method="post" action="signIn">
                     <div class="form-group"><input type="text" class="form-control" name="pseudo" placeholder="Nom d'utilisateur" /></div>
                     <div class="form-group"><input type="email" class="form-control" name="courriel" placeholder="adresse@courriel.ca" /></div>
                     <div class="form-group"><input type="password" class="form-control" name="motPasse" placeholder="Mot de passe" /></div>
@@ -50,11 +52,12 @@
             <div class="modal-header">
                 <h4 class="modal-title">Connectez-vous</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
             <div class="modal-body">
-                <form method="post" action="player">
+                <form id ='formSignIn' method="post">
+                    <div id="messageErreur" class="text-danger form-group" hidden="hidden">Errreur</div>
                     <div class="form-group"><input type="text" class="form-control" name="pseudo" placeholder="pseudo" required /></div>
                     <div class="form-group"><input type="email" class="form-control" name="courriel" placeholder="adresse@courriel.ca" required/></div>
                     <div class="form-group"><input type="password" class="form-control" name="motPasse" placeholder="Mot de passe"required /></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Se connecter</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="button" id="seConnecter">Se connecter</button></div>
                 </form>
             </div>
             <div class="modal-footer"><button  class="btn btn-light" type="button" data-dismiss="modal">Fermer</button></div>
@@ -69,8 +72,6 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item"><button class="btn btn-primary" data-toggle="modal" data-target="#modalNewAccount" type="button">S'inscrire</button></li>
                 <li class="nav-item"><button class="btn btn-primary" data-toggle="modal" data-target="#modalLogin" type="button">Se connecter</button></li>
-                <li class="text-danger" >${messageErreurCnx}</li>
-                <li class="text-danger" >${messageErreurSignUp}</li>
             </ul>
         </div>
     </div>
@@ -138,6 +139,23 @@
 </footer>
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('seConnecter').onclick=function(){
+
+        ajax('seConnecter', function (evt) {
+            var xhr = evt.target;
+            if (xhr.readyState==4 && xhr.status==200){
+                location.reload();
+            }
+            else{
+                let doc=document.getElementById('messageErreur')
+                doc.removeAttribute('hidden')
+            }
+
+        }, "POST", '{"pseudo":"fwwfwf","courriel":"allo@allo.com","motPasse":"eeff","abonnes":null,"playLists":null,"commentaires":null,"estAdmin":false}')
+    }
+</script>
+
 </body>
 
 </html>
