@@ -24,12 +24,7 @@ public class RestControlleur {
     @Autowired
     private IUtilisateurService iUtilisateurService;
 
-    @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
-    public Utilistateur  sinscrire(Utilistateur utilistateur) {
-        iUtilisateurService.ajouterUtilisateur(utilistateur);
 
-        return utilistateur;
-    }
     @GetMapping("utilisateurs/{pseudo}")
     public ResponseEntity<Utilistateur> getUtilisateur(@PathVariable("pseudo") String pseudo){
         Utilistateur utilistateur=iUtilisateurService.getUtilisateur(pseudo);

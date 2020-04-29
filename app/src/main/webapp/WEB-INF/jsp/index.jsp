@@ -44,7 +44,7 @@
 </div>
 
 <!-- Modal pour se connecter -->
-<div id="modalLogin" role="dialog" tabindex="-1" class="modal fade">
+<div id="modalLogin" role="dialog" tabindex="1" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -69,7 +69,8 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item"><button class="btn btn-primary" data-toggle="modal" data-target="#modalNewAccount" type="button">S'inscrire</button></li>
                 <li class="nav-item"><button class="btn btn-primary" data-toggle="modal" data-target="#modalLogin" type="button">Se connecter</button></li>
-
+                <li class="text-danger" >${messageErreurCnx}</li>
+                <li class="text-danger" >${messageErreurSignUp}</li>
             </ul>
         </div>
     </div>

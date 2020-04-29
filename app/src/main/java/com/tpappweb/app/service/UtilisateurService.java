@@ -15,9 +15,7 @@ public class UtilisateurService implements IUtilisateurService {
 
     @Override
     public boolean ajouterUtilisateur(Utilistateur utilistateur) {
-        utilisateurSqlDao.create(utilistateur);
-        //TODO
-        return false;
+        return  utilisateurSqlDao.create(utilistateur);
     }
 
     @Override
