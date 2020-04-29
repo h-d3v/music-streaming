@@ -27,6 +27,8 @@ public class UtilisateurService implements IUtilisateurService {
 
     @Override
     public boolean supprimerUtilisateur(Utilistateur utilistateur) {
+        utilisateurSqlDao.delete(utilistateur);
+        //TODO mauvais retour
         return false;
     }
 

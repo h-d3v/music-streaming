@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -20,7 +22,7 @@ import java.util.List;
 @RestController
 public class RestControlleur {
     @Autowired
-    IUtilisateurService iUtilisateurService;
+    private IUtilisateurService iUtilisateurService;
 
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
     public Utilistateur  sinscrire(Utilistateur utilistateur) {
@@ -33,6 +35,13 @@ public class RestControlleur {
         Utilistateur utilistateur=iUtilisateurService.getUtilisateur(pseudo);
         return new ResponseEntity<Utilistateur>(utilistateur, HttpStatus.OK);
     }
+    @DeleteMapping("deleteCompte/{pseudo}")
+        public String supprimmerCompte(@PathVariable("pseudo") String pseudo){
+        Utilistateur utilistateur=iUtilisateurService.getUtilisateur(pseudo);
+        iUtilisateurService.supprimerUtilisateur(utilistateur);
+        return "sbbbbs";
+    }
+
     @GetMapping("utilisateurs")
     public List<Utilistateur> getTousLesUtilisateurs(){
         return iUtilisateurService.trouverTous();
@@ -52,4 +61,6 @@ public class RestControlleur {
         return artisteService.trouverTous();
 
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.tpappweb.app.entites;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Utilistateur {
     private String pseudo;
@@ -68,4 +69,27 @@ public class Utilistateur {
     public void setPlayLists(List<PlayList> playLists) {
         this.playLists = playLists;
     }
+
+    @Override
+    public String toString() {
+        return "Utilistateur{" +
+                "pseudo='" + pseudo + '\'' +
+                ", courriel='" + courriel + '\'' +
+                ", motPasse='" + motPasse + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Utilistateur that = (Utilistateur) o;
+
+        if (!Objects.equals(pseudo, that.pseudo)) return false;
+        if (!Objects.equals(courriel, that.courriel)) return false;
+        return Objects.equals(motPasse, that.motPasse);
+    }
+
+
 }
