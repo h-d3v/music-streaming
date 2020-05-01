@@ -21,18 +21,22 @@ public class ArtisteService implements IArtisteService {
     }
 
     @Override
-    public boolean addArtiste(Artiste artiste) {
-        return false;
+    public synchronized boolean addArtiste(Artiste artiste) {
+        if (artisteMySqlDao.artisteExists(artiste.getId())) {
+            return false;
+        } else {
+           return artisteMySqlDao.create(artiste);
+        }
     }
 
     @Override
-    public void updateArtiste(Artiste artiste) {
-
+    public boolean updateArtiste(Artiste artiste) {
+        return artisteMySqlDao.update(artiste);
     }
 
     @Override
-    public void deleteArtiste(int id) {
-
+    public boolean deleteArtiste(int id) {
+        return artisteMySqlDao.deleteById(id);
     }
 
     @Override

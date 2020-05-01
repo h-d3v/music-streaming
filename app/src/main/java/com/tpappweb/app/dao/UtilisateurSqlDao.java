@@ -30,6 +30,11 @@ public class UtilisateurSqlDao extends MySQLDAO<Utilistateur>{
     }
 
     @Override
+    public boolean deleteById(int id) {
+        return false;
+    }
+
+    @Override
     public boolean delete(Utilistateur x) {
         String sql= "DELETE FROM Utilisateur WHERE pseudo=:pseudo";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -48,7 +53,6 @@ public class UtilisateurSqlDao extends MySQLDAO<Utilistateur>{
     @Override
     public List<Utilistateur> findAll() {
         String sql = "SELECT * FROM Utilisateur";
-
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Utilistateur>(Utilistateur.class));
     }
 }

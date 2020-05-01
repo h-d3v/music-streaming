@@ -9,14 +9,12 @@ import java.sql.SQLException;
 public class ArtisteRowMapper implements RowMapper<Artiste> {
     @Override
     public Artiste mapRow(ResultSet rs, int i) throws SQLException {
-
         Artiste artiste=new Artiste();
         System.out.print(artiste.getId());
         artiste.setId(rs.getInt("id"));
         artiste.setNom(rs.getString("nom"));
         artiste.setBiographie(rs.getString("biographie"));
         artiste.setUrlPhoto(rs.getString("urlPhoto"));
-
         return artiste;
     }
 }

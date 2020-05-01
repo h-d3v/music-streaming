@@ -50,6 +50,12 @@ public class RestControlleur {
     @GetMapping("artistes")
     public List<Artiste> getArtistes(){
         return artisteService.trouverTous();
-
     }
+
+   @PutMapping("artiste")
+   public ResponseEntity<Artiste> updateArtiste(@RequestBody Artiste artiste) {
+       artisteService.updateArtiste(artiste);
+       return new ResponseEntity<>(artiste, HttpStatus.OK);
+   }
+
 }
