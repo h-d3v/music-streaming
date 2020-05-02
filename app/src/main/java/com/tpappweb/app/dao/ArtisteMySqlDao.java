@@ -25,7 +25,7 @@ public class ArtisteMySqlDao extends MySQLDAO<Artiste> {
     @Override
     public Artiste findById(Object id) {
         String sql = "SELECT id, nom, prenom, biographie, pays, urlPhoto FROM Artiste WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql , new Object[]{id} ,new BeanPropertyRowMapper<>(Artiste.class));
+        return jdbcTemplate.queryForObject(sql ,new BeanPropertyRowMapper<>(Artiste.class), id);
     }
 
     @Override

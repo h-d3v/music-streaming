@@ -1,8 +1,20 @@
 package com.tpappweb.app.entites;
 
 public class Titre {
+    private String nom;
     private long id;
+    private String titreAlbum;
+    private String url;
+    private String urlImage;
     private Artiste artiste;
+
+    public String getTitreAlbum() {
+        return titreAlbum;
+    }
+
+    public void setTitreAlbum(String titreAlbum) {
+        this.titreAlbum = titreAlbum;
+    }
 
     public long getId() {
         return id;
@@ -14,6 +26,14 @@ public class Titre {
 
     public Artiste getArtiste() {
         return artiste;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setArtiste(Artiste artiste) {
@@ -36,7 +56,6 @@ public class Titre {
         this.urlImage = urlImage;
     }
 
-    private String url;
-    private String urlImage;
+
 
 }
