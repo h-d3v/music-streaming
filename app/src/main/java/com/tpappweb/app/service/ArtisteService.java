@@ -1,6 +1,6 @@
 package com.tpappweb.app.service;
 
-import com.tpappweb.app.dao.ArtisteMySqlDao;
+import com.tpappweb.app.dao.ArtisteSqlDao;
 import com.tpappweb.app.entites.Artiste;
 import com.tpappweb.app.service.interfaces.IArtisteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,36 +12,36 @@ import java.util.List;
 public class ArtisteService implements IArtisteService {
 
     @Autowired
-    private ArtisteMySqlDao artisteMySqlDao;
+    private ArtisteSqlDao artisteSqlDao;
 
     @Override
     public Artiste getArtisteById(int id) {
-        Artiste artiste=artisteMySqlDao.findById(id);
+        Artiste artiste= artisteSqlDao.findById(id);
         return artiste;
     }
 
     @Override
     public synchronized boolean addArtiste(Artiste artiste) {
-        if (artisteMySqlDao.artisteExists(artiste.getId())) {
+        if (artisteSqlDao.artisteExists(artiste.getId())) {
             return false;
         } else {
-           return artisteMySqlDao.create(artiste);
+           return artisteSqlDao.create(artiste);
         }
     }
 
     @Override
     public boolean updateArtiste(Artiste artiste) {
-        return artisteMySqlDao.update(artiste);
+        return artisteSqlDao.update(artiste);
     }
 
     @Override
     public boolean deleteArtiste(int id) {
-        return artisteMySqlDao.deleteById(id);
+        return artisteSqlDao.deleteById(id);
     }
 
     @Override
     public List<Artiste> trouverTous() {
-        return artisteMySqlDao.findAll();
+        return artisteSqlDao.findAll();
     }
 
 

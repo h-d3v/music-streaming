@@ -11,7 +11,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class ArtisteMySqlDao extends MySQLDAO<Artiste> {
+public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
    @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -45,7 +45,6 @@ public class ArtisteMySqlDao extends MySQLDAO<Artiste> {
         String sql = "UPDATE artiste SET nom=?, biographie=?,urlPhoto=? WHERE id=?";
         return jdbcTemplate.update(sql, artiste.getNom(), artiste.getBiographie(), artiste.getUrlPhoto(), artiste.getId())==1;
     }
-
 
     @Override
     public List<Artiste> findAll() {

@@ -5,7 +5,6 @@ import java.util.List;
 public class Artiste {
     private String nom;
     private String biographie;
-    private List<Titre> listeTitres;
     private int id;
     private String urlPhoto;
 
@@ -23,14 +22,6 @@ public class Artiste {
 
     public void setBiographie(String biographie) {
         this.biographie = biographie;
-    }
-
-    public List<Titre> getListeTitres() {
-        return listeTitres;
-    }
-
-    public void setListeTitres(List<Titre> listeTitres) {
-        this.listeTitres = listeTitres;
     }
 
     public int getId() {
