@@ -10,7 +10,7 @@ public class ContoleurFrontal {
         return "index";
     }
 
-    //default call pour s/curiser la page
+    //default call pour securiser la page
     @RequestMapping("**")
     public String defaultCall(){return "index";}
 

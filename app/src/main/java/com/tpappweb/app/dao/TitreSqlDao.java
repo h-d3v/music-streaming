@@ -22,7 +22,7 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
 
     @Override
     public Titre findById(Object id) {
-        String sql="SELECT id, artisteId, nom, url, duree, urlImage, dateSortie, genre, TitreAlbum FROM titre WHERE id=?";
+        String sql="SELECT id, artisteId, nom, url, urlImage, dateSortie, TitreAlbum FROM titre WHERE id=?";
         return jdbcTemplate.queryForObject(sql ,new BeanPropertyRowMapper<>(Titre.class), id);
     }
 
