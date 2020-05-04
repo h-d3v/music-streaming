@@ -46,8 +46,8 @@ public class UtilisateurSqlDao extends MySQLDAO<Utilistateur>{
     @Override
     public boolean update(Utilistateur x) {
         String sql= "UPDATE Utilisateur SET courriel=:courriel, motPasse=:motPasse WHERE pseudo=:pseudo";
-        jdbcTemplate.update(sql, new BeanPropertySqlParameterSource(x));
-        return false;
+        int i=jdbcTemplate.update(sql, new BeanPropertySqlParameterSource(x));
+        return i==1;
     }
 
     @Override

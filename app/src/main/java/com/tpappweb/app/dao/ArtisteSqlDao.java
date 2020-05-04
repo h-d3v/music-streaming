@@ -18,7 +18,7 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public boolean create(Artiste x) {
-        String sql = "INSERT INTO artiste (id, nom, biographie, urlPhoto) values (?,?,?,?)";
+        String sql = "INSERT INTO Artiste (id, nom, biographie, urlPhoto) values (?,?,?,?)";
         return jdbcTemplate.update(sql, x.getId(),x.getNom(), x.getBiographie(), x.getUrlPhoto())==1;
     }
 
@@ -30,7 +30,7 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public boolean deleteById(int id) {
-        String sql = "DELETE FROM artiste  WHERE id = ?";
+        String sql = "DELETE FROM Artiste  WHERE id = ?";
         jdbcTemplate.update(sql, id);
         return true;
     }
@@ -42,7 +42,7 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public boolean update(Artiste artiste) {
-        String sql = "UPDATE artiste SET nom=?, biographie=?,urlPhoto=? WHERE id=?";
+        String sql = "UPDATE Artiste SET nom=?, biographie=?,urlPhoto=? WHERE id=?";
         return jdbcTemplate.update(sql, artiste.getNom(), artiste.getBiographie(), artiste.getUrlPhoto(), artiste.getId())==1;
     }
 
@@ -53,7 +53,7 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
     }
 
     public boolean artisteExists(int id) {
-        String sql = "SELECT count(*) FROM artiste WHERE id = ? ";
+        String sql = "SELECT count(*) FROM Artiste WHERE id = ? ";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, id);
         return count != 0;
     }

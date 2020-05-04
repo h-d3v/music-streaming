@@ -16,19 +16,19 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
     private JdbcTemplate jdbcTemplate;
     @Override
     public boolean create(Titre x) {
-        String sql="INSERT INTO titre (id, artisteId, nom, url, urlImage, TitreAlbum) VALUES (?,?,?,?,?,?)";
+        String sql="INSERT INTO Titre (id, artisteId, nom, url, urlImage, titreAlbum) VALUES (?,?,?,?,?,?)";
         return jdbcTemplate.update(sql, x.getId(), x.getArtiste().getId(),x.getNom(),x.getUrl(),x.getUrlImage(),x.getTitreAlbum())==1;
     }
 
     @Override
     public Titre findById(Object id) {
-        String sql="SELECT id, artisteId, nom, url, urlImage, dateSortie, TitreAlbum FROM titre WHERE id=?";
+        String sql="SELECT id, artisteId, nom, url, urlImage, dateSortie, titreAlbum FROM Titre WHERE id=?";
         return jdbcTemplate.queryForObject(sql ,new BeanPropertyRowMapper<>(Titre.class), id);
     }
 
     @Override
     public boolean deleteById(int id) {
-        String sql = "DELETE FROM titre  WHERE id = ?";
+        String sql = "DELETE FROM Titre  WHERE id = ?";
         return jdbcTemplate.update(sql, id)==1;
     }
 
@@ -39,13 +39,13 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
 
     @Override
     public boolean update(Titre x) {
-        String sql = "UPDATE titre SET nom=?, url=?,urlImage=?, TitreAlbum=? WHERE id=?";
+        String sql = "UPDATE Titre SET nom=?, url=?,urlImage=?, titreAlbum=? WHERE id=?";
         return jdbcTemplate.update(sql, x.getNom(),x.getUrl(),x.getUrlImage(), x.getTitreAlbum(), x.getId())==1;
     }
 
     @Override
     public List<Titre> findAll() {
-        String sql = "SELECT id, artisteId, nom, url, duree, urlImage, dateSortie, genre, TitreAlbum FROM titre";
+        String sql = "SELECT id, artisteId, nom, url, duree, urlImage, dateSortie, genre, titreAlbum FROM Titre";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Titre.class));
     }
 }

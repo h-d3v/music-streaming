@@ -16,7 +16,7 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
      * pour l'ajout d'un titre à une playlist.
     */
     public boolean create(PlayList x) {
-        String sql = "INSERT INTO playlist (id, utilisateurPseudo, nom) values (?,?,?)";
+        String sql = "INSERT INTO Playlist (id, utilisateurPseudo, nom) values (?,?,?)";
         return jdbcTemplate.update(sql, x.getId(),x.getUtilistateur().getPseudo(), x.getNom())==1;
     }
 

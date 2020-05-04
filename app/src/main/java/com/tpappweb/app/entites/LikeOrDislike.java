@@ -2,32 +2,42 @@ package com.tpappweb.app.entites;
 
 
 public class LikeOrDislike {
-    Utilistateur utilistateur;
-    Titre titre;
-    boolean like;
+    int id;
 
-    public Titre getTitre() {
-        return titre;
+
+    Utilistateur utilistateurPseudo;
+    Titre titreId;
+    boolean likeOuDislike;
+
+    public Utilistateur getUtilistateurPseudo() {
+        return utilistateurPseudo;
     }
 
-    public void setTitre(Titre titre) {
-        this.titre = titre;
+    public void setUtilistateurPseudo(Utilistateur utilistateurPseudo) {
+        this.utilistateurPseudo = utilistateurPseudo;
     }
 
-    public Utilistateur getUtilistateur() {
-        return utilistateur;
+    public Titre getTitreId() {
+        return titreId;
     }
 
-    public void setUtilistateur(Utilistateur utilistateur) {
-        this.utilistateur = utilistateur;
+    public void setTitreId(Titre titreId) {
+        this.titreId = titreId;
     }
 
-    public boolean isLike() {
-        return like;
+    public boolean getLikeOuDislike() {
+        return likeOuDislike;
     }
 
-    public void setLike(boolean like)  {
-        if(this.like==like || titre!=null || utilistateur!=null);
-        this.like = like;
+    public void setLikeOuDislike(boolean likeOuDislike) {
+        this.likeOuDislike = likeOuDislike;
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
