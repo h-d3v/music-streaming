@@ -10,17 +10,31 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
+@Repository
 public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
+    public LikeOuDislike creer(LikeOuDislike likeOuDislike){
+        String sql="INSERT INTO LikeOuDislike(titreId, utilisateurPseudo, likeOuDislike) VALUES (:titreId,:utilisateurPseudo,:likeOuDislike)";
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("likeOuDislike", likeOuDislike.getLikeOuDislike());
+        mapSqlParameterSource.addValue("titreId", likeOuDislike.getTitreId());
+        mapSqlParameterSource.addValue("utilisateurPseudo", likeOuDislike.getUtilistateurPseudo());
+        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(likeOuDislike);
+        jdbcTemplate.update(sql, sqlParameterSource);
+        sql="SELECT * FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
+        return (LikeOuDislike) jdbcTemplate.query(sql, new BeanPropertyRowMapper<LikeOuDislike>(LikeOuDislike.class));
+    }
+
     @Override
     public boolean create(LikeOuDislike x) {
-        String sql="INSERT INTO LikeOuDislike VALUES (1,:likeOrDislike,:titreId,:utilisateurPseudo)";
+        String sql="INSERT INTO LikeOuDislike(likeOuDislike, titreId, utilisateurPseudo) VALUES (:likeOrDislike,:titreId,:utilisateurPseudo)";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(x);
         return jdbcTemplate.update(sql, sqlParameterSource)==1;
     }
@@ -59,6 +73,18 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         return w==1;
     }
 
+    public LikeOuDislike modifier(LikeOuDislike likeOuDislike){
+        if(this.findByObject(likeOuDislike).size()==0){
+            return null;
+        }
+        else {
+            likeOuDislike = this.findByObject(likeOuDislike).get(0);
+            likeOuDislike.setLikeOuDislike(!likeOuDislike.getLikeOuDislike());
+            return findByObject(likeOuDislike).get(0);
+        }
+
+    }
+
     @Override
     public boolean update(LikeOuDislike x) {
         String sql= "UPDATE LikeOuDislike SET likeOuDislike=:likeOuDislike" +
@@ -67,6 +93,12 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         return i==1;
     }
 
+    /***
+     *
+     * @param object soit utilisateur, soit titre, soit LikeOudisLike
+     * @return Lis<LikeOuDislike> la liste est limitee a 0 ou 1 si likeOuDislike est entree en parametre et cherchera le likeOuDislike
+     * selon le nom d'utilisateur et le titre associe
+     */
     @Override
     public List<LikeOuDislike> findByObject(Object object) {
         if(object instanceof Utilistateur){
@@ -79,6 +111,14 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
             String sql = "SELECT * FROM LikeOuDislike WHERE titreId=:titreId";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue("titreId", ((Titre) object).getId());
+            return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+        }
+
+        else if(object instanceof LikeOuDislike){
+            String sql = "SELECT * FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
+            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+            mapSqlParameterSource.addValue("titreId", ((LikeOuDislike) object).getTitreId());
+            mapSqlParameterSource.addValue("utilisateurPseudo", ((LikeOuDislike) object).getUtilistateurPseudo());
             return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
         }
         else throw new NotImplementedException();

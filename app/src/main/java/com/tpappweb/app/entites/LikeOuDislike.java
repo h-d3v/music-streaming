@@ -5,7 +5,7 @@ public class LikeOuDislike {
     int id;
     Utilistateur utilistateurPseudo;
     Titre titreId;
-    int likeOuDislike;
+    boolean likeOuDislike;
 
     public Utilistateur getUtilistateurPseudo() {
         return utilistateurPseudo;
@@ -23,11 +23,11 @@ public class LikeOuDislike {
         this.titreId = titreId;
     }
 
-    public int getLikeOuDislike() {
+    public boolean getLikeOuDislike() {
         return likeOuDislike;
     }
 
-    public void setLikeOuDislike(int likeOuDislike) {
+    public void setLikeOuDislike(boolean likeOuDislike) {
         this.likeOuDislike = likeOuDislike;
     }
     public int getId() {

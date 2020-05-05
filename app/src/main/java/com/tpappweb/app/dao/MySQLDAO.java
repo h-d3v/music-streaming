@@ -1,7 +1,9 @@
 package com.tpappweb.app.dao;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public abstract class MySQLDAO<T> {
 
         public abstract boolean create(T x);

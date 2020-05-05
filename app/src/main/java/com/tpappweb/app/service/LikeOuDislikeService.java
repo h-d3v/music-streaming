@@ -4,24 +4,42 @@ import com.tpappweb.app.dao.LikeOuDislikeSQLDAO;
 import com.tpappweb.app.entites.LikeOuDislike;
 import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
+import com.tpappweb.app.service.interfaces.ILikeOuDislikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class LikeOuDislikeService {
+@Service
+public class LikeOuDislikeService implements ILikeOuDislikeService {
     @Autowired
     private LikeOuDislikeSQLDAO likeOuDislikeSQLDAO;
 
     public LikeOuDislike modifierLikeOuDislike(LikeOuDislike likeOuDislike){
+        //Le like ou dislike n'existe pas
         if(likeOuDislikeSQLDAO.findById(likeOuDislike.getId())==null){
-            likeOuDislikeSQLDAO.create(likeOuDislike);
-            return likeOuDislike;//TODO
+            return likeOuDislikeSQLDAO.creer(likeOuDislike);
+            //L'id est bien present dans l'objet entre en param et dans la bd
         }else if (likeOuDislikeSQLDAO.findById(likeOuDislike.getId()).getId()==likeOuDislike.getId()){
             likeOuDislikeSQLDAO.update(likeOuDislike);
-            return likeOuDislike;//TODO
+            return likeOuDislikeSQLDAO.findById(likeOuDislike.getId()) ;
         }
-        return null;
+            //L'id n'est pas present dans l'objet en param mais l'utilisateur et le titre corrsepondent a
+            //une entree unique LikeOuDislike dans la bd trouvee avec le nom d'utilisateur et le titre
+        else if (likeOuDislikeSQLDAO.findByObject(likeOuDislike).size()==1){
+            return likeOuDislikeSQLDAO.modifier(likeOuDislike);
+        }
+        else return null;
+    }
 
+    public LikeOuDislike supprimerLikeOuDislike(LikeOuDislike likeOuDislike){
+        if(likeOuDislikeSQLDAO.deleteById(likeOuDislike.getId())){
+            return null;
+        }
+        else if(likeOuDislikeSQLDAO.delete(likeOuDislike)){
+            return null;
+        }
+        else return likeOuDislike;
     }
 
     public List<LikeOuDislike> chercherLikeOuDislikesParUtilisateur(Utilistateur utilistateur){
@@ -35,8 +53,8 @@ public class LikeOuDislikeService {
         int compteur=0;
         List<LikeOuDislike> likeOuDislikes= chercherLikeOuDislikesParTitre(titre);
         for(LikeOuDislike likeOuDislike : likeOuDislikes){
-            //likeOuDislike>0, donc like
-            if(likeOuDislike.getLikeOuDislike()>0){
+            //likeOuDislike true, donc like
+            if(likeOuDislike.getLikeOuDislike()){
                 compteur++;
             }
         }
@@ -47,7 +65,7 @@ public class LikeOuDislikeService {
         List<LikeOuDislike> likeOuDislikes= chercherLikeOuDislikesParTitre(titre);
         for(LikeOuDislike likeOuDislike : likeOuDislikes){
             //likeOuDislike=false, donc dislike
-            if(likeOuDislike.getLikeOuDislike()<0){
+            if(!likeOuDislike.getLikeOuDislike()){
                 compteur++;
             }
         }
@@ -65,12 +83,12 @@ public class LikeOuDislikeService {
         int cptDisLike=0;
         List<LikeOuDislike> likeOuDislikes= chercherLikeOuDislikesParTitre(titre);
         for(LikeOuDislike likeOuDislike : likeOuDislikes){
-            //likeOuDislike=0, donc like
-            if(likeOuDislike.getLikeOuDislike()>0){
+            //likeOuDislike=true, donc like
+            if(likeOuDislike.getLikeOuDislike()){
                 cptLike++;
             }
             //likeOuDislike=1, donc dislike
-            else if (likeOuDislike.getLikeOuDislike()<0){
+            else if (!likeOuDislike.getLikeOuDislike()){
                 cptDisLike++;
             }
         }
