@@ -1,13 +1,11 @@
 package com.tpappweb.app.entites;
 
 
-public class LikeOrDislike {
+public class LikeOuDislike {
     int id;
-
-
     Utilistateur utilistateurPseudo;
     Titre titreId;
-    boolean likeOuDislike;
+    int likeOuDislike;
 
     public Utilistateur getUtilistateurPseudo() {
         return utilistateurPseudo;
@@ -25,11 +23,11 @@ public class LikeOrDislike {
         this.titreId = titreId;
     }
 
-    public boolean getLikeOuDislike() {
+    public int getLikeOuDislike() {
         return likeOuDislike;
     }
 
-    public void setLikeOuDislike(boolean likeOuDislike) {
+    public void setLikeOuDislike(int likeOuDislike) {
         this.likeOuDislike = likeOuDislike;
     }
     public int getId() {

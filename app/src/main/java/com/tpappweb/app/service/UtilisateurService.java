@@ -15,13 +15,26 @@ public class UtilisateurService implements IUtilisateurService {
 
     @Override
     public boolean ajouterUtilisateur(Utilistateur utilistateur) {
-        utilisateurSqlDao.create(utilistateur);
-        //TODO
-        return false;
+        return utilisateurSqlDao.create(utilistateur);
     }
 
     @Override
-    public boolean modifierMotPasse(Utilistateur utilistateur, String motPasse) {
+    public boolean modifierMotPasse(Utilistateur utilistateur, String nouveauMotPasse) {
+        //mot de passe, courriel et pseudo comme dans la base de donnees
+        if(utilistateur.equals(getUtilisateur(utilistateur.getPseudo()))){
+            /***
+             * TODO if(validerReglesDuMotPasse(nouveauMotPasse){
+             *
+             *    code non commente ci dessous
+             *
+             *     return true;
+             * }else return false;
+             */
+            utilistateur.setMotPasse(nouveauMotPasse);
+            return utilisateurSqlDao.update(utilistateur);
+
+        }
+
         return false;
     }
 
