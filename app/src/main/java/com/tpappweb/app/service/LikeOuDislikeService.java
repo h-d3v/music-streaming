@@ -12,6 +12,18 @@ public class LikeOuDislikeService {
     @Autowired
     private LikeOuDislikeSQLDAO likeOuDislikeSQLDAO;
 
+    public LikeOuDislike modifierLikeOuDislike(LikeOuDislike likeOuDislike){
+        if(likeOuDislikeSQLDAO.findById(likeOuDislike.getId())==null){
+            likeOuDislikeSQLDAO.create(likeOuDislike);
+            return likeOuDislike;//TODO
+        }else if (likeOuDislikeSQLDAO.findById(likeOuDislike.getId()).getId()==likeOuDislike.getId()){
+            likeOuDislikeSQLDAO.update(likeOuDislike);
+            return likeOuDislike;//TODO
+        }
+        return null;
+
+    }
+
     public List<LikeOuDislike> chercherLikeOuDislikesParUtilisateur(Utilistateur utilistateur){
         return likeOuDislikeSQLDAO.findByObject(utilistateur);
     }
