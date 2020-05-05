@@ -7,6 +7,8 @@ public class Artiste {
     private String biographie;
     private int id;
     private String urlPhoto;
+    private int duree;
+    private String genre;
 
     public String getNom() {
         return nom;

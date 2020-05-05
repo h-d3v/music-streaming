@@ -17,8 +17,10 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
     private JdbcTemplate jdbcTemplate;
     @Override
     public boolean create(Titre x) {
-        String sql="INSERT INTO Titre (id, artisteId, nom, url, urlImage, titreAlbum) VALUES (?,?,?,?,?,?)";
-        return jdbcTemplate.update(sql, x.getId(), x.getArtiste().getId(),x.getNom(),x.getUrl(),x.getUrlImage(),x.getTitreAlbum())==1;
+        //id int(10) NOT NULL AUTO_INCREMENT, artisteId int(10) NOT NULL, nom , url  , duree time, urlImage , dateSortie , genre, titreAlbum
+        String sql="INSERT INTO Titre(artisteId, nom, url, duree, urlImage, dateSortie, genre, titreAlbum) VALUES (?,?,?,?,?,?,?,?)";
+
+        return jdbcTemplate.update(sql, x.getArtisteId(),x.getNom(),x.getUrl(),x.getDuree(),x.getUrlImage(),x.getDateSortie(),x.getGenre(),x.getTitreAlbum())==1;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
 
     @Override
     public boolean delete(Titre x) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -56,7 +58,7 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
 
     @Override
     public List<Titre> findAll() {
-        String sql = "SELECT id, artisteId, nom, url, duree, urlImage, dateSortie, genre, titreAlbum FROM Titre";
+        String sql = "SELECT * Titre";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Titre.class));
     }
 }

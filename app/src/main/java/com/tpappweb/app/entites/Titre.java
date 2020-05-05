@@ -7,6 +7,33 @@ public class Titre {
     private String url;
     private String urlImage;
     private int artisteId;
+    private int duree;
+    private String genre;
+    private String dateSortie;
+
+    public String getDateSortie() {
+        return dateSortie;
+    }
+
+    public void setDateSortie(String dateSortie) {
+        this.dateSortie = dateSortie;
+    }
+
+    public int getDuree() {
+        return duree;
+    }
+
+    public void setDuree(int duree) {
+        this.duree = duree;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 
     public int getArtisteId() {
         return artisteId;
