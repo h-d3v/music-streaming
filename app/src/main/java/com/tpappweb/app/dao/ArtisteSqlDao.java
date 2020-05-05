@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -23,7 +24,12 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
     }
 
     @Override
-    public Artiste findById(Object id) {
+    public Artiste findById(String string) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Artiste findById(int id) {
         String sql = "SELECT id, nom, prenom, biographie, pays, urlPhoto FROM Artiste WHERE id = ?";
         return jdbcTemplate.queryForObject(sql ,new BeanPropertyRowMapper<>(Artiste.class), id);
     }
@@ -44,6 +50,11 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
     public boolean update(Artiste artiste) {
         String sql = "UPDATE Artiste SET nom=?, biographie=?,urlPhoto=? WHERE id=?";
         return jdbcTemplate.update(sql, artiste.getNom(), artiste.getBiographie(), artiste.getUrlPhoto(), artiste.getId())==1;
+    }
+
+    @Override
+    public List<Artiste> findByObject(Object object) {
+        throw  new NotImplementedException();
     }
 
     @Override

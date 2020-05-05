@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -21,7 +22,12 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
     }
 
     @Override
-    public Titre findById(Object id) {
+    public Titre findById(String string) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Titre findById(int id) {
         String sql="SELECT id, artisteId, nom, url, urlImage, dateSortie, titreAlbum FROM Titre WHERE id=?";
         return jdbcTemplate.queryForObject(sql ,new BeanPropertyRowMapper<>(Titre.class), id);
     }
@@ -41,6 +47,11 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
     public boolean update(Titre x) {
         String sql = "UPDATE Titre SET nom=?, url=?,urlImage=?, titreAlbum=? WHERE id=?";
         return jdbcTemplate.update(sql, x.getNom(),x.getUrl(),x.getUrlImage(), x.getTitreAlbum(), x.getId())==1;
+    }
+
+    @Override
+    public List<Titre> findByObject(Object object) {
+        throw new NotImplementedException();
     }
 
     @Override

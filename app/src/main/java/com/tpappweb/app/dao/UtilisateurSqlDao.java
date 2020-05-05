@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 @Repository
@@ -22,7 +23,17 @@ public class UtilisateurSqlDao extends MySQLDAO<Utilistateur>{
     }
 
     @Override
-    public Utilistateur findById(Object x) {
+    public Utilistateur findById(int x) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public List<Utilistateur> findByObject(Object object) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Utilistateur findById(String x) {
         String sql ="SELECT pseudo, courriel, motPasse  FROM Utilisateur WHERE pseudo=:pseudo ";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("pseudo", x);

@@ -4,6 +4,8 @@ import com.tpappweb.app.entites.PlayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.List;
 
 @Repository
@@ -21,7 +23,12 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
     }
 
     @Override
-    public PlayList findById(Object x) {
+    public PlayList findById(String string) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public PlayList findById(int x) {
         String sql = "SELECT id, utilisateurPseudo, nom FROM playlist WHERE id = ?";
         //Todo trouver une facon d'instancier tous les titre d'une meme playlist.
         return null;
@@ -40,6 +47,11 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
     @Override
     public boolean update(PlayList x) {
         return false;
+    }
+
+    @Override
+    public List<PlayList> findByObject(Object object) {
+        return null;
     }
 
     @Override
