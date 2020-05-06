@@ -26,7 +26,6 @@ public class Initialisation {
         File folder = new File(folderDepart);
         File[] fileNames = folder.listFiles();
         for (File file : fileNames) {
-            System.out.println(file.getName().trim());
             File fileCopie = new File(DIR_AUDIO + file.getName().replace(" ", "%"));
             FileInputStream is = new FileInputStream(file);
             FileOutputStream os = new FileOutputStream(fileCopie);
