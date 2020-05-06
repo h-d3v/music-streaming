@@ -28,13 +28,19 @@ public class RestControlleur {
 
     @Autowired
     private IArtisteService artisteService;
-
+/** Commente car dans le contoleur fronatl pour tests
+ *
+ *
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
     public Utilistateur  sinscrire(Utilistateur utilistateur) {
         iUtilisateurService.ajouterUtilisateur(utilistateur);
 
+
+
         return utilistateur;
     }
+    */
+
     @GetMapping("utilisateurs/{pseudo}")
     public ResponseEntity<Utilistateur> getUtilisateur(@PathVariable("pseudo") String pseudo){
         Utilistateur utilistateur=iUtilisateurService.getUtilisateur(pseudo);
@@ -48,9 +54,9 @@ public class RestControlleur {
 
     //test du asrtisteService
 
-    @RequestMapping("artiste/{id}")
-    public ResponseEntity<Artiste> getArticleById(@PathVariable("id") Integer id){
-        Artiste artiste = artisteService.getArtisteById(id);
+    @RequestMapping("artiste/{nom}")
+    public ResponseEntity<Artiste> getArticleById(@PathVariable("nom") String nom){
+        Artiste artiste = artisteService.getArtisteByNom(nom);
         return new ResponseEntity<Artiste>(artiste, HttpStatus.OK);
     }
 
@@ -74,14 +80,10 @@ public class RestControlleur {
 
     @RequestMapping("titres")
     public List<Titre> getTitres(){
-        List<Titre> titreList =titreService.trouverTous();
-        for (Titre unTitre:
-             titreList) {
-            Artiste artiste=artisteService.getArtisteById(unTitre.getArtisteId());
-            unTitre.setArtiste(artiste);
-        }
-        return titreList;
+        return titreService.trouverTous();
     }
+
+
 
 }
 

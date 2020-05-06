@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -40,16 +44,18 @@
 </div>
 
 <!-- Modal pour se connecter -->
-<div id="modalLogin" role="dialog" tabindex="-1" class="modal fade">
+<div id="modalLogin" role="dialog" tabindex="1" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Connectez-vous</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
             <div class="modal-body">
-                <form method="post">
-                    <div class="form-group"><input type="email" class="form-control" name="email" placeholder="adresse@courriel.ca" /></div>
-                    <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Mot de passe" /></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Se connecter</button></div><a class="forgot" href="#">Vous avez oubliez votre mot de passe?</a></form>
+                <form method="post" action="player">
+                    <div class="form-group"><input type="text" class="form-control" name="pseudo" placeholder="pseudo" required /></div>
+                    <div class="form-group"><input type="email" class="form-control" name="courriel" placeholder="adresse@courriel.ca" required/></div>
+                    <div class="form-group"><input type="password" class="form-control" name="motPasse" placeholder="Mot de passe"required /></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Se connecter</button></div>
+                </form>
             </div>
             <div class="modal-footer"><button  class="btn btn-light" type="button" data-dismiss="modal">Fermer</button></div>
         </div>
@@ -63,7 +69,8 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item"><button class="btn btn-primary" data-toggle="modal" data-target="#modalNewAccount" type="button">S'inscrire</button></li>
                 <li class="nav-item"><button class="btn btn-primary" data-toggle="modal" data-target="#modalLogin" type="button">Se connecter</button></li>
-
+                <li class="text-danger" >${messageErreurCnx}</li>
+                <li class="text-danger" >${messageErreurSignUp}</li>
             </ul>
         </div>
     </div>
@@ -72,7 +79,7 @@
     <div class="masthead-content">
         <div class="container">
             <h2 class="masthead-heading mb-0">Musique illimitee</h2>
-            <h2 class="masthead-subheading mb-0">Enfin presque, on n'a pas les droits</h2><button class="btn btn-primary btn-xl rounded-pill mt-5" data-toggle="modal" data-target="#modalLogin" type="button">S'inscrire</button></div>
+            <h2 class="masthead-subheading mb-0">Enfin presque, on n'a pas les droits</h2><button class="btn btn-primary btn-xl rounded-pill mt-5" data-toggle="modal" data-target="#modalLogin" type="button">Se Connecter</button></div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
     <div class="bg-circle-2 bg-circle"></div>

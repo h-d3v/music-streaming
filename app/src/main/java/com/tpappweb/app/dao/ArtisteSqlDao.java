@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.swing.plaf.IconUIResource;
 import java.util.List;
 
 @Transactional
@@ -19,8 +20,8 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public boolean create(Artiste x) {
-        String sql = "INSERT INTO Artiste (id, nom, biographie, urlPhoto) values (?,?,?,?)";
-        return jdbcTemplate.update(sql, x.getId(),x.getNom(), x.getBiographie(), x.getUrlPhoto())==1;
+        String sql = "INSERT INTO Artiste (nom, biographie, urlPhoto) values (?,?,?)";
+        return jdbcTemplate.update(sql,x.getNom(), x.getBiographie(), x.getUrlPhoto())==1;
     }
 
     @Override
@@ -30,15 +31,12 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public Artiste findById(int id) {
-        String sql = "SELECT id, nom, prenom, biographie, pays, urlPhoto FROM Artiste WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql ,new BeanPropertyRowMapper<>(Artiste.class), id);
+       throw new NotImplementedException();
     }
 
     @Override
     public boolean deleteById(int id) {
-        String sql = "DELETE FROM Artiste  WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-        return true;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -48,8 +46,8 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public boolean update(Artiste artiste) {
-        String sql = "UPDATE Artiste SET nom=?, biographie=?,urlPhoto=? WHERE id=?";
-        return jdbcTemplate.update(sql, artiste.getNom(), artiste.getBiographie(), artiste.getUrlPhoto(), artiste.getId())==1;
+        String sql = "UPDATE Artiste SET biographie=?,urlPhoto=? WHERE nom=?";
+        return jdbcTemplate.update(sql, artiste.getBiographie(), artiste.getUrlPhoto(), artiste.getNom())==1;
     }
 
     @Override
@@ -59,14 +57,18 @@ public class ArtisteSqlDao extends MySQLDAO<Artiste> {
 
     @Override
     public List<Artiste> findAll() {
-        String sql = "SELECT id, nom, prenom, biographie, pays, urlPhoto FROM Artiste";
+        String sql = "SELECT nom, biographie, pays, urlPhoto FROM Artiste";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Artiste.class));
     }
 
-    public boolean artisteExists(int id) {
-        String sql = "SELECT count(*) FROM Artiste WHERE id = ? ";
-        int count = jdbcTemplate.queryForObject(sql, Integer.class, id);
-        return count != 0;
+    public boolean artisteExists(String nom) {
+        String sql = "SELECT count(*) FROM Artiste WHERE nom= ? ";
+        int count=-1;
+        if(jdbcTemplate.queryForObject(sql, Integer.class, nom)!=null){
+            count = jdbcTemplate.queryForObject(sql, Integer.class, nom);
+        }
+
+        return count == 1;
     }
 
 }

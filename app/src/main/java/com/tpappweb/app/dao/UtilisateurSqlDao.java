@@ -19,7 +19,8 @@ public class UtilisateurSqlDao extends MySQLDAO<Utilistateur>{
     public boolean create(Utilistateur x) {
         String sql="INSERT INTO Utilisateur VALUES (:pseudo,:courriel,:motPasse)";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(x);
-        return jdbcTemplate.update(sql, sqlParameterSource)==1;
+
+        return jdbcTemplate.update(sql, sqlParameterSource)==1 ;
     }
 
     @Override
@@ -51,6 +52,7 @@ public class UtilisateurSqlDao extends MySQLDAO<Utilistateur>{
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("pseudo", x.getPseudo());
         int w =jdbcTemplate.update(sql, new BeanPropertySqlParameterSource(x));
+        System.out.println(w);
         return w==1;
     }
 

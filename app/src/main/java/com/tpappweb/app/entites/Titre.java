@@ -6,10 +6,18 @@ public class Titre {
     private String titreAlbum;
     private String url;
     private String urlImage;
-    private int artisteId;
+    private String  nomArtiste;
     private int duree;
     private String genre;
     private String dateSortie;
+
+    public String getNomArtiste() {
+        return nomArtiste;
+    }
+
+    public void setNomArtiste(String nomArtiste) {
+        this.nomArtiste = nomArtiste;
+    }
 
     public String getDateSortie() {
         return dateSortie;
@@ -35,13 +43,6 @@ public class Titre {
         this.genre = genre;
     }
 
-    public int getArtisteId() {
-        return artisteId;
-    }
-
-    public void setArtisteId(int artisteId) {
-        this.artisteId = artisteId;
-    }
 
     private Artiste artiste;
 

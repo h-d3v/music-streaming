@@ -5,9 +5,9 @@ import com.tpappweb.app.entites.Artiste;
 import java.util.List;
 
 public interface IArtisteService {
-    Artiste getArtisteById(int id);
+    Artiste getArtisteByNom(String nom);
     boolean addArtiste(Artiste artiste);
     boolean updateArtiste(Artiste artiste);
-    boolean deleteArtiste(int id);
+    boolean deleteArtiste(String nom);
     List<Artiste> trouverTous();
 }

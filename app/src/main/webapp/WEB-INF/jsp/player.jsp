@@ -1,3 +1,7 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -17,8 +21,9 @@
     <div class="container"><a class="navbar-brand" href="#">RoseTube</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mon Compte</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Se Deconnecter</a></li>
+
+                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mon compte : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="seDeconnecter">Se Deconnecter</a></li>
             </ul>
         </div>
     </div>
@@ -56,7 +61,7 @@
             <div class="col-md-3 col-lg-3 col-xl-3">
                 <section>
                     <h4>Lecture en cours</h4>
-                    <h5>Tritre de la chanson</h5><img class="imageAlbum" src="assets/img/R-6013749-1408827886-2023.jpeg.jpg"></section><audio src="assets/audio/file_example_MP3_5MG.mp3" controls="" style="width: 100%;"></audio>
+                    <h5>Tritre de la chanson</h5><img class="imageAlbum" src="img/R-6013749-1408827886-2023.jpeg.jpg"></section><audio src="audio/Checkie_Brown_-_09_-_Mary_Roose_CB_36.mp3" controls="" style="width: 100%;"></audio>
                 <section>
                     <h4>Commentaires</h4>
                     <ul class="list-group sc-overflow" style="max-height: 150px;">

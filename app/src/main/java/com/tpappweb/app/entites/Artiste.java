@@ -1,11 +1,9 @@
 package com.tpappweb.app.entites;
 
-import java.util.List;
 
 public class Artiste {
     private String nom;
     private String biographie;
-    private int id;
     private String urlPhoto;
     private int duree;
     private String genre;
@@ -26,13 +24,6 @@ public class Artiste {
         this.biographie = biographie;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUrlPhoto() {
         return urlPhoto;
