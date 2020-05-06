@@ -8,6 +8,24 @@ public class Formulaire {
     private String genre;
     private String auteur;
     private String date;
+    private String cheminPhoto;
+    private String cheminAudio;
+
+    public String getCheminPhoto() {
+        return cheminPhoto;
+    }
+
+    public void setCheminPhoto(String cheminPhoto) {
+        this.cheminPhoto = cheminPhoto;
+    }
+
+    public String getCheminAudio() {
+        return cheminAudio;
+    }
+
+    public void setCheminAudio(String cheminAudio) {
+        this.cheminAudio = cheminAudio;
+    }
 
     public int getDuree() {
         return duree;

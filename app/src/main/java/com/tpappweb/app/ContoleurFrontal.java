@@ -48,8 +48,8 @@ public class ContoleurFrontal {
         titre.setDateSortie(webRequest.getParameter("date"));
         titre.setGenre(webRequest.getParameter("genre"));
         titre.setTitreAlbum(webRequest.getParameter("album"));
-        titre.setUrl(modelMap.getAttribute("cheminAudio").toString());
-        titre.setUrlImage(modelMap.getAttribute("cheminPhoto").toString());
+        titre.setUrl(webRequest.getParameter("cheminAudio"));
+        titre.setUrlImage(webRequest.getParameter("cheminPhoto"));
         if( iTitreService.addTitre(titre)){return titre;}
         else return null;
 

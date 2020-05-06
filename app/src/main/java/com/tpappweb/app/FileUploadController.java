@@ -31,13 +31,11 @@ import org.springframework.web.multipart.MultipartFile;
         }
 
         @PostMapping("/upload")
-        public String fileUpload(@RequestParam MultipartFile file, Formulaire formulaire, ModelMap modelMap){
+        public String fileUpload(@RequestParam MultipartFile file, ModelMap modelMap){
             if(file.isEmpty()){
                 modelMap.addAttribute("message","erreur, fichier vide");
 
-
                 return "uploadStatus";
-
             }
 
             try {
@@ -48,6 +46,10 @@ import org.springframework.web.multipart.MultipartFile;
                 modelMap.addAttribute("formulaire", new Formulaire());
                 modelMap.addAttribute("message", "Le fichier a bien ete enregistre");
                 GestionMetaDatasMp3 gestionMetaDatasMp3= new GestionMetaDatasMp3(file.getOriginalFilename());
+                if(!gestionMetaDatasMp3.isFichierValide()){
+                    modelMap.addAttribute("message", "Le type de fichier n'est pas valide");
+                    return "uploadStatus";
+                }
                 modelMap.addAttribute("album",gestionMetaDatasMp3.getAlbum());
                 modelMap.addAttribute("date", gestionMetaDatasMp3.getDate());
                 modelMap.addAttribute("duree",gestionMetaDatasMp3.getDuree());

@@ -20,6 +20,8 @@ public  class GestionMetaDatasMp3 {
     private String genre;
     private String auteur;
     private String date;
+    private boolean fichierValide;
+
 
     /***
      *
@@ -28,13 +30,14 @@ public  class GestionMetaDatasMp3 {
     public GestionMetaDatasMp3(String cheminFichiermP3){
         this.cheminFichiermP3=cheminFichiermP3;
         try{
-        mp3File= new Mp3File(DIR_AUDIO+cheminFichiermP3);
+        mp3File= new Mp3File(DIR_AUDIO+cheminFichiermP3.trim());
         genre=mp3File.getId3v2Tag().getGenreDescription();
         duree= mp3File.getId3v2Tag().getLength();
         titre= mp3File.getId3v2Tag().getTitle();
         album= mp3File.getId3v2Tag().getAlbum();
         auteur= mp3File.getId3v2Tag().getArtist();
         date=  mp3File.getId3v2Tag().getDate();
+        fichierValide=true;
 
         } catch (UnsupportedTagException e) {
             e.printStackTrace();
@@ -57,6 +60,7 @@ public  class GestionMetaDatasMp3 {
             if(mp3File.getId3v2Tag().getAlbumImage()==null){
                 return false;
             }
+            cheminFichiermP3= cheminFichiermP3.replace(" ", "%");
             File file = new File(DIR_PHOTO+cheminFichiermP3+".jpg");
             file.createNewFile();
             FileOutputStream fileWriter = new FileOutputStream(file);
@@ -71,6 +75,15 @@ public  class GestionMetaDatasMp3 {
         }
         return false;
     }
+
+    public boolean isFichierValide() {
+        return fichierValide;
+    }
+
+    public void setFichierValide(boolean fichierValide) {
+        this.fichierValide = fichierValide;
+    }
+
 
     public String getDIR_AUDIO() {
         return DIR_AUDIO;

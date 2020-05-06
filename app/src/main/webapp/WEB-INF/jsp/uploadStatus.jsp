@@ -32,7 +32,12 @@
     <form:input path="genre" value="${genre}" ></form:input>
     <form:label path="auteur" >Nom de l'auteur :</form:label>
     <form:input path="auteur" value="${auteur}" ></form:input>
+    <form:label path="cheminPhoto" >Chemin photo NE PAS CHANGER(BETA) :</form:label>
+    <form:input path="cheminPhoto" value="${cheminPhoto}"></form:input>
+    <form:label path="cheminAudio" >Chemin audio  NE PAS CHANGER(BETA) :</form:label>
+    <form:input path="cheminAudio" value="${cheminAudio}"></form:input>
     <input type="submit" value="Confirmer"/>
+
 </form:form>
 
 </body>
