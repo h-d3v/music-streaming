@@ -34,6 +34,11 @@ public class ContoleurFrontal {
         return "index";
     }
 
+    @RequestMapping("/playlist")
+    public String voirPlaylist(HttpSession httpSession){
+        return "playlist";
+    }
+
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
     public String  sinscrire(HttpSession httpSession, WebRequest webRequest, ModelMap modelMap) {
 
@@ -81,10 +86,5 @@ public class ContoleurFrontal {
 
         }
         return welcome(httpSession);
-
     }
-
-
-
-
 }

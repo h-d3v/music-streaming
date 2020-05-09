@@ -34,10 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
         public String fileUpload(@RequestParam MultipartFile file, Formulaire formulaire, ModelMap modelMap){
             if(file.isEmpty()){
                 modelMap.addAttribute("message","erreur, fichier vide");
-
-
                 return "uploadStatus";
-
             }
 
             try {

@@ -42,7 +42,7 @@
                 <section>
                     <h4>Mes Playlists</h4>
                     <ul class="list-group sc-overflow" style="max-height: 150px;">
-                        <li class="list-group-item"><span>List Group Item</span></li>
+                       <a href="../"> <li class="list-group-item"><span>List Group Item</span></li></a>
                         <li class="list-group-item"><span>List Group Item</span></li>
                         <li class="list-group-item"><span>List Group Item</span></li>
                         <li class="list-group-item"><span>List Group Item</span></li>
