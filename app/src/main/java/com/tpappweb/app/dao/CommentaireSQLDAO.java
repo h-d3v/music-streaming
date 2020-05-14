@@ -77,13 +77,13 @@ public class CommentaireSQLDAO extends MySQLDAO<Commentaire> {
             String sql = "SELECT * FROM Commentaire WHERE utilisateurPseudo=:utilisateur";
             MapSqlParameterSource mapSqlParameterSource= new MapSqlParameterSource();
             mapSqlParameterSource.addValue("utilisateur", ((Utilistateur) object).getPseudo());
-            return jdbcTemplate.query(sql, new CommentaireRowMapper());
+            return jdbcTemplate.query(sql,mapSqlParameterSource, new CommentaireRowMapper());
         }
         else if(object instanceof Titre){
             String sql = "SELECT * FROM Commentaire WHERE titreid=:titre";
             MapSqlParameterSource mapSqlParameterSource= new MapSqlParameterSource();
             mapSqlParameterSource.addValue("titre", ((Titre) object).getId());
-            return jdbcTemplate.query(sql, new CommentaireRowMapper());
+            return jdbcTemplate.query(sql, mapSqlParameterSource, new CommentaireRowMapper());
         }
         else throw new NotImplementedException();
     }

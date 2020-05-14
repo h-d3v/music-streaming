@@ -73,7 +73,7 @@ public class RestControlleur {
    }
 
    @RequestMapping("titre/{id}")
-   public ResponseEntity<Titre> getUtilisateur(@PathVariable("id") int id){
+   public ResponseEntity<Titre> getTitre(@PathVariable("id") int id){
        Titre titre=titreService.getTitreById(id);
        return new ResponseEntity<>(titre, HttpStatus.OK);
    }
