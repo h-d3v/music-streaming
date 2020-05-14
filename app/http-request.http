@@ -1,0 +1,30 @@
+###
+PUT http://localhost:8080/titre/11/commentaire/21
+Content-Type: application/json
+
+{
+  "utilistateur": {
+    "pseudo": "Remy",
+    "courriel": null,
+    "motPasse": null,
+    "abonnes": null,
+    "playLists": null,
+    "commentaires": null,
+    "estAdmin": false
+  },
+  "titre": {
+    "nom": null,
+    "id": 11,
+    "titreAlbum": null,
+    "url": null,
+    "urlImage": null,
+    "nomArtiste": null,
+    "duree": 0,
+    "genre": null,
+    "dateSortie": null,
+    "artiste": null
+  },
+  "date": "2019-10-21",
+  "commentaire": "Je suis modifie",
+  "id": 21
+}
