@@ -6,7 +6,7 @@ public class Commentaire {
     private Utilistateur utilistateur;
     private Titre titre;
     private Date date;
-    private String texteDuCommentaire;
+    private String commentaire;
     private long id;
 
     public Utilistateur getUtilistateur() {
@@ -33,12 +33,12 @@ public class Commentaire {
         this.date = date;
     }
 
-    public String getTexteDuCommentaire() {
-        return texteDuCommentaire;
+    public String getCommentaire() {
+        return commentaire;
     }
 
-    public void setTexteDuCommentaire(String texteDuCommentaire) {
-        this.texteDuCommentaire = texteDuCommentaire;
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public long getId() {
@@ -47,5 +47,16 @@ public class Commentaire {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Commentaire{" +
+                "utilistateur=" + utilistateur +
+                ", titre=" + titre +
+                ", date=" + date +
+                ", commentaire='" + commentaire + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
