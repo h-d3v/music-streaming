@@ -1,9 +1,7 @@
 package com.tpappweb.app;
 
 
-import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
-import com.tpappweb.app.service.interfaces.ITitreService;
 import com.tpappweb.app.service.interfaces.IUtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -19,16 +17,12 @@ public class ContoleurFrontal {
     @Autowired
     private IUtilisateurService iUtilisateurService;
 
-    @Autowired
-    private ITitreService iTitreService;
-
     @RequestMapping("/")
     public String welcome(HttpSession httpSession){
         if(httpSession.getAttribute("utilisateurConnecte")==null){
             return "index";
         }
         else return "player";
-
     }
 
     @RequestMapping("/seDeconnecter")
@@ -39,20 +33,16 @@ public class ContoleurFrontal {
         return "index";
     }
 
-    @PostMapping(path = "titres/add", consumes = "application/x-www-form-urlencoded")
-    public Titre ajouterTitre(WebRequest webRequest, ModelMap modelMap){
-        Titre titre =new Titre();
-        titre.setNomArtiste(webRequest.getParameter("auteur"));
-        titre.setDuree(Integer.valueOf(webRequest.getParameter("duree")));
-        titre.setNom(webRequest.getParameter("titre"));
-        titre.setDateSortie(webRequest.getParameter("date"));
-        titre.setGenre(webRequest.getParameter("genre"));
-        titre.setTitreAlbum(webRequest.getParameter("album"));
-        titre.setUrl(webRequest.getParameter("cheminAudio"));
-        titre.setUrlImage(webRequest.getParameter("cheminPhoto"));
-        if( iTitreService.addTitre(titre)){return titre;}
-        else return null;
+    //test
+    @RequestMapping("/playlist")
+    public String voirPlaylist(HttpSession httpSession){
+        return "playlist";
+    }
 
+    //test
+    @RequestMapping("/profile")
+    public String voirProfile(HttpSession httpSession){
+        return "profile";
     }
 
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
@@ -102,10 +92,5 @@ public class ContoleurFrontal {
 
         }
         return welcome(httpSession);
-
     }
-
-
-
-
 }

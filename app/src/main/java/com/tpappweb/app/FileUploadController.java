@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
     public class FileUploadController {
 
-        private static String UPLOAD_MUSIC_FOLDER="src/main/resources/static/audio/";
+        private static String UPLOAD_FOLDER="src/main/resources/static/audio/";
 
         @GetMapping("/uploadStatus")
         public String uploadStatus() {
@@ -31,25 +31,20 @@ import org.springframework.web.multipart.MultipartFile;
         }
 
         @PostMapping("/upload")
-        public String fileUpload(@RequestParam MultipartFile file, ModelMap modelMap){
+        public String fileUpload(@RequestParam MultipartFile file, Formulaire formulaire, ModelMap modelMap){
             if(file.isEmpty()){
                 modelMap.addAttribute("message","erreur, fichier vide");
-
                 return "uploadStatus";
             }
 
             try {
                 byte[] bytes=file.getBytes();
-                Path path= Paths.get(UPLOAD_MUSIC_FOLDER+file.getOriginalFilename());
+                Path path= Paths.get(UPLOAD_FOLDER+file.getOriginalFilename());
                 Files.write(path, bytes);
                 Files.write(Paths.get("src/main/resources/static/audio/audioTampo.mp3"), bytes);
                 modelMap.addAttribute("formulaire", new Formulaire());
                 modelMap.addAttribute("message", "Le fichier a bien ete enregistre");
                 GestionMetaDatasMp3 gestionMetaDatasMp3= new GestionMetaDatasMp3(file.getOriginalFilename());
-                if(!gestionMetaDatasMp3.isFichierValide()){
-                    modelMap.addAttribute("message", "Le type de fichier n'est pas valide");
-                    return "uploadStatus";
-                }
                 modelMap.addAttribute("album",gestionMetaDatasMp3.getAlbum());
                 modelMap.addAttribute("date", gestionMetaDatasMp3.getDate());
                 modelMap.addAttribute("duree",gestionMetaDatasMp3.getDuree());
