@@ -1,5 +1,6 @@
+
 ###
-PUT http://localhost:8080/titre/11/commentaire/21
+POST http://localhost:8080/commentaire/
 Content-Type: application/json
 
 {
@@ -24,7 +25,7 @@ Content-Type: application/json
     "dateSortie": null,
     "artiste": null
   },
-  "date": "2019-10-21",
-  "commentaire": "Je suis modifie",
-  "id": 21
+  "date": null,
+  "commentaire": "Je suis un nouveau commentaire",
+  "id": null
 }

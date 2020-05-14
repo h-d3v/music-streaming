@@ -43,8 +43,22 @@ public class RestControlleurCommentaire {
         iCommentaireService.modifierCommentaire(commentaire);
         commentaire=iCommentaireService.chercherCommentaireParId((int) commentaire.getId());
         return new ResponseEntity<>(commentaire, HttpStatus.OK);
-
     }
+
+    @PostMapping("commentaire/")
+    public ResponseEntity<Boolean> ajouterCommentaire(@RequestBody Commentaire commentaire){
+        Boolean reponse = iCommentaireService.ajouterCommentaire(commentaire);
+
+        return  new ResponseEntity<>(reponse,HttpStatus.OK);
+    }
+
+    @DeleteMapping("titre/{idTitre}/commentaire/{id}")
+    public ResponseEntity<Boolean> supprimerCommentaire(@PathVariable("id") int id ){
+       boolean reponse= iCommentaireService.supprimerComentaireParId(id);
+
+        return  new ResponseEntity<>(reponse,HttpStatus.OK);
+    }
+
 
 
 }
