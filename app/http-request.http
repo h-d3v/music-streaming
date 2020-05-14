@@ -1,0 +1,31 @@
+
+###
+POST http://localhost:8080/commentaire/
+Content-Type: application/json
+
+{
+  "utilistateur": {
+    "pseudo": "Remy",
+    "courriel": null,
+    "motPasse": null,
+    "abonnes": null,
+    "playLists": null,
+    "commentaires": null,
+    "estAdmin": false
+  },
+  "titre": {
+    "nom": null,
+    "id": 11,
+    "titreAlbum": null,
+    "url": null,
+    "urlImage": null,
+    "nomArtiste": null,
+    "duree": 0,
+    "genre": null,
+    "dateSortie": null,
+    "artiste": null
+  },
+  "date": null,
+  "commentaire": "Je suis un nouveau commentaire",
+  "id": null
+}
