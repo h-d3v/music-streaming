@@ -5,15 +5,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Ma playlist #1</title>
-  <link rel="stylesheet" href="/css/playlistWidget.css">
   <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
-  <link rel="stylesheet" href="css/scrollbar.css">
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/black-footer.css" rel="stylesheet">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link href="img/open-iconic-master/font/css/open-iconic-bootstrap.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +33,7 @@
   <div style="margin-top: 0" class="container">
 
 
-    <div style="padding-top: 20px !important;" class=" container">
+    <div style="padding-top: 20px !important;" class="container-fluid">
       <h3 class="text-center text-dark">Titre de la playlist</h3>
       <div class="row">
         <div style="background-color:lightsalmon " class="col-lg-12 mx-auto rounded shadow">
@@ -112,7 +107,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row container-fluid">
     <div class="col-4">
       <img style="margin-top: 10px;" class="img-thumbnail img-fluid" src="https://generative-placeholders.glitch.me/image?width=120&height=120&style=tiles" alt="image album">
     </div>

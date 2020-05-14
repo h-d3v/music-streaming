@@ -23,7 +23,6 @@ public class ContoleurFrontal {
             return "index";
         }
         else return "player";
-
     }
 
     @RequestMapping("/seDeconnecter")
@@ -34,9 +33,16 @@ public class ContoleurFrontal {
         return "index";
     }
 
+    //test
     @RequestMapping("/playlist")
     public String voirPlaylist(HttpSession httpSession){
         return "playlist";
+    }
+
+    //test
+    @RequestMapping("/profile")
+    public String voirProfile(HttpSession httpSession){
+        return "profile";
     }
 
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
