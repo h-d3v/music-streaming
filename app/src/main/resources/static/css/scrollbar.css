@@ -1,0 +1,21 @@
+.sc-overflow {
+  overflow-y: auto;
+}
+
+.sc-overflow {
+  overflow-y: auto;
+}
+
+.list-group-item:last-child {
+}
+
+.list-group-item {
+  /*position: relative;*/
+  /*display: block;*/
+  /*padding: .75rem 1.25rem;*/
+  /*margin-bottom: -1px;*/
+  background-color: transparent;
+  /*border: 1px solid rgba(0,0,0,.125);*/
+  color: rgb(255,255,255);
+}
+

@@ -1,0 +1,446 @@
+
+INSERT INTO artiste(id, nom, biographie, pays, urlPhoto) VALUES (1,'Hedi','Jeune programmeur', 'CA','facebook.com/profile?Hedi');
+insert into artiste (id, nom, biographie, urlPhoto) values (61, 'Virgilio', 'Nullam molestie nibh in lectus. Pellentesque at nulla.', 'http://dummyimage.com/123x110.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (2, 'Rock', 'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.', 'http://dummyimage.com/147x129.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (3, 'Liza', 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.', 'http://dummyimage.com/147x156.jpg/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (4, 'Franzen', 'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', 'http://dummyimage.com/193x223.png/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (5, 'Chev', 'Praesent lectus.', 'http://dummyimage.com/157x214.png/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (6, 'Cathlene', 'Cras pellentesque volutpat dui.', 'http://dummyimage.com/185x218.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (7, 'Freida', 'Ut tellus. Nulla ut erat id mauris vulputate elementum.', 'http://dummyimage.com/244x229.jpg/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (8, 'Christine', 'Phasellus in felis. Donec semper sapien a libero.', 'http://dummyimage.com/179x131.jpg/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (9, 'Harley', 'Integer a nibh.', 'http://dummyimage.com/153x149.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (10, 'Alley', 'Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 'http://dummyimage.com/186x220.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (11, 'Grier', 'Nulla nisl.', 'http://dummyimage.com/228x148.jpg/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (12, 'Trula', 'Nulla nisl. Nunc nisl.', 'http://dummyimage.com/153x113.jpg/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (13, 'Kelly', 'Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', 'http://dummyimage.com/140x149.bmp/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (14, 'Woodman', 'Nulla suscipit ligula in lacus.', 'http://dummyimage.com/230x175.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (15, 'Curt', 'Phasellus id sapien in sapien iaculis congue.', 'http://dummyimage.com/226x184.png/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (16, 'Dianna', 'Cras in purus eu magna vulputate luctus.', 'http://dummyimage.com/201x106.jpg/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (17, 'Leone', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.', 'http://dummyimage.com/102x211.bmp/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (18, 'Karole', 'Proin at turpis a pede posuere nonummy. Integer non velit.', 'http://dummyimage.com/172x165.png/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (19, 'Almeria', 'Suspendisse potenti. Cras in purus eu magna vulputate luctus.', 'http://dummyimage.com/181x165.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (20, 'Xenos', 'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.', 'http://dummyimage.com/245x133.png/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (21, 'Anya', 'Mauris sit amet eros.', 'http://dummyimage.com/104x247.bmp/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (22, 'Nikolia', 'Donec ut mauris eget massa tempor convallis.', 'http://dummyimage.com/209x139.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (23, 'Jsandye', 'Quisque ut erat. Curabitur gravida nisi at nibh.', 'http://dummyimage.com/176x201.jpg/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (24, 'Suzanna', 'Proin risus.', 'http://dummyimage.com/227x197.jpg/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (25, 'Ali', 'Nullam porttitor lacus at turpis.', 'http://dummyimage.com/224x208.png/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (26, 'Chad', 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.', 'http://dummyimage.com/175x108.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (27, 'Monika', 'Morbi non quam nec dui luctus rutrum.', 'http://dummyimage.com/125x249.png/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (28, 'Franklyn', 'Nulla suscipit ligula in lacus.', 'http://dummyimage.com/127x196.png/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (29, 'Major', 'Fusce posuere felis sed lacus.', 'http://dummyimage.com/121x143.bmp/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (30, 'Carmelita', 'Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.', 'http://dummyimage.com/234x122.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (31, 'Rica', 'Etiam justo. Etiam pretium iaculis justo.', 'http://dummyimage.com/146x114.bmp/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (32, 'Freda', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', 'http://dummyimage.com/105x240.bmp/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (33, 'Stephine', 'Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.', 'http://dummyimage.com/190x170.jpg/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (34, 'Cathee', 'Morbi ut odio.', 'http://dummyimage.com/117x211.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (35, 'Catha', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.', 'http://dummyimage.com/145x182.png/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (36, 'Enriqueta', 'Donec ut mauris eget massa tempor convallis.', 'http://dummyimage.com/245x161.bmp/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (37, 'Obie', 'Pellentesque at nulla.', 'http://dummyimage.com/152x115.bmp/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (38, 'Johnette', 'Aenean lectus.', 'http://dummyimage.com/196x247.png/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (39, 'Babs', 'Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.', 'http://dummyimage.com/136x225.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (40, 'Elenore', 'Proin risus.', 'http://dummyimage.com/241x122.png/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (41, 'Avigdor', 'Mauris lacinia sapien quis libero.', 'http://dummyimage.com/140x145.bmp/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (42, 'Izaak', 'Quisque ut erat. Curabitur gravida nisi at nibh.', 'http://dummyimage.com/238x127.jpg/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (43, 'Elena', 'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', 'http://dummyimage.com/167x160.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (44, 'Ricky', 'Nam dui.', 'http://dummyimage.com/153x227.bmp/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (45, 'Raul', 'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.', 'http://dummyimage.com/226x196.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (46, 'Olia', 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.', 'http://dummyimage.com/228x104.bmp/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (47, 'Moishe', 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst.', 'http://dummyimage.com/219x241.jpg/dddddd/000000');
+insert into artiste (id, nom, biographie, urlPhoto) values (48, 'Skylar', 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst.', 'http://dummyimage.com/141x211.png/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (49, 'Flory', 'Nulla nisl.', 'http://dummyimage.com/184x105.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (50, 'Augustin', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.', 'http://dummyimage.com/215x214.jpg/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (51, 'Dona', 'Etiam justo.', 'http://dummyimage.com/226x156.jpg/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (52, 'Granthem', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 'http://dummyimage.com/212x129.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (53, 'Gregorio', 'In quis justo.', 'http://dummyimage.com/150x235.png/ff4444/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (54, 'Genna', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.', 'http://dummyimage.com/244x109.jpg/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (55, 'Karlene', 'Integer ac neque. Duis bibendum.', 'http://dummyimage.com/199x229.jpg/cc0000/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (56, 'Leta', 'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.', 'http://dummyimage.com/231x207.png/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (57, 'Alicea', 'Maecenas pulvinar lobortis est. Phasellus sit amet erat.', 'http://dummyimage.com/189x193.jpg/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (58, 'Riva', 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.', 'http://dummyimage.com/136x247.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (59, 'Jeane', 'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'http://dummyimage.com/199x169.bmp/5fa2dd/ffffff');
+insert into artiste (id, nom, biographie, urlPhoto) values (60, 'Melicent', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'http://dummyimage.com/186x221.png/5fa2dd/ffffff');
+
+
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (1, 17, 'Cry, the Beloved Country', 'http://dummyimage.com/113x54.bmp/cc0000/ffffff', 'http://dummyimage.com/153x153.bmp/5fa2dd/ffffff', 'Jabbertype');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (2, 54, 'Just Looking', 'http://dummyimage.com/51x68.bmp/cc0000/ffffff', 'http://dummyimage.com/225x238.jpg/5fa2dd/ffffff', 'Linklinks');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (3, 22, 'Innerspace', 'http://dummyimage.com/86x58.bmp/cc0000/ffffff', 'http://dummyimage.com/198x192.png/5fa2dd/ffffff', 'Kayveo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (4, 58, 'Psychosis', 'http://dummyimage.com/110x122.jpg/cc0000/ffffff', 'http://dummyimage.com/151x184.jpg/dddddd/000000', 'Twimbo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (5, 60, 'Nobody Will Speak of Us When We''re Dead (Nadie hablará de nosotras cuando hayamos muerto)', 'http://dummyimage.com/85x92.jpg/cc0000/ffffff', 'http://dummyimage.com/225x166.jpg/ff4444/ffffff', 'Jaloo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (6, 18, 'Dangerous Game', 'http://dummyimage.com/90x111.jpg/dddddd/000000', 'http://dummyimage.com/143x175.png/ff4444/ffffff', 'Gabcube');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (7, 35, 'Motivation, The', 'http://dummyimage.com/77x101.jpg/dddddd/000000', 'http://dummyimage.com/248x216.png/cc0000/ffffff', 'Twimbo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (8, 43, 'Sharpay''s Fabulous Adventure', 'http://dummyimage.com/64x69.png/5fa2dd/ffffff', 'http://dummyimage.com/223x174.png/dddddd/000000', 'Voonte');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (9, 31, 'Quintet', 'http://dummyimage.com/101x74.jpg/ff4444/ffffff', 'http://dummyimage.com/187x141.jpg/5fa2dd/ffffff', 'Wikizz');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (10, 14, 'Abbott and Costello Meet Frankenstein', 'http://dummyimage.com/69x104.bmp/5fa2dd/ffffff', 'http://dummyimage.com/179x136.png/5fa2dd/ffffff', 'Edgeclub');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (11, 37, 'Towering Inferno, The', 'http://dummyimage.com/112x98.png/cc0000/ffffff', 'http://dummyimage.com/187x133.jpg/ff4444/ffffff', 'Skyble');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (12, 20, 'Flakes', 'http://dummyimage.com/58x70.bmp/ff4444/ffffff', 'http://dummyimage.com/162x234.jpg/ff4444/ffffff', 'Photobug');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (13, 29, 'Secret Ballot (Raye makhfi)', 'http://dummyimage.com/51x50.png/ff4444/ffffff', 'http://dummyimage.com/235x180.bmp/5fa2dd/ffffff', 'Ailane');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (14, 17, 'Roadkill (a.k.a. Roadkill: Move or Die)', 'http://dummyimage.com/109x115.bmp/dddddd/000000', 'http://dummyimage.com/224x197.bmp/dddddd/000000', 'Youtags');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (15, 23, 'PoliWood', 'http://dummyimage.com/63x109.png/cc0000/ffffff', 'http://dummyimage.com/113x155.bmp/ff4444/ffffff', 'Jaxworks');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (16, 15, 'Repo Man', 'http://dummyimage.com/51x95.bmp/ff4444/ffffff', 'http://dummyimage.com/152x151.jpg/dddddd/000000', 'Eimbee');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (17, 33, 'Narco Cultura', 'http://dummyimage.com/97x92.jpg/ff4444/ffffff', 'http://dummyimage.com/199x183.png/cc0000/ffffff', 'Twitternation');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (18, 18, 'Let''s Be Cops', 'http://dummyimage.com/86x93.png/cc0000/ffffff', 'http://dummyimage.com/222x224.png/dddddd/000000', 'Flashdog');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (19, 33, 'Hollow Reed', 'http://dummyimage.com/102x115.bmp/5fa2dd/ffffff', 'http://dummyimage.com/239x187.bmp/dddddd/000000', 'Lazzy');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (20, 52, 'Mahakaal (The Monster)', 'http://dummyimage.com/73x113.bmp/dddddd/000000', 'http://dummyimage.com/139x109.jpg/ff4444/ffffff', 'Katz');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (21, 38, 'Bonnie and Clyde', 'http://dummyimage.com/109x116.png/cc0000/ffffff', 'http://dummyimage.com/149x171.jpg/ff4444/ffffff', 'Mybuzz');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (22, 50, 'Program, The', 'http://dummyimage.com/116x91.bmp/cc0000/ffffff', 'http://dummyimage.com/245x186.bmp/cc0000/ffffff', 'Rhybox');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (23, 29, 'Extraterrestrial (Extraterrestre)', 'http://dummyimage.com/76x52.bmp/cc0000/ffffff', 'http://dummyimage.com/205x115.png/ff4444/ffffff', 'Voonte');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (24, 11, 'Ike: Countdown to D-Day', 'http://dummyimage.com/76x87.jpg/5fa2dd/ffffff', 'http://dummyimage.com/168x236.bmp/ff4444/ffffff', 'Mydo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (25, 57, 'Emperor''s New Groove, The', 'http://dummyimage.com/79x104.png/ff4444/ffffff', 'http://dummyimage.com/169x175.bmp/cc0000/ffffff', 'Muxo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (26, 40, 'Power (Jew Süss)', 'http://dummyimage.com/72x61.bmp/dddddd/000000', 'http://dummyimage.com/218x169.png/dddddd/000000', 'Edgeclub');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (27, 22, 'Ernest Goes to Jail', 'http://dummyimage.com/65x107.bmp/dddddd/000000', 'http://dummyimage.com/132x176.bmp/cc0000/ffffff', 'Jetpulse');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (28, 52, 'El Cid', 'http://dummyimage.com/78x58.jpg/cc0000/ffffff', 'http://dummyimage.com/215x125.jpg/cc0000/ffffff', 'Devcast');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (29, 14, 'Some Days Are Better Than Others', 'http://dummyimage.com/125x65.png/ff4444/ffffff', 'http://dummyimage.com/136x196.png/ff4444/ffffff', 'Jaxspan');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (30, 21, 'Why Do Fools Fall In Love?', 'http://dummyimage.com/110x124.bmp/dddddd/000000', 'http://dummyimage.com/139x160.jpg/5fa2dd/ffffff', 'Wordpedia');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (31, 16, 'With a Song in My Heart', 'http://dummyimage.com/63x72.png/dddddd/000000', 'http://dummyimage.com/240x114.jpg/dddddd/000000', 'Innotype');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (32, 24, 'Devil''s in the Details, The', 'http://dummyimage.com/93x73.png/dddddd/000000', 'http://dummyimage.com/161x107.bmp/cc0000/ffffff', 'Plambee');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (33, 11, 'Christmas in Conway', 'http://dummyimage.com/71x101.bmp/cc0000/ffffff', 'http://dummyimage.com/221x147.png/5fa2dd/ffffff', 'Realbridge');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (34, 26, 'Night of the Hunter, The', 'http://dummyimage.com/101x88.png/5fa2dd/ffffff', 'http://dummyimage.com/179x134.png/dddddd/000000', 'Layo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (35, 43, 'Welcome to L.A.', 'http://dummyimage.com/62x52.jpg/5fa2dd/ffffff', 'http://dummyimage.com/226x218.png/dddddd/000000', 'Eadel');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (36, 40, 'Gregory''s Girl', 'http://dummyimage.com/69x71.jpg/ff4444/ffffff', 'http://dummyimage.com/180x123.jpg/dddddd/000000', 'Kwimbee');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (37, 24, 'Zero de conduite (Zero for Conduct) (Zéro de conduite: Jeunes diables au collège)', 'http://dummyimage.com/115x78.bmp/5fa2dd/ffffff', 'http://dummyimage.com/103x230.bmp/ff4444/ffffff', 'Meejo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (38, 56, 'Groove Tube, The', 'http://dummyimage.com/106x63.bmp/5fa2dd/ffffff', 'http://dummyimage.com/135x139.png/dddddd/000000', 'Pixoboo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (39, 46, 'Black or White', 'http://dummyimage.com/69x67.bmp/ff4444/ffffff', 'http://dummyimage.com/219x148.bmp/5fa2dd/ffffff', 'Bubblemix');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (40, 23, 'First Wives Club, The', 'http://dummyimage.com/98x95.bmp/cc0000/ffffff', 'http://dummyimage.com/189x218.bmp/cc0000/ffffff', 'Jabberbean');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (41, 59, 'Forsyte Saga, The', 'http://dummyimage.com/78x76.jpg/cc0000/ffffff', 'http://dummyimage.com/185x203.bmp/dddddd/000000', 'Vitz');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (42, 18, 'Lisa', 'http://dummyimage.com/62x114.bmp/cc0000/ffffff', 'http://dummyimage.com/222x170.jpg/5fa2dd/ffffff', 'Youspan');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (43, 12, 'Distinguished Gentleman, The', 'http://dummyimage.com/114x101.jpg/5fa2dd/ffffff', 'http://dummyimage.com/249x131.bmp/cc0000/ffffff', 'Wordtune');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (44, 40, 'Story of My Death', 'http://dummyimage.com/102x68.jpg/dddddd/000000', 'http://dummyimage.com/111x175.png/5fa2dd/ffffff', 'Youspan');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (45, 13, 'Film ist. 7-12', 'http://dummyimage.com/52x117.png/5fa2dd/ffffff', 'http://dummyimage.com/215x104.jpg/5fa2dd/ffffff', 'Photobug');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (46, 41, 'Khumba', 'http://dummyimage.com/86x108.jpg/cc0000/ffffff', 'http://dummyimage.com/158x160.png/5fa2dd/ffffff', 'Twinder');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (47, 28, 'Confessions of a Teenage Drama Queen', 'http://dummyimage.com/120x89.jpg/cc0000/ffffff', 'http://dummyimage.com/192x250.png/5fa2dd/ffffff', 'Abata');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (48, 10, 'What''s in a Name (Prénom, Le)', 'http://dummyimage.com/120x108.png/dddddd/000000', 'http://dummyimage.com/214x126.jpg/cc0000/ffffff', 'Trudoo');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (49, 22, 'Ghosts... of the Civil Dead', 'http://dummyimage.com/106x50.jpg/5fa2dd/ffffff', 'http://dummyimage.com/186x164.jpg/ff4444/ffffff', 'Abata');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (50, 5, 'Enemy of the People, An', 'http://dummyimage.com/77x92.png/ff4444/ffffff', 'http://dummyimage.com/151x225.bmp/ff4444/ffffff', 'Divavu');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (51, 44, 'Bill Bailey: Tinselworm', 'http://dummyimage.com/104x114.bmp/dddddd/000000', 'http://dummyimage.com/120x243.png/cc0000/ffffff', 'Skipstorm');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (52, 52, 'Witch Hunt', 'http://dummyimage.com/66x83.jpg/5fa2dd/ffffff', 'http://dummyimage.com/229x106.bmp/5fa2dd/ffffff', 'Vitz');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (53, 15, 'Bones Brigade: An Autobiography', 'http://dummyimage.com/89x123.bmp/cc0000/ffffff', 'http://dummyimage.com/168x195.bmp/ff4444/ffffff', 'Voomm');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (54, 24, 'Locusts, The', 'http://dummyimage.com/99x121.jpg/5fa2dd/ffffff', 'http://dummyimage.com/234x186.png/cc0000/ffffff', 'Flashdog');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (55, 34, 'Some Girls', 'http://dummyimage.com/73x106.bmp/ff4444/ffffff', 'http://dummyimage.com/211x167.jpg/dddddd/000000', 'Agivu');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (56, 40, 'Scattered Clouds (Midaregumo)', 'http://dummyimage.com/63x77.jpg/cc0000/ffffff', 'http://dummyimage.com/112x180.jpg/dddddd/000000', 'Janyx');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (57, 13, 'Adaptation', 'http://dummyimage.com/51x83.png/cc0000/ffffff', 'http://dummyimage.com/128x128.jpg/dddddd/000000', 'Realfire');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (58, 2, 'Big Fan', 'http://dummyimage.com/77x118.jpg/cc0000/ffffff', 'http://dummyimage.com/227x197.jpg/5fa2dd/ffffff', 'Wordify');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (59, 58, 'And the Pursuit of Happiness (La poursuite du bonheur)', 'http://dummyimage.com/119x102.bmp/cc0000/ffffff', 'http://dummyimage.com/130x111.png/cc0000/ffffff', 'Photofeed');
+insert into titre (id, artisteId, nom, url, urlImage, titreAlbum ) values (60, 27, 'Onion Field, The', 'http://dummyimage.com/71x108.png/dddddd/000000', 'http://dummyimage.com/107x102.jpg/ff4444/ffffff', 'Trupe');
+
+INSERT INTO `Utilisateur` VALUES
+('adele.parisian','fermin59@yahoo.com','cbca318a9f317c452764e0e222cd4660'),
+('adolfo31','allene54@gmail.com','9f62e2d0d65d1f4158ab0b795b406059'),
+('angelica87','qupton@yahoo.com','8294822e2044bd43adc36ff52f3886da'),
+('antonia.wintheiser','bkilback@gmail.com','016fbe3d3bc90b42996dc82527566ee2'),
+('avery95','mertz.pete@yahoo.com','7bd2f6d35ea264f79fd697dcc6a8f4ce'),
+('awaters','cade12@gmail.com','05dcc200d70272e6cf1f07cc06923220'),
+('barton.nathanael','tyler61@yahoo.com','5a6782a1ffbf407e6d7f07fa6d093329'),
+('bertram.dickinson','pierce.gerlach@gmail.com','717d2ab9ec20779ff0cbe746d8962c1c'),
+('bettie39','zflatley@yahoo.com','d2b7e2f5079071a37a3e8365defa60cc'),
+('broderick.reichel','jasper83@gmail.com','8997f33c45bc818f0c8572ab726e215d'),
+('callie51','ssawayn@yahoo.com','1096d6d569bd2efcbf630a10c384fc70'),
+('champlin.diana','balistreri.clare@hotmail.com','8bdb632999ee791e8363e36bca5fdb3c'),
+('conn.deonte','rory.rodriguez@yahoo.com','d11e1bb6a412421fe48473f49171fe09'),
+('cornelius.moen','quentin21@hotmail.com','66a6b75c3e642400682a154f3fc85161'),
+('cristal57','astamm@gmail.com','0fa203d96a54f757d97343612496212a'),
+('crooks.malachi','kirk.torphy@hotmail.com','97883f811776e2d0703d97a9650b80de'),
+('daugherty.gloria','ally.beer@hotmail.com','760470d421e839728861b3a3d05f0971'),
+('dayana.nienow','kunde.autumn@gmail.com','091ec68e9a90f7dba1feb1b67d0c70b8'),
+('denesik.luther','senger.kelly@yahoo.com','bb5684104521eaccb2a3169ac062ddd8'),
+('donavon.lubowitz','veronica.wunsch@yahoo.com','942391e94c2f75bbeb11fe5cc5f9bf48'),
+('doyle.norma','mclaughlin.ashlynn@gmail.com','1e66ba67a383ea17a0174054d365df99'),
+('ekiehn','ima.volkman@gmail.com','406c6c5691485b16944b83c626bc55c3'),
+('ekutch','trantow.stephania@hotmail.com','7559ce3edec3ae9cd35c1a7d9114627a'),
+('elbert.bergnaum','amos.langosh@hotmail.com','a913c8025de66b0c619c6983c368226f'),
+('eleannon','tfahey@gmail.com','f5eb580595bb64d1bf9d5cdaccc7c892'),
+('ena70','yost.marcia@yahoo.com','4194805bc75fc1797ab16d3bbff4bd6f'),
+('era34','virgie.lemke@hotmail.com','1598195cfcbc68f181f91bb971f2976d'),
+('ericka.daniel','hahn.peggie@hotmail.com','9fb42e3fa103ee249b95f0d72749df9e'),
+('ericka83','gulgowski.penelope@yahoo.com','1dca07b6675bb3bebc027e81f7ad6dca'),
+('erwin30','storphy@yahoo.com','d5678c4e023fa6856c627dfd55e3cceb'),
+('fbernhard','alda73@yahoo.com','12de05ef714024c7d6f1ea424cceabda'),
+('freda.weber','mozell19@gmail.com','e22bfddd1e59d4811c037e184ee174f0'),
+('gia16','jedidiah55@gmail.com','dbdf4c720a5873d33d65868912fe5647'),
+('giuseppe94','leonie.rowe@yahoo.com','b3103528a1191b92d0d98e2e07c48102'),
+('gpfannerstill','henry77@yahoo.com','3d480897ba8ca952a88b4e537e215e82'),
+('guy.gaylord','thowe@gmail.com','e12ae4432b3bfb56f2eab0873d648bb4'),
+('harris.noemi','roxane.beatty@yahoo.com','ccc2729f17af628265b3ad46de9917c0'),
+('harrison.mills','carey38@yahoo.com','2d9b14ecf519d2dae0bc674f694e47e9'),
+('herman.karson','nrau@gmail.com','e5760d2185fc2aa9255a3a73daaeb905'),
+('hilll.pierre','melyna.wolf@hotmail.com','d4bec69c267e9841188b1e457d68b45b'),
+('hlesch','patricia.moore@gmail.com','f22771c5c9fb074f1c1fc8c8cf58c898'),
+('hodkiewicz.cassie','josiane87@gmail.com','7764694ced5af60d49369d45a7340de9'),
+('ike.raynor','hudson.jacey@yahoo.com','20ae70cba290aab7abe555a528120c71'),
+('isadore.boehm','josie.schmitt@hotmail.com','95e8663f377c732fbaef350653e808a9'),
+('jaleel54','elroy19@yahoo.com','2060c5370a96fc983f251b6ecb26f7d1'),
+('jamaal87','mayert.alessandra@yahoo.com','4698e0ee86614984d997354126d7be2f'),
+('johnathan01','jaron.runolfsdottir@hotmail.com','68bf46a9ff97eb757d1cea510ac3f7bb'),
+('kemmer.rae','kozey.jennifer@gmail.com','fffdb6537efe51d9ddaa99d0e098b917'),
+('kris.justina','enos.barrows@yahoo.com','96d9b81f697a83f07b876743050feb67'),
+('kshlerin.amanda','lorn@gmail.com','3c54d93053a7dbe19bb8738f4c5ac03a'),
+('kshlerin.kale','klein.eldred@gmail.com','c2a6007f51bfe01d9e8cbacf61eed5a4'),
+('kunde.fernando','arlene.hintz@hotmail.com','944e2466991fa272e8792970aab32ae3'),
+('kurtis.brown','kcrist@gmail.com','9346ef671a1972176f13d7546384d5b8'),
+('layla98','jast.fleta@hotmail.com','23cace8edf751aeddfc8626bf317da1e'),
+('lily30','sebastian47@yahoo.com','f51d4673474b799efcbd509f411e87a5'),
+('lmclaughlin','hills.ahmed@yahoo.com','07ff4e5e2558960b3d52fa46f4dd424f'),
+('madge.lang','fadel.dovie@gmail.com','7d70a36c7715fac7aa43230534121be8'),
+('marcelina.grimes','cecile11@yahoo.com','c969a4864a94a1b0b0f4ed796ae72e83'),
+('mathew10','kemmer.charles@hotmail.com','fc9dc61f07e446fde9030b0eba39c99c'),
+('mcglynn.jennyfer','gussie09@yahoo.com','177b4792cb86cc238015b56c96d4dacd'),
+('melody.senger','flo41@yahoo.com','630e5968a3014988948452bc4bd044bc'),
+('meta.thiel','rylee.walker@hotmail.com','868bc4450c33568ec44efbc47f42c3dc'),
+('mhartmann','htowne@hotmail.com','527978870387111efb18ee8914750652'),
+('mills.lillian','thiel.chelsey@hotmail.com','3144717c2866a4cba557bf5bc870d7c5'),
+('mpaucek','reanna.ryan@yahoo.com','bf8f73c65aeaafebf3a575e1aed6d061'),
+('muller.hazel','otho.hyatt@hotmail.com','43985d3aaea4f58d67d6877bd0bf1397'),
+('murray.tony','hermann15@hotmail.com','8bd9737f268f53ebe8fa21c6911d5ac7'),
+('myrtis.beier','marta.marvin@gmail.com','cebdc82ef3f41a91f0d3979a08d49c01'),
+('nblanda','gutkowski.alexandrea@hotmail.com','86b5dea75e62da75c2fd9f55cac3f35a'),
+('nmckenzie','thauck@yahoo.com','900a820781198a95d2f0e5a78b0a04cd'),
+('noel.torp','goldner.domingo@hotmail.com','f7295f416871ca03631627f6604fd192'),
+('nzboncak','alabadie@gmail.com','a9df11b641bc709edfba6b9e21b20ee9'),
+('o\'hara.skyla','hyatt.kristin@gmail.com','a077747a69acafae13cb24be89510855'),
+('obeatty','vzieme@hotmail.com','6b123dc09c5c76d17d7ae2960571343b'),
+('orrin68','hirthe.lincoln@hotmail.com','358a8ea77d70aad036fb46cc60916d31'),
+('pfannerstill.danial','ignacio.tremblay@yahoo.com','86a245640c167f642e08517dd666caee'),
+('qheaney','rempel.guido@hotmail.com','5508dbc62dd34cde1c8d6f118781d066'),
+('rboyer','melyna55@hotmail.com','7d016d429a3d803bc6454339fd8c6821'),
+('rfadel','judson99@yahoo.com','5d18484cdf7f9a9a9c329a4b3e56ad30'),
+('rkovacek','loyal51@hotmail.com','3cde14248a733ba2f38135a0221f7b5f'),
+('rosella01','sstokes@hotmail.com','bc3f6e41967d880743f42f7d515a97c8'),
+('rowe.antonia','xgrimes@gmail.com','95978eca4f7b4ced250c789c5bd6c17e'),
+('rubie.murazik','verlie.auer@hotmail.com','6dd07a8aae294612bef04d41eee5d0d8'),
+('shana.schowalter','savannah.altenwerth@gmail.com','fc24703bc0f37da0b60b6eebdca08168'),
+('shane40','dwisozk@hotmail.com','2a12dd7a088118d67b38f8233995786b'),
+('steuber.alexandrine','jackson74@yahoo.com','970a3d3466704322dfafcf7642cb7c90'),
+('stone.harber','fmcglynn@hotmail.com','93107a7396ea6105c2a98d4aa2a483f8'),
+('streich.shyanne','retha91@gmail.com','15628c0dd8f4598b2db70cf70f7f7719'),
+('stroman.rhoda','qkonopelski@hotmail.com','5be37dc5efbd49062d153ce6d558da07'),
+('susanna.dubuque','mtorp@hotmail.com','eab644747cf3006955392942db896844'),
+('swiegand','kgreen@hotmail.com','cd8a2aeff46b24bfd1e4c9ac9e637cfe'),
+('twest','ulegros@hotmail.com','4361facfd9e6766fd92b32c22ab3982c'),
+('vfriesen','kihn.pascale@hotmail.com','88280be10cf9d8caa9a98f141f8a7864'),
+('waldo52','marquardt.aric@hotmail.com','1a6d366b99d0107bf6a32804858487e7'),
+('walter.muller','kuhlman.queenie@hotmail.com','754395c7302f871a04356e8c720be350'),
+('wendell.gutmann','sunny82@yahoo.com','6887b1e7639dc29970730748dfc98419'),
+('wisoky.denis','nathanael.hayes@hotmail.com','95de531f9f7700aad138b2606b695e48'),
+('wrodriguez','kevin79@yahoo.com','6a7ffa8a121e061769e278a4b03f2ec0'),
+('yhintz','lizzie.bruen@yahoo.com','b58d73497749910a6fbd44f31d079273'),
+('zboncak.edd','abigail09@gmail.com','4cdbce2f3261b3d4d3dad17c22845259');
+
+INSERT INTO `Playlist` VALUES ('1','adele.parisian','Multi-lateral dedicated implementation',NULL),
+                              ('2','adolfo31','Stand-alone global time-frame',NULL),
+                              ('3','angelica87','Open-source dedicated utilisation',NULL),
+                              ('4','antonia.wintheiser','Compatible contextually-based challenge',NULL),
+                              ('5','avery95','Adaptive high-level archive',NULL),
+                              ('6','awaters','Re-engineered non-volatile knowledgeuser',NULL),
+                              ('7','barton.nathanael','Persevering 5thgeneration hardware',NULL),
+                              ('8','bertram.dickinson','Seamless analyzing budgetarymanagement',NULL),
+                              ('9','bettie39','Down-sized dedicated application',NULL),
+                              ('10','broderick.reichel','Innovative bi-directional GraphicInterface',NULL),
+                              ('11','callie51','Right-sized stable analyzer',NULL),
+                              ('12','champlin.diana','Customer-focused multimedia hub',NULL),
+                              ('13','conn.deonte','Realigned neutral software',NULL),
+                              ('14','cornelius.moen','Networked web-enabled productivity',NULL),
+                              ('15','cristal57','Synergistic intangible opensystem',NULL),
+                              ('16','crooks.malachi','Cloned object-oriented projection',NULL),
+                              ('17','daugherty.gloria','Organized local utilisation',NULL),
+                              ('18','dayana.nienow','Stand-alone upward-trending definition',NULL),
+                              ('19','denesik.luther','De-engineered 6thgeneration projection',NULL),
+                              ('20','donavon.lubowitz','Automated multi-state migration',NULL),
+                              ('21','doyle.norma','Team-oriented assymetric access',NULL),
+                              ('22','ekiehn','Balanced upward-trending core',NULL),
+                              ('23','ekutch','Ameliorated radical help-desk',NULL),
+                              ('24','elbert.bergnaum','Progressive homogeneous GraphicInterface',NULL),
+                              ('25','eleannon','De-engineered user-facing pricingstructure',NULL),
+                              ('26','ena70','Multi-tiered composite frame',NULL),
+                              ('27','era34','Business-focused human-resource capacity',NULL),
+                              ('28','ericka.daniel','Universal well-modulated orchestration',NULL),
+                              ('29','ericka83','Robust dynamic array',NULL),
+                              ('30','erwin30','User-friendly secondary matrix',NULL),
+                              ('31','fbernhard','Organized motivating projection',NULL),
+                              ('32','freda.weber','Public-key intangible encoding',NULL),
+                              ('33','gia16','Cross-group analyzing internetsolution',NULL),
+                              ('34','giuseppe94','Persistent intermediate contingency',NULL),
+                              ('35','gpfannerstill','Cross-group asynchronous hardware',NULL),
+                              ('36','guy.gaylord','Compatible web-enabled website',NULL),
+                              ('37','harris.noemi','Object-based tertiary ability',NULL),
+                              ('38','harrison.mills','Secured solution-oriented benchmark',NULL),
+                              ('39','herman.karson','Virtual fault-tolerant artificialintelligence',NULL),
+                              ('40','hilll.pierre','Integrated value-added task-force',NULL),
+                              ('41','hlesch','Proactive assymetric moderator',NULL),
+                              ('42','hodkiewicz.cassie','Ameliorated object-oriented moratorium',NULL),
+                              ('43','ike.raynor','Function-based solution-oriented circuit',NULL),
+                              ('44','isadore.boehm','Right-sized even-keeled opensystem',NULL),
+                              ('45','jaleel54','Seamless high-level approach',NULL),
+                              ('46','jamaal87','Realigned solution-oriented conglomeration',NULL),
+                              ('47','johnathan01','Realigned tertiary securedline',NULL),
+                              ('48','kemmer.rae','Cross-platform regional productivity',NULL),
+                              ('49','kris.justina','Persistent contextually-based website',NULL),
+                              ('50','kshlerin.amanda','Persevering disintermediate matrices',NULL),
+                              ('51','kshlerin.kale','Profit-focused multi-tasking function',NULL),
+                              ('52','kunde.fernando','Devolved analyzing array',NULL),
+                              ('53','kurtis.brown','Optimized didactic pricingstructure',NULL),
+                              ('54','layla98','Devolved leadingedge hub',NULL),
+                              ('55','lily30','Down-sized optimal adapter',NULL),
+                              ('56','lmclaughlin','Horizontal systematic policy',NULL),
+                              ('57','madge.lang','Organic asynchronous adapter',NULL),
+                              ('58','marcelina.grimes','Synchronised fault-tolerant core',NULL),
+                              ('59','mathew10','Balanced bottom-line GraphicalUserInterface',NULL),
+                              ('60','mcglynn.jennyfer','Upgradable upward-trending intranet',NULL),
+                              ('61','melody.senger','Persevering mission-critical task-force',NULL),
+                              ('62','meta.thiel','Facetoface content-based forecast',NULL),
+                              ('63','mhartmann','Distributed heuristic localareanetwork',NULL),
+                              ('64','mills.lillian','User-centric 24/7 intranet',NULL),
+                              ('65','mpaucek','Open-architected mission-critical knowledgebase',NULL),
+                              ('66','muller.hazel','Innovative human-resource neural-net',NULL),
+                              ('67','murray.tony','Re-engineered fresh-thinking hierarchy',NULL),
+                              ('68','myrtis.beier','Switchable 24hour opensystem',NULL),
+                              ('69','nblanda','Optional bandwidth-monitored access',NULL),
+                              ('70','nmckenzie','Operative encompassing leverage',NULL),
+                              ('71','noel.torp','Grass-roots composite artificialintelligence',NULL),
+                              ('72','nzboncak','Synergized directional attitude',NULL),
+                              ('73','o\'hara.skyla','Cloned modular knowledgebase',NULL),
+                              ('74','obeatty','Future-proofed dedicated encoding',NULL),
+                              ('75','orrin68','Cloned even-keeled software',NULL),
+                              ('76','pfannerstill.danial','User-friendly asynchronous emulation',NULL),
+                              ('77','qheaney','Assimilated needs-based capacity',NULL),
+                              ('78','rboyer','Quality-focused demand-driven middleware',NULL),
+                              ('79','rfadel','Team-oriented 24hour policy',NULL),
+                              ('80','rkovacek','Synergistic bottom-line workforce',NULL),
+                              ('81','rosella01','Assimilated methodical definition',NULL),
+                              ('82','rowe.antonia','Re-engineered client-server concept',NULL),
+                              ('83','rubie.murazik','Streamlined value-added utilisation',NULL),
+                              ('84','shana.schowalter','Integrated methodical firmware',NULL),
+                              ('85','shane40','Upgradable real-time flexibility',NULL),
+                              ('86','steuber.alexandrine','Sharable intermediate software',NULL),
+                              ('87','stone.harber','Profit-focused even-keeled challenge',NULL),
+                              ('88','streich.shyanne','Assimilated eco-centric instructionset',NULL),
+                              ('89','stroman.rhoda','Mandatory encompassing circuit',NULL),
+                              ('90','susanna.dubuque','Progressive mobile hub',NULL),
+                              ('91','swiegand','Focused needs-based interface',NULL),
+                              ('92','twest','Enterprise-wide executive standardization',NULL),
+                              ('93','vfriesen','Virtual 6thgeneration superstructure',NULL),
+                              ('94','waldo52','Profit-focused coherent firmware',NULL),
+                              ('95','walter.muller','Centralized responsive archive',NULL),
+                              ('96','wendell.gutmann','Focused disintermediate GraphicalUserInterface',NULL),
+                              ('97','wisoky.denis','Balanced foreground data-warehouse',NULL),
+                              ('98','wrodriguez','Focused high-level hardware',NULL),
+                              ('99','yhintz','Synchronised homogeneous algorithm',NULL),
+                              ('100','zboncak.edd','Pre-emptive analyzing middleware',NULL),
+                              ('101','adele.parisian','Phased explicit definition',NULL),
+                              ('102','adolfo31','Monitored tertiary systemengine',NULL),
+                              ('103','angelica87','Adaptive dedicated protocol',NULL),
+                              ('104','antonia.wintheiser','Enterprise-wide transitional core',NULL),
+                              ('105','avery95','Cross-platform optimal matrices',NULL),
+                              ('106','awaters','Virtual optimizing parallelism',NULL),
+                              ('107','barton.nathanael','Realigned upward-trending openarchitecture',NULL),
+                              ('108','bertram.dickinson','Customer-focused directional knowledgebase',NULL),
+                              ('109','bettie39','User-friendly nextgeneration circuit',NULL),
+                              ('110','broderick.reichel','Diverse client-server migration',NULL),
+                              ('111','callie51','Cross-group responsive leverage',NULL),
+                              ('112','champlin.diana','Re-engineered tangible database',NULL),
+                              ('113','conn.deonte','Profound encompassing processimprovement',NULL),
+                              ('114','cornelius.moen','Compatible leadingedge pricingstructure',NULL),
+                              ('115','cristal57','Ameliorated human-resource protocol',NULL),
+                              ('116','crooks.malachi','Seamless upward-trending website',NULL);
+
+
+
+insert into titre_playlist (titreId, playlistId) values (28, 109);
+insert into titre_playlist (titreId, playlistId) values (9, 66);
+insert into titre_playlist (titreId, playlistId) values (20, 13);
+insert into titre_playlist (titreId, playlistId) values (38, 72);
+insert into titre_playlist (titreId, playlistId) values (49, 111);
+insert into titre_playlist (titreId, playlistId) values (53, 23);
+insert into titre_playlist (titreId, playlistId) values (30, 71);
+insert into titre_playlist (titreId, playlistId) values (14, 90);
+insert into titre_playlist (titreId, playlistId) values (33, 70);
+insert into titre_playlist (titreId, playlistId) values (43, 97);
+insert into titre_playlist (titreId, playlistId) values (60, 2);
+insert into titre_playlist (titreId, playlistId) values (23, 84);
+insert into titre_playlist (titreId, playlistId) values (39, 100);
+insert into titre_playlist (titreId, playlistId) values (32, 49);
+insert into titre_playlist (titreId, playlistId) values (24, 51);
+insert into titre_playlist (titreId, playlistId) values (16, 38);
+insert into titre_playlist (titreId, playlistId) values (27, 98);
+insert into titre_playlist (titreId, playlistId) values (44, 51);
+insert into titre_playlist (titreId, playlistId) values (14, 116);
+insert into titre_playlist (titreId, playlistId) values (59, 100);
+insert into titre_playlist (titreId, playlistId) values (29, 66);
+insert into titre_playlist (titreId, playlistId) values (22, 78);
+insert into titre_playlist (titreId, playlistId) values (32, 48);
+insert into titre_playlist (titreId, playlistId) values (32, 103);
+insert into titre_playlist (titreId, playlistId) values (6, 51);
+insert into titre_playlist (titreId, playlistId) values (36, 78);
+insert into titre_playlist (titreId, playlistId) values (54, 19);
+insert into titre_playlist (titreId, playlistId) values (22, 38);
+insert into titre_playlist (titreId, playlistId) values (4, 44);
+insert into titre_playlist (titreId, playlistId) values (36, 108);
+insert into titre_playlist (titreId, playlistId) values (42, 57);
+insert into titre_playlist (titreId, playlistId) values (41, 106);
+insert into titre_playlist (titreId, playlistId) values (53, 116);
+insert into titre_playlist (titreId, playlistId) values (37, 15);
+insert into titre_playlist (titreId, playlistId) values (13, 37);
+insert into titre_playlist (titreId, playlistId) values (23, 91);
+insert into titre_playlist (titreId, playlistId) values (42, 11);
+insert into titre_playlist (titreId, playlistId) values (11, 98);
+insert into titre_playlist (titreId, playlistId) values (6, 97);
+insert into titre_playlist (titreId, playlistId) values (43, 10);
+insert into titre_playlist (titreId, playlistId) values (24, 30);
+insert into titre_playlist (titreId, playlistId) values (52, 10);
+insert into titre_playlist (titreId, playlistId) values (12, 81);
+insert into titre_playlist (titreId, playlistId) values (38, 68);
+insert into titre_playlist (titreId, playlistId) values (38, 18);
+insert into titre_playlist (titreId, playlistId) values (39, 56);
+insert into titre_playlist (titreId, playlistId) values (49, 39);
+insert into titre_playlist (titreId, playlistId) values (33, 37);
+insert into titre_playlist (titreId, playlistId) values (14, 3);
+insert into titre_playlist (titreId, playlistId) values (48, 11);
+insert into titre_playlist (titreId, playlistId) values (28, 41);
+insert into titre_playlist (titreId, playlistId) values (15, 86);
+insert into titre_playlist (titreId, playlistId) values (22, 99);
+insert into titre_playlist (titreId, playlistId) values (21, 55);
+insert into titre_playlist (titreId, playlistId) values (14, 29);
+insert into titre_playlist (titreId, playlistId) values (22, 51);
+insert into titre_playlist (titreId, playlistId) values (55, 34);
+insert into titre_playlist (titreId, playlistId) values (10, 73);
+insert into titre_playlist (titreId, playlistId) values (40, 84);
+insert into titre_playlist (titreId, playlistId) values (44, 75);
+insert into titre_playlist (titreId, playlistId) values (31, 114);
+insert into titre_playlist (titreId, playlistId) values (21, 47);
+insert into titre_playlist (titreId, playlistId) values (40, 43);
+insert into titre_playlist (titreId, playlistId) values (40, 113);
+insert into titre_playlist (titreId, playlistId) values (12, 22);
+insert into titre_playlist (titreId, playlistId) values (11, 53);
+insert into titre_playlist (titreId, playlistId) values (26, 40);
+insert into titre_playlist (titreId, playlistId) values (2, 29);
+insert into titre_playlist (titreId, playlistId) values (9, 72);
+insert into titre_playlist (titreId, playlistId) values (38, 5);
+insert into titre_playlist (titreId, playlistId) values (56, 58);
+insert into titre_playlist (titreId, playlistId) values (22, 68);
+insert into titre_playlist (titreId, playlistId) values (24, 41);
+insert into titre_playlist (titreId, playlistId) values (3, 4);
+insert into titre_playlist (titreId, playlistId) values (58, 55);
+insert into titre_playlist (titreId, playlistId) values (56, 22);
+insert into titre_playlist (titreId, playlistId) values (47, 21);
+insert into titre_playlist (titreId, playlistId) values (57, 81);
+insert into titre_playlist (titreId, playlistId) values (31, 37);
+insert into titre_playlist (titreId, playlistId) values (52, 31);
+insert into titre_playlist (titreId, playlistId) values (52, 102);
+insert into titre_playlist (titreId, playlistId) values (26, 65);
+insert into titre_playlist (titreId, playlistId) values (3, 32);
+insert into titre_playlist (titreId, playlistId) values (16, 105);
+insert into titre_playlist (titreId, playlistId) values (15, 60);
+insert into titre_playlist (titreId, playlistId) values (5, 94);
+insert into titre_playlist (titreId, playlistId) values (16, 25);
+insert into titre_playlist (titreId, playlistId) values (11, 67);
+insert into titre_playlist (titreId, playlistId) values (51, 42);
+insert into titre_playlist (titreId, playlistId) values (3, 113);
+insert into titre_playlist (titreId, playlistId) values (25, 88);
+insert into titre_playlist (titreId, playlistId) values (41, 11);
+insert into titre_playlist (titreId, playlistId) values (4, 113);
+insert into titre_playlist (titreId, playlistId) values (27, 51);
+insert into titre_playlist (titreId, playlistId) values (38, 81);
+insert into titre_playlist (titreId, playlistId) values (56, 56);
+insert into titre_playlist (titreId, playlistId) values (56, 104);
+insert into titre_playlist (titreId, playlistId) values (33, 79);
+insert into titre_playlist (titreId, playlistId) values (43, 90);
+insert into titre_playlist (titreId, playlistId) values (13, 104);
