@@ -1,7 +1,5 @@
 package com.tpappweb.app.dao.romappers;
 
-import com.tpappweb.app.dao.TitreSqlDao;
-import com.tpappweb.app.dao.UtilisateurSqlDao;
 import com.tpappweb.app.entites.Commentaire;
 import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;

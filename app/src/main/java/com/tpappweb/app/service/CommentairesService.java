@@ -59,4 +59,14 @@ public class CommentairesService implements ICommentaireService {
         return commentaireSQLDAO.findByObject(titre).size()==0;
     }
 
+    @Override
+    public boolean supprimerComentaireParId(int id) {
+        return commentaireSQLDAO.deleteById(id);
+    }
+
+    @Override
+    public Commentaire chercherCommentaireParId(int id) {
+        return commentaireSQLDAO.findById(id);
+    }
+
 }

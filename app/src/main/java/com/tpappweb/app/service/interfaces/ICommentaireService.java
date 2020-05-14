@@ -14,4 +14,6 @@ public interface ICommentaireService {
     List<Commentaire> chercherCommentairesParTitre(Titre titre) ;
     boolean supprimmerCommentairesParUtilisateur(Utilistateur utilistateur);
     boolean supprimerCommentairesParTitre(Titre titre);
+    boolean supprimerComentaireParId(int id);
+    Commentaire chercherCommentaireParId(int id);
 }
