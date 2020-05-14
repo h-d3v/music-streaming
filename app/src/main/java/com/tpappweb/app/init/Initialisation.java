@@ -19,7 +19,7 @@ public class Initialisation {
     private static ArrayList<String> artistes=new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
-        enregistrer("/home/jj/Musique");
+        enregistrer("/media/jj/oses/Musique");
     }
     public static void enregistrer(String folderDepart) throws IOException {
 
