@@ -1,6 +1,8 @@
 package com.tpappweb.app.entites;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LikeOuDislike {
     int id;
     Utilistateur utilistateurPseudo;

@@ -11,12 +11,13 @@ import java.sql.SQLException;
 public class PlaylistRowMapper implements RowMapper<PlayList> {
     @Override
     public PlayList mapRow(ResultSet rs, int i) throws SQLException {
-        UtilisateurSqlDao utilisateurSqlDao= new UtilisateurSqlDao();
         PlayList playList=new PlayList();
+        Utilistateur utilistateur = new Utilistateur();
+        utilistateur.setPseudo(rs.getString("utilisateurPseudo"));
         playList.setId(rs.getInt("id"));
-        playList.setNom("nom");
-        Utilistateur utilistateur=utilisateurSqlDao.findById(rs.getInt("utilisateurId"));
+        playList.setNom(rs.getString("nom"));
         playList.setUtilistateur(utilistateur);
+        playList.setDateEdition(rs.getDate("dateCreation").toLocalDate());
         return playList;
     }
 }

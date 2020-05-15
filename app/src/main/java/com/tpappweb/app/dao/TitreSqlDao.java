@@ -58,7 +58,7 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
 
     @Override
     public List<Titre> findAll() {
-        String sql = "SELECT * Titre";
+        String sql = "SELECT * FROM Titre";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Titre.class));
     }
 }

@@ -1,7 +1,10 @@
 package com.tpappweb.app.entites;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Commentaire {
     private Utilistateur utilistateur;
     private Titre titre;

@@ -1,12 +1,17 @@
 package com.tpappweb.app.entites;
 
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PlayList {
     private Utilistateur utilistateur;
     private String nom;
     private long id;
+    private LocalDate dateEdition;
     private List<Titre> listeTitres;
 
     public Utilistateur getUtilistateur() {
@@ -31,6 +36,14 @@ public class PlayList {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public LocalDate getDateEdition() {
+        return dateEdition;
+    }
+
+    public void setDateEdition(LocalDate dateEdition) {
+        this.dateEdition = dateEdition;
     }
 
     public List<Titre> getListeTitres() {

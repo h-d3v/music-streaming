@@ -1,8 +1,10 @@
 package com.tpappweb.app.dao;
 
+import com.tpappweb.app.dao.romappers.PlaylistRowMapper;
 import com.tpappweb.app.entites.PlayList;
 import com.tpappweb.app.entites.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -35,15 +37,12 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
             KeyHolder keyHolder = new GeneratedKeyHolder();
             String sql = "INSERT INTO Playlist ( utilisateurPseudo, nom, dateCreation) values (?,?,?)";
             String finalSql = sql;
-            jdbcTemplate.update(new PreparedStatementCreator() {
-                @Override
-                public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                    PreparedStatement preparedStatement = connection.prepareStatement(finalSql, Statement.RETURN_GENERATED_KEYS);
-                    preparedStatement.setString(1,x.getUtilistateur().getPseudo());
-                    preparedStatement.setString(2, x.getNom());
-                    preparedStatement.setString(3, LocalDateTime.now().toString());
-                    return preparedStatement;
-                }
+            jdbcTemplate.update(connection -> {
+                PreparedStatement preparedStatement = connection.prepareStatement(finalSql, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setString(1,x.getUtilistateur().getPseudo());
+                preparedStatement.setString(2, x.getNom());
+                preparedStatement.setString(3, LocalDateTime.now().toString());
+                return preparedStatement;
             }, keyHolder);
             sql= "INSERT INTO Titre_Playlist(titreId, playlistId) VALUES (?,?)";
             int clePlayListId = keyHolder.getKey().intValue();
@@ -62,9 +61,15 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
 
     @Override
     public PlayList findById(int x) {
-        String sql = "SELECT id, utilisateurPseudo, nom FROM playlist WHERE id = ?";
-        //Todo trouver une facon d'instancier tous les titre d'une meme playlist.
-        return null;
+        String sql = "SELECT utilisateurPseudo, nom, Playlist.id, dateCreation, titreId FROM Playlist JOIN Titre_Playlist" +
+                    " ON Playlist.id = Titre_Playlist.playlistId JOIN Titre ON Titre_Playlist.titreId = Titre.id" +
+                    " WHERE Playlist.id=?";
+        PlayList playList;
+        playList= jdbcTemplate.queryForObject(sql, new PlaylistRowMapper(), x);
+        List<Titre> titres = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Titre.class));
+        playList.setListeTitres(titres);
+
+        return playList;
     }
 
     @Override

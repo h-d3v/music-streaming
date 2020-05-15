@@ -1,5 +1,8 @@
 package com.tpappweb.app.entites;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Titre {
     private String nom;
     private long id;
@@ -27,6 +30,7 @@ public class Titre {
         this.dateSortie = dateSortie;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int getDuree() {
         return duree;
     }
