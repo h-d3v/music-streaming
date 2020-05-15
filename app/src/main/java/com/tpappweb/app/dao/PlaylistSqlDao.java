@@ -1,11 +1,20 @@
 package com.tpappweb.app.dao;
 
 import com.tpappweb.app.entites.PlayList;
+import com.tpappweb.app.entites.Titre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -18,8 +27,32 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
      * pour l'ajout d'un titre à une playlist.
     */
     public boolean create(PlayList x) {
-        String sql = "INSERT INTO Playlist (id, utilisateurPseudo, nom) values (?,?,?)";
-        return jdbcTemplate.update(sql, x.getId(),x.getUtilistateur().getPseudo(), x.getNom())==1;
+        if(x.getListeTitres().size()==0) {
+            String sql = "INSERT INTO Playlist ( utilisateurPseudo, nom, dateCreation) values (?,?,?)";
+            return jdbcTemplate.update(sql, x.getUtilistateur().getPseudo(), x.getNom(), LocalDateTime.now().toString()) == 1;
+        }
+        else{
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            String sql = "INSERT INTO Playlist ( utilisateurPseudo, nom, dateCreation) values (?,?,?)";
+            String finalSql = sql;
+            jdbcTemplate.update(new PreparedStatementCreator() {
+                @Override
+                public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                    PreparedStatement preparedStatement = connection.prepareStatement(finalSql, Statement.RETURN_GENERATED_KEYS);
+                    preparedStatement.setString(1,x.getUtilistateur().getPseudo());
+                    preparedStatement.setString(2, x.getNom());
+                    preparedStatement.setString(3, LocalDateTime.now().toString());
+                    return preparedStatement;
+                }
+            }, keyHolder);
+            sql= "INSERT INTO Titre_Playlist(titreId, playlistId) VALUES (?,?)";
+            int clePlayListId = keyHolder.getKey().intValue();
+            boolean valide = true;
+            for(Titre titre:x.getListeTitres()){
+                valide= valide && jdbcTemplate.update(sql,titre.getId(), clePlayListId)==1;
+            }
+            return valide;
+        }
     }
 
     @Override
