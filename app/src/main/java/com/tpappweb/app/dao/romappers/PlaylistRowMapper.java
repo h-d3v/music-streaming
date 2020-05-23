@@ -14,7 +14,7 @@ public class PlaylistRowMapper implements RowMapper<PlayList> {
         PlayList playList=new PlayList();
         Utilistateur utilistateur = new Utilistateur();
         utilistateur.setPseudo(rs.getString("utilisateurPseudo"));
-        playList.setId(rs.getInt("Playlist.id"));
+        playList.setId(rs.getInt("id"));
         playList.setNom(rs.getString("nom"));
         playList.setUtilistateur(utilistateur);
         playList.setDateEdition(rs.getDate("dateCreation").toLocalDate());

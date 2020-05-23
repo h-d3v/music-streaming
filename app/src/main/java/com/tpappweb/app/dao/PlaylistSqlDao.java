@@ -3,6 +3,7 @@ package com.tpappweb.app.dao;
 import com.tpappweb.app.dao.romappers.PlaylistRowMapper;
 import com.tpappweb.app.entites.PlayList;
 import com.tpappweb.app.entites.Titre;
+import com.tpappweb.app.entites.Utilistateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,7 +30,7 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
      * pour l'ajout d'un titre à une playlist.
     */
     public boolean create(PlayList x) {
-        if(x.getListeTitres().size()==0) {
+        if(x.getListeTitres()==null) {
             String sql = "INSERT INTO Playlist ( utilisateurPseudo, nom, dateCreation) values (?,?,?)";
             return jdbcTemplate.update(sql, x.getUtilistateur().getPseudo(), x.getNom(), LocalDateTime.now().toString()) == 1;
         }
@@ -61,25 +62,25 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
 
     @Override
     public PlayList findById(int x) {
-        String sql = "SELECT utilisateurPseudo, nom, Playlist.id, dateCreation, titreId FROM Playlist JOIN Titre_Playlist" +
-                    " ON Playlist.id = Titre_Playlist.playlistId JOIN Titre ON Titre_Playlist.titreId = Titre.id" +
-                    " WHERE Playlist.id=?";
+        String sql = "SELECT id, utilisateurPseudo, nom, dateCreation FROM Playlist WHERE id=?";
         PlayList playList;
         playList= jdbcTemplate.queryForObject(sql, new PlaylistRowMapper(), x);
-        List<Titre> titres = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Titre.class));
-        playList.setListeTitres(titres);
 
         return playList;
     }
 
     @Override
     public boolean deleteById(int id) {
-        return false;
+        String sql ="DELETE FROM Playlist WHERE id = ?";
+
+        return jdbcTemplate.update(sql, id)==1;
     }
 
     @Override
     public boolean delete(PlayList x) {
-        return false;
+        String sql ="DELETE FROM Playlist WHERE id = ?";
+
+        return jdbcTemplate.update(sql, x.getId())==1;
     }
 
     @Override
@@ -89,6 +90,12 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
 
     @Override
     public List<PlayList> findByObject(Object object) {
+        if(object instanceof Utilistateur){
+            String sql = "SELECT utilisateurPseudo, nom, Playlist.id, dateCreation FROM Playlist JOIN Utilisateur ON Playlist.utilisateurPseudo = Utilisateur.pseudo";
+            return jdbcTemplate.query(sql, new PlaylistRowMapper());
+
+        }
+
         return null;
     }
 

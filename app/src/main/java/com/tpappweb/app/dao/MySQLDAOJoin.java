@@ -26,4 +26,6 @@ public abstract class  MySQLDAOJoin<T, T1> {
      * @return le nombre d'objets T1 supprimes
      */
     abstract  long supprimerTous(T t);
+
+    abstract List<T1> charger(T t);
 }
