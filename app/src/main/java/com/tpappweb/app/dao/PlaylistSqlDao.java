@@ -30,30 +30,12 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
      * pour l'ajout d'un titre à une playlist.
     */
     public boolean create(PlayList x) {
-        if(x.getListeTitres()==null) {
+
             String sql = "INSERT INTO Playlist ( utilisateurPseudo, nom, dateCreation) values (?,?,?)";
             return jdbcTemplate.update(sql, x.getUtilistateur().getPseudo(), x.getNom(), LocalDateTime.now().toString()) == 1;
+
         }
-        else{
-            KeyHolder keyHolder = new GeneratedKeyHolder();
-            String sql = "INSERT INTO Playlist ( utilisateurPseudo, nom, dateCreation) values (?,?,?)";
-            String finalSql = sql;
-            jdbcTemplate.update(connection -> {
-                PreparedStatement preparedStatement = connection.prepareStatement(finalSql, Statement.RETURN_GENERATED_KEYS);
-                preparedStatement.setString(1,x.getUtilistateur().getPseudo());
-                preparedStatement.setString(2, x.getNom());
-                preparedStatement.setString(3, LocalDateTime.now().toString());
-                return preparedStatement;
-            }, keyHolder);
-            sql= "INSERT INTO Titre_Playlist(titreId, playlistId) VALUES (?,?)";
-            int clePlayListId = keyHolder.getKey().intValue();
-            boolean valide = true;
-            for(Titre titre:x.getListeTitres()){
-                valide= valide && jdbcTemplate.update(sql,titre.getId(), clePlayListId)==1;
-            }
-            return valide;
-        }
-    }
+
 
     @Override
     public PlayList findById(String string) {
