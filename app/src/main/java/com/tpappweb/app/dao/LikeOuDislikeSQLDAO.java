@@ -5,6 +5,7 @@ import com.tpappweb.app.entites.LikeOuDislike;
 import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -20,23 +21,15 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public LikeOuDislike creer(LikeOuDislike likeOuDislike){
-        String sql="INSERT INTO LikeOuDislike(titreId, utilisateurPseudo, likeOuDislike) VALUES (:titreId,:utilisateurPseudo,:likeOuDislike)";
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("likeOuDislike", likeOuDislike.getLikeOuDislike());
-        mapSqlParameterSource.addValue("titreId", likeOuDislike.getTitreId());
-        mapSqlParameterSource.addValue("utilisateurPseudo", likeOuDislike.getUtilistateurPseudo());
-        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(likeOuDislike);
-        jdbcTemplate.update(sql, sqlParameterSource);
-        sql="SELECT * FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
-        return (LikeOuDislike) jdbcTemplate.query(sql, new BeanPropertyRowMapper<LikeOuDislike>(LikeOuDislike.class));
-    }
 
     @Override
     public boolean create(LikeOuDislike x) {
-        String sql="INSERT INTO LikeOuDislike(likeOuDislike, titreId, utilisateurPseudo) VALUES (:likeOrDislike,:titreId,:utilisateurPseudo)";
-        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(x);
-        return jdbcTemplate.update(sql, sqlParameterSource)==1;
+        String sql="INSERT INTO LikeOuDislike(likeOuDislike, titreId, utilisateurPseudo) VALUES (:likeOuDislike,:titreId,:utilisateurPseudo)";
+        MapSqlParameterSource mapSqlParameterSource= new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("likeOuDislike", x.getLikeOuDislike());
+        mapSqlParameterSource.addValue("titreId", x.getTitreId().getId());
+        mapSqlParameterSource.addValue("utilisateurPseudo", x.getUtilisateurPseudo().getPseudo());
+        return jdbcTemplate.update(sql, mapSqlParameterSource)==1;
     }
 
     @Override
@@ -50,7 +43,11 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         String sql="SELECT id, likeOuDislike, titreId, utilisateurPseudo FROM LikeOuDislike WHERE id=:id";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id", id);
-        return (LikeOuDislike) jdbcTemplate.queryForObject(sql,mapSqlParameterSource,new BeanPropertyRowMapper(LikeOuDislike.class));
+        try {
+            return (LikeOuDislike) jdbcTemplate.queryForObject(sql,mapSqlParameterSource,new BeanPropertyRowMapper(LikeOuDislike.class));
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
 
     }
 
@@ -73,17 +70,7 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         return w==1;
     }
 
-    public LikeOuDislike modifier(LikeOuDislike likeOuDislike){
-        if(this.findByObject(likeOuDislike).size()==0){
-            return null;
-        }
-        else {
-            likeOuDislike = this.findByObject(likeOuDislike).get(0);
-            likeOuDislike.setLikeOuDislike(!likeOuDislike.getLikeOuDislike());
-            return findByObject(likeOuDislike).get(0);
-        }
 
-    }
 
     @Override
     public boolean update(LikeOuDislike x) {
@@ -105,21 +92,21 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
             String sql = "SELECT * FROM LikeOuDislike WHERE utilisateurPseudo=:utilisateurPseudo";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue("utilisateurPseudo", ((Utilistateur) object).getPseudo());
-            return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+            return jdbcTemplate.query(sql,mapSqlParameterSource, new BeanPropertyRowMapper<>(LikeOuDislike.class));
         }
         else if(object instanceof Titre){
             String sql = "SELECT * FROM LikeOuDislike WHERE titreId=:titreId";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue("titreId", ((Titre) object).getId());
-            return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+            return jdbcTemplate.query(sql,mapSqlParameterSource, new BeanPropertyRowMapper<>(LikeOuDislike.class));
         }
 
         else if(object instanceof LikeOuDislike){
             String sql = "SELECT * FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue("titreId", ((LikeOuDislike) object).getTitreId());
-            mapSqlParameterSource.addValue("utilisateurPseudo", ((LikeOuDislike) object).getUtilistateurPseudo());
-            return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+            mapSqlParameterSource.addValue("utilisateurPseudo", ((LikeOuDislike) object).getUtilisateurPseudo());
+            return jdbcTemplate.query(sql,mapSqlParameterSource,new BeanPropertyRowMapper<>(LikeOuDislike.class));
         }
         else throw new NotImplementedException();
     }
@@ -128,6 +115,6 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
     public List<LikeOuDislike> findAll() {
         String sql="SELECT * FROM LikeOuDislike";
 
-        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(LikeOuDislike.class));
     }
 }

@@ -15,21 +15,14 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
     @Autowired
     private LikeOuDislikeSQLDAO likeOuDislikeSQLDAO;
 
-    public LikeOuDislike modifierLikeOuDislike(LikeOuDislike likeOuDislike){
+    public boolean modifierLikeOuDislike(LikeOuDislike likeOuDislike){
         //Le like ou dislike n'existe pas
         if(likeOuDislikeSQLDAO.findById(likeOuDislike.getId())==null){
-            return likeOuDislikeSQLDAO.creer(likeOuDislike);
+            return likeOuDislikeSQLDAO.create(likeOuDislike);
             //L'id est bien present dans l'objet entre en param et dans la bd
-        }else if (likeOuDislikeSQLDAO.findById(likeOuDislike.getId()).getId()==likeOuDislike.getId()){
-            likeOuDislikeSQLDAO.update(likeOuDislike);
-            return likeOuDislikeSQLDAO.findById(likeOuDislike.getId()) ;
-        }
-            //L'id n'est pas present dans l'objet en param mais l'utilisateur et le titre corrsepondent a
-            //une entree unique LikeOuDislike dans la bd trouvee avec le nom d'utilisateur et le titre
-        else if (likeOuDislikeSQLDAO.findByObject(likeOuDislike).size()==1){
-            return likeOuDislikeSQLDAO.modifier(likeOuDislike);
-        }
-        else return null;
+        }else
+           return likeOuDislikeSQLDAO.update(likeOuDislike);
+
     }
 
     public LikeOuDislike supprimerLikeOuDislike(LikeOuDislike likeOuDislike){

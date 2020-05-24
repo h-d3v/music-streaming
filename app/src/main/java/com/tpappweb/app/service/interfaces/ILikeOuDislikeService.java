@@ -7,7 +7,7 @@ import com.tpappweb.app.entites.Utilistateur;
 import java.util.List;
 
 public interface ILikeOuDislikeService {
-     LikeOuDislike modifierLikeOuDislike(LikeOuDislike likeOuDislike);
+     boolean modifierLikeOuDislike(LikeOuDislike likeOuDislike);
      LikeOuDislike supprimerLikeOuDislike(LikeOuDislike likeOuDislike);
      List<LikeOuDislike> chercherLikeOuDislikesParUtilisateur(Utilistateur utilistateur);
      List<LikeOuDislike> chercherLikeOuDislikesParTitre(Titre titre);

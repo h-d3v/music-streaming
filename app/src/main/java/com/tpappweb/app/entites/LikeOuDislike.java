@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LikeOuDislike {
     int id;
-    Utilistateur utilistateurPseudo;
+    Utilistateur utilisateurPseudo;
     Titre titreId;
     boolean likeOuDislike;
 
-    public Utilistateur getUtilistateurPseudo() {
-        return utilistateurPseudo;
+    public Utilistateur getUtilisateurPseudo() {
+        return utilisateurPseudo;
     }
 
-    public void setUtilistateurPseudo(Utilistateur utilistateurPseudo) {
-        this.utilistateurPseudo = utilistateurPseudo;
+    public void setUtilisateurPseudo(Utilistateur utilisateurPseudo) {
+        this.utilisateurPseudo = utilisateurPseudo;
     }
 
     public Titre getTitreId() {
