@@ -13,6 +13,7 @@ public interface ILikeOuDislikeService {
      List<LikeOuDislike> chercherLikeOuDislikesParTitre(Titre titre);
     int nbrLikeParTitre(Titre titre);
     int nbrDislikeParTitre(Titre titre);
+    LikeOuDislike chercherParTitreUtilisateur(Utilistateur utilistateur, Titre titre);
 
     /***
      *
@@ -22,6 +23,5 @@ public interface ILikeOuDislikeService {
     int[] nbrLikeDislikesParTitre(Titre titre);
 
 
-
-
+    void ajouterLikeOuDislike(LikeOuDislike likeOuDislike);
 }

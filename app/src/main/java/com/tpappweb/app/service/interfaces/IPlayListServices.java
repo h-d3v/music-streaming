@@ -16,4 +16,6 @@ public interface IPlayListServices{
    boolean ajouterTitreALaPlaylist(PlayList playList, Titre titre);
    List<PlayList> chercherPlayListsParUtilisateur(Utilistateur utilistateur);
 
+
+    PlayList creerPlaylistParGenre(String genre);
 }

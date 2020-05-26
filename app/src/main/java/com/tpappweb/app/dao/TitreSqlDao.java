@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Repository
@@ -59,6 +60,13 @@ public class TitreSqlDao extends MySQLDAO<Titre> {
     @Override
     public List<Titre> findAll() {
         String sql = "SELECT * FROM Titre";
-        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Titre.class));
+        List<Titre> titres = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Titre.class));
+        return titres;
     }
+
+    public List<Titre> trouverTitreParGenre(String genre){
+        String sql ="SELECT * FROM Titre WHERE genre=?";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Titre.class), genre);
+    }
+
 }

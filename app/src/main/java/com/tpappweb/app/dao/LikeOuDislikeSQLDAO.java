@@ -29,7 +29,7 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(likeOuDislike);
         jdbcTemplate.update(sql, sqlParameterSource);
         sql="SELECT * FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
-        return (LikeOuDislike) jdbcTemplate.query(sql, new BeanPropertyRowMapper<LikeOuDislike>(LikeOuDislike.class));
+        return (LikeOuDislike) jdbcTemplate.query(sql, mapSqlParameterSource, new BeanPropertyRowMapper<LikeOuDislike>(LikeOuDislike.class));
     }
 
     @Override

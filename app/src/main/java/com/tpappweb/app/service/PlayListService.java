@@ -2,6 +2,7 @@ package com.tpappweb.app.service;
 
 import com.tpappweb.app.dao.PlayListTitreSQLDAO;
 import com.tpappweb.app.dao.PlaylistSqlDao;
+import com.tpappweb.app.dao.TitreSqlDao;
 import com.tpappweb.app.entites.PlayList;
 import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
@@ -18,6 +19,8 @@ public class PlayListService implements IPlayListServices {
     private PlayListTitreSQLDAO playListTitreSQLDAO;
     @Autowired
     private PlaylistSqlDao playlistSqlDao;
+    @Autowired
+    private TitreSqlDao titreSqlDao;
 
 
     @Override
@@ -51,6 +54,15 @@ public class PlayListService implements IPlayListServices {
     @Override
     public List<PlayList> chercherPlayListsParUtilisateur(Utilistateur utilistateur) {
         return playlistSqlDao.findByObject(utilistateur);
+    }
+    @Override
+    public PlayList creerPlaylistParGenre(String genre){
+        PlayList playList= new PlayList();
+        List<Titre> titres= titreSqlDao.trouverTitreParGenre(genre);
+        if(titres.size()==0){return null;}
+        playList.setListeTitres(titres);
+        playList.setNom(genre);
+        return playList;
     }
 
 }

@@ -16,3 +16,4 @@ ALTER TABLE Commentaire ADD CONSTRAINT FKCommentair232032 FOREIGN KEY (utilisate
 ALTER TABLE Titre ADD CONSTRAINT FKTitre361371 FOREIGN KEY (nomArtiste) REFERENCES Artiste (nom);
 ALTER TABLE Titre_Playlist ADD CONSTRAINT FKTitre_Play36931 FOREIGN KEY (playlistId) REFERENCES Playlist (id);
 ALTER TABLE Titre_Playlist ADD CONSTRAINT FKTitre_Play48210 FOREIGN KEY (titreId) REFERENCES Titre (id);
+ALTER TABLE LikeOuDislike ADD CONSTRAINT Unique_titre_Utilisateur UNIQUE (titreId, utilisateurPseudo);

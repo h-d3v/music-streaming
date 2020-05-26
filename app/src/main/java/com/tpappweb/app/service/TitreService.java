@@ -9,6 +9,7 @@ import com.tpappweb.app.service.interfaces.ITitreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -50,6 +51,24 @@ public class TitreService implements ITitreService {
     @Override
     public boolean deleteTitre(int id) {
         return titreSqlDao.deleteById(id);
+    }
+
+    @Override
+    public List<Titre> trouverTitreParGenre(String genre) {
+        return titreSqlDao.trouverTitreParGenre(genre);
+    }
+
+    @Override
+    public List<String> trouverTousLesGenres() {
+        List<Titre> tousLesTitres = titreSqlDao.findAll();
+        LinkedList<String> genres = new LinkedList<>();
+        for( Titre titre : tousLesTitres){
+           String genre =  titre.getGenre() ;
+           if(!genres.contains(genre)){
+               genres.add(genre);
+           }
+        }
+        return genres;
     }
 
     @Override

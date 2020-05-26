@@ -14,13 +14,13 @@ import java.util.List;
 public class LikeOuDislikeService implements ILikeOuDislikeService {
     @Autowired
     private LikeOuDislikeSQLDAO likeOuDislikeSQLDAO;
-
+    @Override
     public LikeOuDislike modifierLikeOuDislike(LikeOuDislike likeOuDislike){
         //Le like ou dislike n'existe pas
         if(likeOuDislikeSQLDAO.findById(likeOuDislike.getId())==null){
-            return likeOuDislikeSQLDAO.creer(likeOuDislike);
+            return null;
             //L'id est bien present dans l'objet entre en param et dans la bd
-        }else if (likeOuDislikeSQLDAO.findById(likeOuDislike.getId()).getId()==likeOuDislike.getId()){
+        }else if (likeOuDislike.getId()!=0 && likeOuDislikeSQLDAO.findById(likeOuDislike.getId()).getId()==likeOuDislike.getId()){
             likeOuDislikeSQLDAO.update(likeOuDislike);
             return likeOuDislikeSQLDAO.findById(likeOuDislike.getId()) ;
         }
@@ -31,7 +31,7 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
         }
         else return null;
     }
-
+    @Override
     public LikeOuDislike supprimerLikeOuDislike(LikeOuDislike likeOuDislike){
         if(likeOuDislikeSQLDAO.deleteById(likeOuDislike.getId())){
             return null;
@@ -41,14 +41,15 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
         }
         else return likeOuDislike;
     }
-
+    @Override
     public List<LikeOuDislike> chercherLikeOuDislikesParUtilisateur(Utilistateur utilistateur){
         return likeOuDislikeSQLDAO.findByObject(utilistateur);
     }
+    @Override
     public List<LikeOuDislike> chercherLikeOuDislikesParTitre(Titre titre){
         return likeOuDislikeSQLDAO.findByObject(titre);
     }
-
+    @Override
     public int nbrLikeParTitre(Titre titre){
         int compteur=0;
         List<LikeOuDislike> likeOuDislikes= chercherLikeOuDislikesParTitre(titre);
@@ -60,6 +61,7 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
         }
         return compteur;
     }
+    @Override
     public int nbrDislikeParTitre(Titre titre){
         int compteur=0;
         List<LikeOuDislike> likeOuDislikes= chercherLikeOuDislikesParTitre(titre);
@@ -70,6 +72,11 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
             }
         }
         return compteur;
+    }
+
+    @Override
+    public LikeOuDislike chercherParTitreUtilisateur(Utilistateur utilistateur, Titre titre) {
+        return null;
     }
 
     /***
@@ -95,5 +102,12 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
         return new int[] {cptLike, cptDisLike};
 
 
+    }
+
+    @Override
+    public void ajouterLikeOuDislike(LikeOuDislike likeOuDislike) {
+        if(likeOuDislike.getTitreId().getId()!=0 && likeOuDislike.getUtilistateurPseudo().getPseudo()!=null){
+            likeOuDislikeSQLDAO.create(likeOuDislike);
+        }
     }
 }

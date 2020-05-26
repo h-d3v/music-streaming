@@ -2,21 +2,13 @@ package com.tpappweb.app.dao;
 
 import com.tpappweb.app.dao.romappers.PlaylistRowMapper;
 import com.tpappweb.app.entites.PlayList;
-import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
+
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.List;
 

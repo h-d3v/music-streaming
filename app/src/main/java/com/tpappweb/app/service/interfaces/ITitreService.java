@@ -10,5 +10,7 @@ public interface ITitreService {
     boolean addTitre(Titre titre);
     boolean updateTitre(Titre titre);
     boolean deleteTitre(int id);
+    List<Titre> trouverTitreParGenre(String genre);
+    List<String> trouverTousLesGenres();
     List<Titre> trouverTous();
 }
