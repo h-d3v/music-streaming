@@ -18,8 +18,8 @@ public class RestControlleurLikeOuDislikeService {
     @Autowired
     private ILikeOuDislikeService iLikeOuDislikeService;
 
-    @GetMapping("/like/")
-    public LikeOuDislike modifierLike(@RequestParam("utilisateurPseudo") String utilisateurPseudo,
+    @GetMapping("/like")
+    public LikeOuDislike ajouterLike(@RequestParam("utilisateurPseudo") String utilisateurPseudo,
                                               @RequestParam("titreId") int titreId,
                                               @RequestParam("action") String action){
         Utilistateur utilistateur = new Utilistateur();
@@ -27,33 +27,25 @@ public class RestControlleurLikeOuDislikeService {
         Titre titre = new Titre();
         titre.setId(titreId);
 
-        LikeOuDislike likeOuDislike= iLikeOuDislikeService.chercherParTitreUtilisateur(utilistateur, titre);
         LikeOuDislike likeOuDislikeAcreer= new LikeOuDislike();
         likeOuDislikeAcreer.setUtilistateurPseudo(utilistateur);
         likeOuDislikeAcreer.setTitreId(titre);
 
         //TODO checker utilisateur connecte dans la session
 
-        if("supprimer".equals(action)){
-            iLikeOuDislikeService.supprimerLikeOuDislike(likeOuDislike);
-        }
-        else if("mod".equals(action)){
-            likeOuDislike.setLikeOuDislike(!likeOuDislike.getLikeOuDislike());
-            iLikeOuDislikeService.modifierLikeOuDislike(likeOuDislike);
-        }
-        else if ("like".equals(action)){
+         if ("like".equals(action)){
             likeOuDislikeAcreer.setLikeOuDislike(true);
-            iLikeOuDislikeService.ajouterLikeOuDislike(likeOuDislike);
+            iLikeOuDislikeService.ajouterLikeOuDislike(likeOuDislikeAcreer);
         }
         else if ("dislike".equals(action)){
             likeOuDislikeAcreer.setLikeOuDislike(false);
-            iLikeOuDislikeService.ajouterLikeOuDislike(likeOuDislike);
+            iLikeOuDislikeService.ajouterLikeOuDislike(likeOuDislikeAcreer);
         }
 
 
-        return iLikeOuDislikeService.chercherParTitreUtilisateur(utilistateur,titre);
+        return iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeAcreer);
     }
-    @GetMapping("titre/{id}/likes")
+    @GetMapping("/titre/{id}/likes")
         public String getnbrlikesOuDislikes(@PathVariable("id") int titreid){
             Titre titre = new Titre();
             titre.setId(titreid);

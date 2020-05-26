@@ -16,11 +16,8 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
     private LikeOuDislikeSQLDAO likeOuDislikeSQLDAO;
     @Override
     public LikeOuDislike modifierLikeOuDislike(LikeOuDislike likeOuDislike){
-        //Le like ou dislike n'existe pas
-        if(likeOuDislikeSQLDAO.findById(likeOuDislike.getId())==null){
-            return null;
             //L'id est bien present dans l'objet entre en param et dans la bd
-        }else if (likeOuDislike.getId()!=0 && likeOuDislikeSQLDAO.findById(likeOuDislike.getId()).getId()==likeOuDislike.getId()){
+       if (likeOuDislike.getId()!=0 && likeOuDislikeSQLDAO.findById(likeOuDislike.getId()).getId()==likeOuDislike.getId()){
             likeOuDislikeSQLDAO.update(likeOuDislike);
             return likeOuDislikeSQLDAO.findById(likeOuDislike.getId()) ;
         }
@@ -75,8 +72,8 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
     }
 
     @Override
-    public LikeOuDislike chercherParTitreUtilisateur(Utilistateur utilistateur, Titre titre) {
-        return null;
+    public LikeOuDislike chercherParLikeOuDislie(LikeOuDislike likeOuDislike) {
+        return likeOuDislikeSQLDAO.findByObject(likeOuDislike).get(0);
     }
 
     /***

@@ -1,6 +1,7 @@
 package com.tpappweb.app.dao;
 
 
+import com.tpappweb.app.dao.romappers.LikeOuDislikeRowMapper;
 import com.tpappweb.app.entites.LikeOuDislike;
 import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
@@ -35,8 +36,11 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
     @Override
     public boolean create(LikeOuDislike x) {
         String sql="INSERT INTO LikeOuDislike(likeOuDislike, titreId, utilisateurPseudo) VALUES (:likeOrDislike,:titreId,:utilisateurPseudo)";
-        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(x);
-        return jdbcTemplate.update(sql, sqlParameterSource)==1;
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("likeOrDislike", x.getLikeOuDislike());
+        mapSqlParameterSource.addValue("titreId", x.getTitreId().getId());
+        mapSqlParameterSource.addValue("utilisateurPseudo", x.getUtilistateurPseudo().getPseudo());
+        return jdbcTemplate.update(sql, mapSqlParameterSource)==1;
     }
 
     @Override
@@ -50,7 +54,7 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         String sql="SELECT id, likeOuDislike, titreId, utilisateurPseudo FROM LikeOuDislike WHERE id=:id";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id", id);
-        return (LikeOuDislike) jdbcTemplate.queryForObject(sql,mapSqlParameterSource,new BeanPropertyRowMapper(LikeOuDislike.class));
+        return (LikeOuDislike) jdbcTemplate.queryForObject(sql,mapSqlParameterSource,new LikeOuDislikeRowMapper());
 
     }
 
@@ -105,21 +109,21 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
             String sql = "SELECT * FROM LikeOuDislike WHERE utilisateurPseudo=:utilisateurPseudo";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue("utilisateurPseudo", ((Utilistateur) object).getPseudo());
-            return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+            return jdbcTemplate.query(sql,mapSqlParameterSource,new LikeOuDislikeRowMapper());
         }
         else if(object instanceof Titre){
             String sql = "SELECT * FROM LikeOuDislike WHERE titreId=:titreId";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue("titreId", ((Titre) object).getId());
-            return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+            return jdbcTemplate.query(sql,mapSqlParameterSource,new LikeOuDislikeRowMapper());
         }
 
         else if(object instanceof LikeOuDislike){
             String sql = "SELECT * FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-            mapSqlParameterSource.addValue("titreId", ((LikeOuDislike) object).getTitreId());
-            mapSqlParameterSource.addValue("utilisateurPseudo", ((LikeOuDislike) object).getUtilistateurPseudo());
-            return jdbcTemplate.query(sql,new BeanPropertyRowMapper<LikeOuDislike>());
+            mapSqlParameterSource.addValue("titreId", ((LikeOuDislike) object).getTitreId().getId());
+            mapSqlParameterSource.addValue("utilisateurPseudo", ((LikeOuDislike) object).getUtilistateurPseudo().getPseudo());
+            return jdbcTemplate.query(sql,mapSqlParameterSource,new LikeOuDislikeRowMapper());
         }
         else throw new NotImplementedException();
     }
