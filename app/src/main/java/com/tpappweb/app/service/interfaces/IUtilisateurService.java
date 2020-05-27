@@ -12,5 +12,8 @@ public interface IUtilisateurService {
     boolean supprimmerAbonne(Utilistateur utilistateur, Utilistateur utilistateurASupprimer);
     Utilistateur getUtilisateur(String pseudo);
     List<Utilistateur> trouverTous();
+    List<Utilistateur> trouverAbonnes(Utilistateur utilistateur);
+
+
 
 }

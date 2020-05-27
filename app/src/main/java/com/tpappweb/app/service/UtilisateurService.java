@@ -1,5 +1,5 @@
 package com.tpappweb.app.service;
-
+import com.tpappweb.app.dao.UtilisateurAbonneSQLDAO;
 import com.tpappweb.app.dao.UtilisateurSqlDao;
 import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.interfaces.IUtilisateurService;
@@ -12,6 +12,8 @@ import java.util.List;
 public class UtilisateurService implements IUtilisateurService {
     @Autowired
     private UtilisateurSqlDao utilisateurSqlDao;
+    @Autowired
+    private UtilisateurAbonneSQLDAO utilisateurAbonneSQLDAO;
 
     @Override
     public boolean ajouterUtilisateur(Utilistateur utilistateur) {
@@ -45,12 +47,13 @@ public class UtilisateurService implements IUtilisateurService {
 
     @Override
     public boolean ajouterAbonne(Utilistateur utilistateur, Utilistateur utilistateurAAjouter) {
-        return false;
+       return utilisateurAbonneSQLDAO.ajouterUn(utilistateur, utilistateurAAjouter);
+
     }
 
     @Override
     public boolean supprimmerAbonne(Utilistateur utilistateur, Utilistateur utilistateurASupprimer) {
-        return false;
+        return utilisateurAbonneSQLDAO.supprimerUn(utilistateur, utilistateurASupprimer);
     }
 
     @Override
@@ -61,5 +64,10 @@ public class UtilisateurService implements IUtilisateurService {
     @Override
     public List<Utilistateur> trouverTous() {
         return utilisateurSqlDao.findAll();
+    }
+
+    @Override
+    public List<Utilistateur> trouverAbonnes(Utilistateur utilistateur) {
+        return utilisateurAbonneSQLDAO.charger(utilistateur);
     }
 }

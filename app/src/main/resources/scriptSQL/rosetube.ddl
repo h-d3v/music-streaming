@@ -17,3 +17,8 @@ ALTER TABLE Titre ADD CONSTRAINT FKTitre361371 FOREIGN KEY (nomArtiste) REFERENC
 ALTER TABLE Titre_Playlist ADD CONSTRAINT FKTitre_Play36931 FOREIGN KEY (playlistId) REFERENCES Playlist (id);
 ALTER TABLE Titre_Playlist ADD CONSTRAINT FKTitre_Play48210 FOREIGN KEY (titreId) REFERENCES Titre (id);
 ALTER TABLE LikeOuDislike ADD CONSTRAINT Unique_titre_Utilisateur UNIQUE (titreId, utilisateurPseudo);
+CREATE TABLE Abonnes (utilisateur VARCHAR(255) NOT NULL, abonne VARCHAR(255) NOT NULL );
+ALTER TABLE Abonnes ADD CONSTRAINT FkUtilisateur_Abonne FOREIGN KEY (abonne) REFERENCES Utilisateur(pseudo);
+ALTER TABLE Abonnes ADD CONSTRAINT FkUtilisateur_Utilisateur FOREIGN KEY (utilisateur) REFERENCES Utilisateur(pseudo);
+ALTER TABLE Abonnes ADD CONSTRAINT pk_abonne_utilisateur PRIMARY KEY (utilisateur, abonne);
+
