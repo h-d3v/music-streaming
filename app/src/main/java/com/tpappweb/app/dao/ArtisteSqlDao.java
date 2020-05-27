@@ -6,9 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import javax.swing.plaf.IconUIResource;
+import org.apache.commons.lang3.NotImplementedException;
 import java.util.List;
 
 @Transactional
