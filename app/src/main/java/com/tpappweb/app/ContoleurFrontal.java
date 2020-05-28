@@ -3,6 +3,7 @@ package com.tpappweb.app;
 
 import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.interfaces.IUtilisateurService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class ContoleurFrontal {
     @Autowired
     private IUtilisateurService iUtilisateurService;
+
 
     @RequestMapping("/")
     public String welcome(HttpSession httpSession){
@@ -38,6 +40,8 @@ public class ContoleurFrontal {
     public String voirPlaylist(HttpSession httpSession){
         return "playlist";
     }
+
+
 
     //test
     @RequestMapping("/profile")
