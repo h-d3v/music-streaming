@@ -47,13 +47,60 @@
                 <section>
                     <h4>Mes Playlists</h4>
                     <ul class="list-group sc-overflow" style="max-height: 150px;">
-                       <a href="../"> <li class="list-group-item"><span>List Group Item</span></li></a>
-                        <li class="list-group-item"><span>List Group Item</span></li>
-                        <li class="list-group-item"><span>List Group Item</span></li>
-                        <li class="list-group-item"><span>List Group Item</span></li>
+                           <!-- Button trigger modal -->
+                           <li type="button" class="list-group-item"  data-toggle="modal" data-target="#modalCommencerPlayList">
+                               Creer une nouvelle PlayList
+                           </li>
+
+                           <!-- Modal -->
+                           <div class="modal fade" id="modalCommencerPlayList" tabindex="-1" role="dialog" aria-labelledby="modalCommencerPlayList" aria-hidden="true">
+                               <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                       <div class="modal-header">
+                                           <h5 class="modal-title" style="color: #1d2124" id="modalCommencerPlayListLabel">Nouvelle PlayList</h5>
+                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                               <span aria-hidden="true">&times;</span>
+                                           </button>
+                                       </div>
+                                       <form id="nomPlayListAEnregistrer">
+                                       <div class="modal-body">
+                                           <div class="form-group"><input type="text"  class="form-control" name="nom" placeholder="Nom de la playlist" /></div>
+                                       </div>
+                                       <div class="modal-footer">
+                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                           <button type="button" onclick="enregistrerPlayList()"  class="btn btn-primary">Enregistrer</button>
+                                       </div>
+                                       </form>
+                                       <script>
+                                           function enregistrerPlayList() {
+                                               let xhttp = new XMLHttpRequest();
+                                               xhttp.onreadystatechange = function() {
+                                                   if (this.readyState == 4 && this.status == 200) {
+                                                       location.reload();
+                                                   }
+                                               };
+                                               xhttp.open("GET", "/utilisateurs/${sessionScope.utilisateurConnecte.pseudo}/addPlayList?nom="
+                                                   +document.getElementById("nomPlayListAEnregistrer").elements[0].value  , true);
+                                               xhttp.send();
+                                           }
+
+                                       </script>
+
+                                   </div>
+                               </div>
+                           </div>
+                       </li>
+
+                        <!-- Liste des Playlists -->
+                        <c:forEach items="${playlistsUtilisateur}" var="playList">
+                            <li class="list-group-item"><a href="/playlists/${playList.id}"> <span>${playList.nom}</span> </a></li>
+
+                        </c:forEach>
+
                     </ul>
                 </section>
             </div>
+            <!-- Liste des Titres par genre -->
             <div class="col-md-6 col-lg-6 col-xl-6">
                 <h2>Playlist en cours</h2>
                 <div style="padding-top: 20px !important;" class="container-fluid">
@@ -75,17 +122,38 @@
                                 </thead>
                                 <tbody>
                             <c:forEach items="${titresLectureActuelle.listeTitres}" var='titre' >
-                            <tr>
+                            <tr type="button" onclick="lireTitre(${titre.id})">
+
                                 <td class="col-2">${titre.nom}</td>
                                 <td class="col-2">${titre.nomArtiste}</td>
                                 <td class="col-2">3:${titre.duree}</td>
-                                <td class="col-2">0</td>
+                                <td class="col-2">0</td><!-- likesEtDIslike a mod dans le back end -->>
                                 <td class="col-2">1</td>
                                 <td class="col-2">${titre.genre}</td>
                             </tr>
                             </c:forEach>
                                 </tbody>
                             </table>
+                                <script>
+                                    function lireTitre(titreId) {
+                                        let xhttp = new XMLHttpRequest();
+                                        xhttp.onreadystatechange = function() {
+                                            if (this.readyState == 4 && this.status == 200) {
+                                                let reponse = xhttp.responseText;
+                                                let json = JSON.parse(reponse);
+                                                document.getElementById("titreLecture").innerText=json.nom;
+                                                document.getElementById("nomArtisteLecture").innerText=json.nomArtiste;
+                                                document.getElementById("imagePath").src="/"+json.urlImage;
+                                                document.getElementById("mp3fichier").src="/"+json.url;
+                                                document.getElementById("mp3fichier").setAttribute("autoplay",true);
+
+                                            }
+                                        };
+                                        xhttp.open("GET","/titre/"+titreId  , true);
+                                        xhttp.send();
+                                    }
+
+                                </script>
                     </div>
 
                         </c:if>
@@ -93,7 +161,6 @@
                             <p>Vos titres de la playlist s'afficheront ici</p>
                         </c:if>
 
-                            <!-- End -->
                         </div>
 
 
@@ -102,9 +169,10 @@
             <div class="col-md-3 col-lg-3 col-xl-3">
                 <section>
                     <h4>Lecture en cours</h4>
-                    <h5>Titre : Otto</h5>
-                    <h6>Artiste : Otto</h6>
-                    <img class="imageAlbum" src="${pageContext.request.contextPath}/img/R-6013749-1408827886-2023.jpeg.jpg"></section><audio src="${pageContext.request.contextPath}/audio/Checkie_Brown_-_09_-_Mary_Roose_CB_36.mp3" controls="" style="width: 100%;"></audio>
+                    <h5>Titre : <span id="titreLecture"></span></h5>
+                    <h6>Artiste : <span id="nomArtisteLecture"></span> </h6>
+                    <img class="imageAlbum" id="imagePath" src="${pageContext.request.contextPath}/img/noMusic.jpg"></section>
+                <audio id="mp3fichier" src="" controls="" style="width: 100%;"></audio>
                 <section>
                     <h4>Commentaires</h4>
                     <ul class="list-group sc-overflow" style="max-height: 150px;">
@@ -137,9 +205,14 @@
             </div>
         </div>
     </div>
+
+
 </div>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+
+
+
 </body>
 
 </html>

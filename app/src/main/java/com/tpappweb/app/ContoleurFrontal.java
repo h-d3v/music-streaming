@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -28,14 +27,20 @@ public class ContoleurFrontal {
     private ITitreService iTitreService;
 
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String welcome(HttpSession httpSession, ModelMap modelMap){
         if(httpSession.getAttribute("utilisateurConnecte")==null){
             return "index";
-        } else
-
-            modelMap.addAttribute("genres",iTitreService.trouverTousLesGenres() );
-
+        } else {
+            if (modelMap.containsAttribute("playlistsUtilisateur")) {
+                modelMap.replace("playlistsUtilisateur", iPlayListServices.chercherPlayListsParUtilisateur(
+                        (Utilistateur) httpSession.getAttribute("utilisateurConnecte")));
+            }else{
+                modelMap.addAttribute("playlistsUtilisateur", iPlayListServices.chercherPlayListsParUtilisateur(
+                        (Utilistateur) httpSession.getAttribute("utilisateurConnecte")));
+            }
+            modelMap.addAttribute("genres", iTitreService.trouverTousLesGenres());
+        }
          return "player";
     }
 
@@ -99,7 +104,7 @@ public class ContoleurFrontal {
     }
 
 
-    @PostMapping(path = "/player")
+    @PostMapping(path = "/player", consumes = "application/x-www-form-urlencoded")
     public String seConnecter(HttpSession httpSession, WebRequest webRequest, ModelMap modelMap){
         //Connection utilisateur
         if(httpSession.getAttribute("utilisateurConnecte")==null){
@@ -109,6 +114,7 @@ public class ContoleurFrontal {
             utilistateur.setCourriel(webRequest.getParameter("courriel"));
             try{
                 if(utilistateur.equals(iUtilisateurService.getUtilisateur(utilistateur.getPseudo()))){
+                    utilistateur.setPlayLists(iPlayListServices.chercherPlayListsParUtilisateur(utilistateur));
                 httpSession.setAttribute("utilisateurConnecte", utilistateur);
                 }
                 else{
@@ -122,6 +128,6 @@ public class ContoleurFrontal {
 
 
         }
-        return welcome(httpSession,modelMap);
+        return welcome(httpSession, modelMap);
     }
 }
