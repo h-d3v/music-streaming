@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class Initialisation {
     private static final String DIR_AUDIO="src/main/resources/static/audio/";
+    private static final String DIR_AUDIO_REL="audio/";
+    private static final String DIR_PHOTO_REL ="img/covers/";
     private static ArrayList<String> artistes=new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
@@ -26,7 +28,12 @@ public class Initialisation {
         File folder = new File(folderDepart);
         File[] fileNames = folder.listFiles();
         for (File file : fileNames) {
-            File fileCopie = new File(DIR_AUDIO + file.getName().replace(" ", "%"));
+            String nomFichier=file.getName().replace("'", "_");
+            nomFichier= nomFichier.replace(" ", "_");
+            nomFichier= nomFichier.replace("%", "_");
+            nomFichier= nomFichier.replace("`", "_");
+            File fileCopie = new File(DIR_AUDIO + nomFichier);
+
             FileInputStream is = new FileInputStream(file);
             FileOutputStream os = new FileOutputStream(fileCopie);
             //On copie les fichiers dans le repertoire audio du serveur TOMCAt
@@ -61,6 +68,9 @@ public class Initialisation {
                 titre.setGenre(gestionMetaDatasMp3.getGenre());
                 titre.setDuree(gestionMetaDatasMp3.getDuree());
                 titre.setNomArtiste(gestionMetaDatasMp3.getAuteur());
+                if(gestionMetaDatasMp3.getAlbum()==null){
+                    titre.setTitreAlbum("Unknown Pleasures");
+                }
                 titre.setTitreAlbum(gestionMetaDatasMp3.getAlbum());
 
                 if (!artistes.contains(titre.getNomArtiste())) {
@@ -70,9 +80,9 @@ public class Initialisation {
                 System.out.println("INSERT INTO Titre(nomArtiste, nom, url, duree, urlImage, dateSortie, genre, titreAlbum) VALUES " +
                         "( \'" + titre.getNomArtiste() +
                         "\',\'" + titre.getNom() +
-                        "\',\'" +DIR_AUDIO+ titre.getUrl() +
+                        "\',\'" +DIR_AUDIO_REL+ titre.getUrl() +
                         "\'," + titre.getDuree() +
-                        ",\'"+gestionMetaDatasMp3.getDIR_PHOTO()+ titre.getUrlImage() +
+                        ",\'"+DIR_PHOTO_REL+ titre.getUrlImage() +
                         "\',\'" + titre.getDateSortie() +
                         "\',\'"+ titre.getGenre() +
                         "\',\'"+ titre.getTitreAlbum() +

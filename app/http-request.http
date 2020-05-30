@@ -5,27 +5,15 @@ Content-Type: application/json
 
 {
   "utilistateur": {
-    "pseudo": "Remy",
-    "courriel": null,
-    "motPasse": null,
-    "abonnes": null,
-    "playLists": null,
-    "commentaires": null,
-    "estAdmin": false
+    "pseudo": "Remy"
+
   },
   "titre": {
-    "nom": null,
-    "id": 11,
-    "titreAlbum": null,
-    "url": null,
-    "urlImage": null,
-    "nomArtiste": null,
-    "duree": 0,
-    "genre": null,
-    "dateSortie": null,
-    "artiste": null
+
+    "id": 11
+
   },
-  "date": null,
-  "commentaire": "Je suis un nouveau commentaire",
-  "id": null
+
+  "commentaire": "Je suis un nouveau commentaire"
+
 }

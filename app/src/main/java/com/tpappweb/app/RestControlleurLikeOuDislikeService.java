@@ -1,17 +1,19 @@
 package com.tpappweb.app;
 
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import com.tpappweb.app.entites.LikeOuDislike;
 import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.interfaces.ILikeOuDislikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.SessionScope;
+
 
 @RestController
 public class RestControlleurLikeOuDislikeService {
@@ -34,8 +36,13 @@ public class RestControlleurLikeOuDislikeService {
         //TODO checker utilisateur connecte dans la session
 
          if ("like".equals(action)){
-            likeOuDislikeAcreer.setLikeOuDislike(true);
-            iLikeOuDislikeService.ajouterLikeOuDislike(likeOuDislikeAcreer);
+             try {
+                 likeOuDislikeAcreer.setLikeOuDislike(true);
+                 iLikeOuDislikeService.ajouterLikeOuDislike(likeOuDislikeAcreer);
+             }catch (DataAccessException e){
+                 System.out.println(e.getCause().toString());
+             }
+
         }
         else if ("dislike".equals(action)){
             likeOuDislikeAcreer.setLikeOuDislike(false);

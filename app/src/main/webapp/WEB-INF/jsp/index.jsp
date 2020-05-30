@@ -9,12 +9,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - RoseTube</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
-    <link rel="stylesheet" href="css/scrollbar-1.css">
-    <link rel="stylesheet" href="css/scrollbar.css">
-    <link rel="stylesheet" href="css/untitled.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar-1.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/untitled.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -89,7 +89,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="rounded-circle img-fluid" src="img/01.jpg"></div>
+                <div class="p-5"><img class="rounded-circle img-fluid" src="${pageContext.request.contextPath}/img/01.jpg"></div>
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
@@ -104,7 +104,7 @@
     <div class="container">
         <div class="row align-items-center impair">
             <div class="col-lg-6 order-lg-1">
-                <div class="p-5"><img class="rounded-circle img-fluid" src="img/02.jpg"></div>
+                <div class="p-5"><img class="rounded-circle img-fluid" src="${pageContext.request.contextPath}/img/02.jpg"></div>
             </div>
             <div class="col-lg-6 order-lg-2">
                 <div class="p-5">
@@ -119,7 +119,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="rounded-circle img-fluid" src="img/03.jpg"></div>
+                <div class="p-5"><img class="rounded-circle img-fluid" src="${pageContext.request.contextPath}/img/03.jpg"></div>
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
@@ -135,8 +135,8 @@
         <p class="text-center text-white m-0 small">Copyright&nbsp;© RoseTube 2099</p>
     </div>
 </footer>
-<script src="js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

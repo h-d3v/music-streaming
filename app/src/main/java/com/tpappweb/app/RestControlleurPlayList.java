@@ -73,5 +73,10 @@ public class RestControlleurPlayList {
        PlayList playList= iPlayListServices.chercherPlayListParID(id);
        return  new ResponseEntity<>(playList,HttpStatus.OK);
     }
+    @GetMapping("/ajax/playlist/{genre}")
+        public ResponseEntity<PlayList> lirePlayListParGenre(@PathVariable("genre") String genre){
+        PlayList playList = iPlayListServices.creerPlaylistParGenre(genre);
+        return new ResponseEntity<>(playList, HttpStatus.OK);
+    }
 
 }
