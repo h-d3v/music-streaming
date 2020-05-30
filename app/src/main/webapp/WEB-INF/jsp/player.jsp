@@ -121,13 +121,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                            <c:forEach items="${titresLectureActuelle.listeTitres}" var='titre' >
+                            <c:forEach items="${titresLectureActuelle.listeTitres}" var='titre'>
                             <tr type="button" onclick="lireTitre(${titre.id})">
 
                                 <td class="col-2">${titre.nom}</td>
                                 <td class="col-2">${titre.nomArtiste}</td>
                                 <td class="col-2">3:${titre.duree}</td>
-                                <td class="col-2">0</td><!-- likesEtDIslike a mod dans le back end -->>
+                                <td class="col-2">0</td><!-- likesEtDIslike a mod dans le back end -->
                                 <td class="col-2">1</td>
                                 <td class="col-2">${titre.genre}</td>
                             </tr>
