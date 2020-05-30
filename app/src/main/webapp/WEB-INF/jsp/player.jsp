@@ -89,7 +89,7 @@
                                    </div>
                                </div>
                            </div>
-                       </li>
+
 
                         <!-- Liste des Playlists -->
                         <c:forEach items="${playlistsUtilisateur}" var="playList">
