@@ -1,4 +1,5 @@
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -14,6 +15,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar-1.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/untitled.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/img/open-iconic-master/font/css/open-iconic-bootstrap.min.css">
+
 </head>
 
 <body>
@@ -89,11 +92,10 @@
                                    </div>
                                </div>
                            </div>
-                       </li>
 
                         <!-- Liste des Playlists -->
                         <c:forEach items="${playlistsUtilisateur}" var="playList">
-                            <li class="list-group-item"><a href="/playlists/${playList.id}"> <span>${playList.nom}</span> </a></li>
+                            <li class="list-group-item"><a href="/playlist/${sessionScope.utilisateurConnecte.pseudo}/${playList.id}"> <span>${playList.nom}</span> </a></li>
 
                         </c:forEach>
 
@@ -105,28 +107,40 @@
                 <h2>Playlist en cours</h2>
                 <div style="padding-top: 20px !important;" class="container-fluid">
                     <h3 class="text-center text-dark">${ !empty titresLectureActuelle ?  titresLectureActuelle.nom : 'Selectionnez une playlist'}</h3>
-                    <div class="row">
+                   <div class="row">
+                       <c:if test="${empty titresLectureActuelle.listeTitres }">
+                           <div><p>La liste de lecture est vide, vous pouvez rechercher des titres et les ajouter en allant sur les pages rechercher et genres</p></div>
+                       </c:if>
+                        <c:if test="${ !empty titresLectureActuelle.listeTitres }">
 
-                        <c:if test="${ !empty titresLectureActuelle }">
                             <div class="table-responsive">
                             <table id="tableTitre"  class="table table-striped table-dark table-fixed">
                                 <thead>
                                 <tr>
+                                    <th scope="col" class="col-2"></th>
                                     <th scope="col" class="col-2">Titre</th>
                                     <th scope="col" class="col-2">Artiste</th>
                                     <th scope="col" class="col-2">Durée</th>
-                                    <th scope="col" class="col-2"><span class="oi oi-heart" title="heart" aria-hidden="true"></span></th>
-                                    <th scope="col" class="col-2"><span class="oi oi-thumb-down" title="thumb down" aria-hidden="true"></span></th>
+                                    <th scope="col" class="col-2"></th>
+                                    <th scope="col" class="col-2"></th>
+                                    <th scope="col" class="col-2"><span class="oi oi-heart" title="heart" aria-hidden="false"></span></th>
+                                    <th scope="col" class="col-2"><span class="oi oi-thumb-down" title="thumb down" aria-hidden="false"></span></th>
                                     <th scope="col" class="col-2">Genre</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                             <c:forEach items="${titresLectureActuelle.listeTitres}" var='titre'>
-                            <tr type="button" onclick="lireTitre(${titre.id})">
-
+                            <tr>
+                                <td class="col-2" type="button" onclick="lireTitre(${titre.id})"><span class="oi oi-media-play" title="lire le titre" aria-hidden="false"></span></td>
                                 <td class="col-2">${titre.nom}</td>
                                 <td class="col-2">${titre.nomArtiste}</td>
                                 <td class="col-2">3:${titre.duree}</td>
+                                <td class="col-2" type="button" onclick='ouvrirModal( ${titre.id} ,"${titre.nom}", "${titre.nomArtiste}")' data-toggle="modal" data-target="#modalAjouterTritre">
+                                    <span class="oi oi-plus"></span>
+                                </td>
+                                <td class="col-2" type="button" onclick='supprimerTitre( ${titre.id}, ${titresLectureActuelle.id}) '>
+                                    <span class="oi oi-minus"></span>
+                                </td>
                                 <td class="col-2">0</td><!-- likesEtDIslike a mod dans le back end -->
                                 <td class="col-2">1</td>
                                 <td class="col-2">${titre.genre}</td>
@@ -134,6 +148,86 @@
                             </c:forEach>
                                 </tbody>
                             </table>
+                                <script>
+                                    function ouvrirModal(titreId, titreNom, titreArtiste){
+                                        document.getElementById("modalAjouterTitre").innerHTML="Ajouter le titre "+titreNom +" de "+titreArtiste;
+                                        document.getElementById("titreId").innerHTML=titreId;
+
+                                    }
+
+                                </script>
+
+                                <script>
+                                   function supprimerTitre(titreId, idPlayList){
+                                       let xhttp = new XMLHttpRequest();
+                                       xhttp.onreadystatechange = function(){
+                                           if (this.readyState == 4 && this.status == 200){
+                                               location.reload();
+                                           }
+
+                                       };
+                                       xhttp.open("GET", "/playlist/"+idPlayList+"/supprimerTitre?titreId="+titreId  , true);
+                                       xhttp.send();
+                                   }
+                                </script>
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalAjouterTritre" tabindex="-1" role="dialog" aria-labelledby="modalAjouterTritre" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalAjouterTitre"></h5>
+
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+
+                                            </div>
+                                            <h6>Veuillez selectionner une playlist</h6>
+
+                                            <div class="modal-body">
+                                                    <div id="titreId" hidden ></div>
+                                                    <div id="message"></div>
+                                                    <select id="selectPlayList" class="custom-select"  name="PlayLists">
+                                                        <c:forEach items="${playlistsUtilisateur}" var="playList">
+                                                      <option value="${playList.id}">${playList.nom}</option>
+                                                        </c:forEach>
+                                                    </select>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button type="button" onclick="enregistrerTitreDansPlayList()" class="btn btn-primary">Enregistrer</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function enregistrerTitreDansPlayList() {
+
+                                        let e = document.getElementById("selectPlayList");
+                                        let idPlayList = e.options[e.selectedIndex].value;
+                                        let idTitre = document.getElementById("titreId").innerHTML;
+                                        let xhttp = new XMLHttpRequest();
+                                        xhttp.onreadystatechange = function(){
+                                            if (this.readyState == 4 && this.status == 200){
+                                                document.getElementById("message").innerHTML = "Le titre a bien ete enregistre dans la Playlist";
+                                            }
+                                            else if (this.readyState == 4 && this.status == 409){
+                                                document.getElementById("message").innerHTML = "Le titre se trouve deja dans la playlist";
+                                            }
+                                        };
+                                        xhttp.open("GET","/playlist/"+idPlayList+"/ajouterTitre?titreId="+idTitre  , true);
+                                        xhttp.send();
+
+
+                                    }
+                                </script>
+
+
                                 <script>
                                     function lireTitre(titreId) {
                                         let xhttp = new XMLHttpRequest();

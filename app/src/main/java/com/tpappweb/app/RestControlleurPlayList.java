@@ -6,6 +6,7 @@ import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.interfaces.IPlayListServices;
 import com.tpappweb.app.service.interfaces.IUtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,24 +41,28 @@ public class RestControlleurPlayList {
 
     @GetMapping("utilisateurs/{pseudo}/supprimerPlayList/{id}")
         public ResponseEntity<Boolean> supprimerPlayList(@PathVariable("pseudo") String pseudo, @PathVariable("id") int id){
-        //TODO Verifier si utilisateur dans la session
+
         PlayList playList = new PlayList() ;
         playList.setId(id);
         Boolean boo  = iPlayListServices.supprimerPlayList(playList);
        return new ResponseEntity<>(boo, HttpStatus.OK);
     }
 
-    @GetMapping("utilisateurs/{pseudo}/playlist/{id}/ajouterTitre")
+    @GetMapping("playlist/{id}/ajouterTitre")
         public ResponseEntity<Boolean> ajouterTitre(@PathVariable("id") int id, @RequestParam("titreId") int titreId ){
-        //TODO Exceptions
+        try{
         PlayList playList = new PlayList();
         Titre titre = new Titre();
         playList.setId(id);
         titre.setId(titreId);
         Boolean b   = iPlayListServices.ajouterTitreALaPlaylist(playList, titre);
         return new ResponseEntity<>(b, HttpStatus.OK);
+        }
+        catch (DataIntegrityViolationException e){
+            return new ResponseEntity<>(false, HttpStatus.CONFLICT);
+        }
     }
-    @GetMapping("utilisateurs/{pseudo}/playlist/{id}/supprimerTitre")
+    @GetMapping("playlist/{id}/supprimerTitre")
     public ResponseEntity<Boolean> supprimerTitreTitre(@PathVariable("id") int id, @RequestParam("titreId") int titreId ){
         //TODO Exceptions
         PlayList playList = new PlayList();

@@ -73,6 +73,19 @@ public class ContoleurFrontal {
         return "playlist";
     }
 
+
+    @RequestMapping("/playlist/{utilisateur}/{id}")
+    public String afficherPlayList(HttpSession httpSession, ModelMap modelMap, @PathVariable("id") int id, @PathVariable("utilisateur")String utilisateur){
+        if(httpSession.getAttribute("utilisateurConnecte")==null)return "index";
+        if(modelMap.getAttribute("titresLectureActuelle")==null){
+            PlayList playList =iPlayListServices.chercherPlayListParID(id);
+            modelMap.addAttribute("titresLectureActuelle", playList);
+        }else modelMap.replace("titresLectureActuelle", iPlayListServices.chercherPlayListParID(id));
+
+        return welcome( httpSession,  modelMap);
+    }
+
+
     //test
     @RequestMapping("/profile")
     public String voirProfile(HttpSession httpSession){

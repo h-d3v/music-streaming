@@ -3,6 +3,7 @@ package com.tpappweb.app.service;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import org.apache.commons.lang3.time.DateUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,7 +33,7 @@ public  class GestionMetaDatasMp3 {
         try{
         mp3File= new Mp3File(DIR_AUDIO+cheminFichiermP3.trim());
         genre=mp3File.getId3v2Tag().getGenreDescription();
-        duree= mp3File.getId3v2Tag().getLength();
+        duree=(int) mp3File.getLengthInSeconds();
         titre= mp3File.getId3v2Tag().getTitle();
         album= mp3File.getId3v2Tag().getAlbum();
         auteur= mp3File.getId3v2Tag().getArtist();
