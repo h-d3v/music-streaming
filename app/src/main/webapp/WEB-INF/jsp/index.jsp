@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar-1.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/untitled.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/player.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

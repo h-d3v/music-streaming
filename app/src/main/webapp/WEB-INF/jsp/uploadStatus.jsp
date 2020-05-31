@@ -15,6 +15,7 @@
 </div>
 <%--@elvariable id="formulaire" type="com.tpappweb.app.service.Formulaire"--%>
 <h3>Photo de l'album</h3>
+<p> Le serveur doir redemarrer pour afficher l'image et l'audio mis en memoire tampon(BETA)</p>
 <img height="200px" width="auto" src="img/covers/coverTampon.jpg"/>
 <audio src="audio/audioTampo.mp3" controls></audio>
 
@@ -36,7 +37,7 @@
     <form:input path="cheminPhoto" value="${cheminPhoto}"></form:input>
     <form:label path="cheminAudio" >Chemin audio  NE PAS CHANGER(BETA) :</form:label>
     <form:input path="cheminAudio" value="${cheminAudio}"></form:input>
-    <input type="submit" value="Confirmer"/>
+    <input type="submit" value="Confirmer"/><p>Le nouveau titre sera entre dans la base de donnee, encore redemarrer Tomcat !!</p>
 
 </form:form>
 

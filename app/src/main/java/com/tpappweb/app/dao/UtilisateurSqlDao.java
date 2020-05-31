@@ -1,5 +1,6 @@
 package com.tpappweb.app.dao;
 
+import com.tpappweb.app.dao.romappers.UtilisateurRowMapper;
 import com.tpappweb.app.entites.Utilistateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -35,10 +36,10 @@ public class UtilisateurSqlDao extends MySQLDAO<Utilistateur>{
 
     @Override
     public Utilistateur findById(String x) {
-        String sql ="SELECT pseudo, courriel, motPasse  FROM Utilisateur WHERE pseudo=:pseudo ";
+        String sql ="SELECT pseudo, courriel, motPasse, estAdmin  FROM Utilisateur WHERE pseudo=:pseudo ";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("pseudo", x);
-        return (Utilistateur) jdbcTemplate.queryForObject(sql,mapSqlParameterSource,new BeanPropertyRowMapper(Utilistateur.class));
+        return jdbcTemplate.queryForObject(sql,mapSqlParameterSource,new UtilisateurRowMapper());
     }
 
     @Override

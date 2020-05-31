@@ -1,12 +1,12 @@
 package com.tpappweb.app;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.Formulaire;
 import com.tpappweb.app.service.GestionMetaDatasMp3;
 import org.springframework.stereotype.Controller;
@@ -16,22 +16,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
     public class FileUploadController {
 
         private static String UPLOAD_FOLDER="src/main/resources/static/audio/";
 
         @GetMapping("/uploadStatus")
-        public String uploadStatus() {
+        public String uploadStatus(HttpSession httpSession) {
+            if (httpSession.getAttribute("utilisateurConnecte") == null) return "error";
+            Utilistateur utilistateur = (Utilistateur) httpSession.getAttribute("utilisateurConnecte");
+            if (!utilistateur.getEstAdmin()) {
+                return "error";
+            }
             return "uploadStatus";
         }
         @GetMapping("/upload")
-        public String upload(){
+        public String upload(HttpSession httpSession){
+            if (httpSession.getAttribute("utilisateurConnecte") == null) return "error";
+
+            Utilistateur utilistateur = (Utilistateur) httpSession.getAttribute("utilisateurConnecte");
+            System.out.println(utilistateur.getEstAdmin());
+            if (!utilistateur.getEstAdmin()) {
+                return "error";
+            }
             return "upload";
         }
 
         @PostMapping("/upload")
-        public String fileUpload(@RequestParam MultipartFile file, Formulaire formulaire, ModelMap modelMap){
+        public String fileUpload(@RequestParam MultipartFile file, Formulaire formulaire, ModelMap modelMap, HttpSession httpSession){
+            if (httpSession.getAttribute("utilisateurConnecte") == null) return "error";
+            Utilistateur utilistateur = (Utilistateur) httpSession.getAttribute("utilisateurConnecte");
+            if (!utilistateur.getEstAdmin()) {
+                return "error";
+            }
             if(file.isEmpty()){
                 modelMap.addAttribute("message","erreur, fichier vide");
                 return "uploadStatus";

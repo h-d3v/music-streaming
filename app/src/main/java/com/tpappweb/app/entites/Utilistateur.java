@@ -23,7 +23,7 @@ public class Utilistateur {
         this.likeOuDislikes = likeOuDislikes;
     }
 
-    public boolean isEstAdmin() {
+    public boolean getEstAdmin() {
         return estAdmin;
     }
 

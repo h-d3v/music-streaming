@@ -8,14 +8,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
     <title>tpAppWeb</title>
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar-1.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/untitled.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/player.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/img/open-iconic-master/font/css/open-iconic-bootstrap.min.css">
+
 
 </head>
 
@@ -25,31 +27,35 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto">
 
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mon compte : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="">Mon compte : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/seDeconnecter">Se Deconnecter</a></li>
+                <c:if test="${sessionScope.utilisateurConnecte.estAdmin}">
+                    <li class="nav-item" role="presentation"><a href="${pageContext.request.contextPath}/ajouterTitres"></a></li>
+                </c:if>
             </ul>
         </div>
     </div>
 </nav>
 <div style="margin-top: 71px;">
-    <div class="container m-auto">
+    <div class="container">
         <div class="row">
             <div class="col-md-3 col-lg-3 col-xl-3">
                 <section>
-                    <ul class="list-group sc-overflow" style="max-height: 150px;">
+                    <ul class="list-group sc-overflow" style="max-height: 200px;">
                         <li class="list-group-item"><a href="${pageContext.request.contextPath}/">Accueil</a></li>
-                        <li class="list-group-item"><a href="#">Rechercher</a></li>
-                        <li type="button" class="list-group-item">
+                        <li class="list-group-item"><a href="/titresSearch">Rechercher</a></li>
+                        <li class="list-group-item">
                             Genres</li>
+                        <ul>
                                 <c:forEach items="${genres}" var="genre">
                                    <li><a class="nav-link" href='/playlist/${genre}/'> ${genre} </a></li>
                     </c:forEach>
-
+                        </ul>
                     </ul>
                 </section>
                 <section>
                     <h4>Mes Playlists</h4>
-                    <ul class="list-group sc-overflow" style="max-height: 150px;">
+                    <ul class="list-group sc-overflow" style="max-height: 280px;">
                            <!-- Button trigger modal -->
                            <li type="button" class="list-group-item"  data-toggle="modal" data-target="#modalCommencerPlayList">
                                Creer une nouvelle PlayList
@@ -95,8 +101,12 @@
 
                         <!-- Liste des Playlists -->
                         <c:forEach items="${sessionScope.playlistsUtilisateur}" var="playList">
-                            <li id="playlist${playList.id}" class="list-group-item"><a href="/playlist/${sessionScope.utilisateurConnecte.pseudo}/${playList.id}"> <span>${playList.nom}</span> </a>
-                                <span type="button" class="oi oi-delete" style="text-align: right" onclick="supprimerPlayList(${playList.id})"></span>
+                            <li id="playlist${playList.id}" class="list-group-item">
+                                <span class="oi oi-delete" title="Supprimer la Playlist" type="button" style="margin-right: 5px" onclick="supprimerPlayList(${playList.id})">
+
+                                </span>
+                                <a title="lire la Playlist" href="/playlist/${sessionScope.utilisateurConnecte.pseudo}/${playList.id}"> <span>${playList.nom}</span> </a>
+
                             </li>
 
                         </c:forEach>
@@ -118,9 +128,8 @@
                 </section>
             </div>
             <!-- Liste des Titres par genre -->
-            <div class="col-md-6 col-lg-6 col-xl-6">
-                <h2>Playlist en cours</h2>
-                <div style="padding-top: 20px !important;" class="container-fluid">
+            <div class="col-md-9 col-lg-9 col-xl-9 sc-overflow" style="max-height: 480px">
+                <div style="padding-top: 2px !important;" class="container-fluid">
                     <h3 class="text-center text-dark">${ !empty titresLectureActuelle ?  titresLectureActuelle.nom : 'Selectionnez une playlist'}</h3>
                    <div class="row">
                        <c:if test="${empty titresLectureActuelle.listeTitres }">
@@ -137,7 +146,9 @@
                                     <th scope="col" class="col-2">Artiste</th>
                                     <th scope="col" class="col-2">Durée</th>
                                     <th scope="col" class="col-2"></th>
-                                    <th scope="col" class="col-2"></th>
+                                    <c:if test="${titresLectureActuelle.id>0}">
+                                        <th scope="col" class="col-2"></th>
+                                    </c:if>
                                     <th scope="col" class="col-2"></th>
                                     <th scope="col" class="col-2"></th>
                                     <th scope="col" class="col-2">Genre</th>
@@ -153,10 +164,11 @@
                                 <td class="col-2" type="button" title="Ajouter le titre" onclick='ouvrirModal( ${titre.id} ,"${titre.nom}", "${titre.nomArtiste}")' data-toggle="modal" data-target="#modalAjouterTritre">
                                     <span class="oi oi-plus"></span>
                                 </td>
-
+                                <c:if test="${titresLectureActuelle.id>0}">
                                 <td class="col-2" type="button" title="Supprimer le titre"  onclick='supprimerTitre( ${titre.id}, ${titresLectureActuelle.id}) '>
                                     <span class="oi oi-minus"></span>
                                 </td>
+                                </c:if>
                                 <td class="col-2">
                                     <span id="like${titre.id}" type="button"
                                           onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'like')"
@@ -232,10 +244,10 @@
 
                                 <script>
                                     function ouvrirModal(titreId, titreNom, titreArtiste){
+                                        document.getElementById("message").innerHTML ="";
                                         document.getElementById("modalAjouterTitre").innerHTML="Ajouter le titre "+titreNom +" de "+titreArtiste;
                                         document.getElementById("titreId").innerHTML=titreId;
                                     }
-
                                 </script>
 
                                 <script>
@@ -258,18 +270,18 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalAjouterTitre"></h5>
+                                                <h5 style="color:lightsalmon" class="modal-title" id="modalAjouterTitre"></h5>
 
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
 
                                             </div>
-                                            <h6>Veuillez selectionner une playlist</h6>
+                                            <h6 style="color: #1d2124">Veuillez selectionner une playlist</h6>
 
                                             <div class="modal-body">
                                                     <div id="titreId" hidden ></div>
-                                                    <div id="message"></div>
+                                                    <div id="message" style="color: #1d2124"></div>
                                                     <select id="selectPlayList" class="custom-select"  name="PlayLists">
                                                         <c:forEach items="${sessionScope.playlistsUtilisateur}" var="playList">
                                                       <option value="${playList.id}">${playList.nom}</option>
@@ -288,7 +300,6 @@
 
                                 <script>
                                     function enregistrerTitreDansPlayList() {
-
                                         let e = document.getElementById("selectPlayList");
                                         let idPlayList = e.options[e.selectedIndex].value;
                                         let idTitre = document.getElementById("titreId").innerHTML;
@@ -341,43 +352,28 @@
 
             </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <section>
-                    <h4>Lecture en cours</h4>
-                    <h5>Titre : <span id="titreLecture"></span></h5>
-                    <h6>Artiste : <span id="nomArtisteLecture"></span> </h6>
-                    <img class="imageAlbum" id="imagePath" src="${pageContext.request.contextPath}/img/noMusic.jpg"></section>
-                <audio id="mp3fichier" src="" controls="" style="width: 100%;"></audio>
-                <section>
-                    <h4>Commentaires</h4>
-                    <ul class="list-group sc-overflow" style="max-height: 150px;">
-                        <li class="list-group-item"><span>List Group Item</span></li>
-                        <li class="list-group-item"><span>List Group Item</span></li>
-                        <li class="list-group-item"><span>List Group Item</span></li>
-                        <li class="list-group-item"><span>List Group Item</span></li>
-                    </ul>
-                </section>
-            </div>
+
         </div>
-        <div class="row">
-            <div class="col-md-12 col-lg-3 col-xl-3">
-                <h2>Mes amis</h2>
-                <ul class="list-group sc-overflow" style="max-height: 150px;">
-                    <li class="list-group-item"><span>Ami1</span></li>
-                    <li class="list-group-item"><span>Ami2</span></li>
-                    <li class="list-group-item"><span>Ami3</span></li>
-                    <li class="list-group-item"><span>Ami4</span></li>
-                </ul>
-            </div>
-            <div class="col">
-                <h2>Activite recente de mon ami ami1</h2>
-                <ul class="list-group sc-overflow" style="max-height: 150px;">
+         <div class="row">
+             <div class="col-md-3 col-lg-3 col-xl-3">
+                 <section>
+                     <h4>Lecture en cours</h4>
+                     <img class="imageAlbum" id="imagePath" src="${pageContext.request.contextPath}/img/noMusic.jpg"></section>
+                 <audio id="mp3fichier" src="" controls="" style="width: 100%;"></audio>
+                 <h5>Titre : <span id="titreLecture"></span></h5>
+                 <h6>Artiste : <span id="nomArtisteLecture"></span> </h6>
+                 </section>
+             </div>
+            <div class="col-md-9 col-lg-9 col-lg-xl-9">
+                <h4>Commentaires</h4>
+                <ul class="list-group sc-overflow" style="max-height: 300px;">
                     <li class="list-group-item"><span>List Group Item</span></li>
                     <li class="list-group-item"><span>List Group Item</span></li>
                     <li class="list-group-item"><span>List Group Item</span></li>
                     <li class="list-group-item"><span>List Group Item</span></li>
                 </ul>
             </div>
+         </div>
         </div>
     </div>
 

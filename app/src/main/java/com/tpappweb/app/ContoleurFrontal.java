@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
@@ -53,25 +52,20 @@ public class ContoleurFrontal {
         if(modelMap.getAttribute("titresLectureActuelle")==null){
             PlayList playList =iPlayListServices.creerPlaylistParGenre(genre);
             List<Titre> titres= playList.getListeTitres();
-            for(Titre titre : titres){
-                titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
-            }
-            playList.setListeTitres(titres);
-            modelMap.addAttribute("titresLectureActuelle", playList);
+            chargerLikeOuDislike(httpSession, modelMap, playList, titres);
         }else {
             PlayList playList =iPlayListServices.creerPlaylistParGenre(genre);
             List<Titre> titres= playList.getListeTitres();
+
             for(Titre titre : titres){
                 titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
             }
             playList.setListeTitres(titres);
+
             modelMap.replace("titresLectureActuelle", playList);
         }
         return welcome(httpSession, modelMap);
     }
-
-
-
 
 
 
@@ -97,21 +91,7 @@ public class ContoleurFrontal {
         if(modelMap.getAttribute("titresLectureActuelle")==null){
             PlayList playList = iPlayListServices.chercherPlayListParID(id);
             List<Titre> titres= playList.getListeTitres();
-            List<LikeOuDislike> likesUtilisateur=new LinkedList<>();
-
-            for(Titre titre : titres){
-                titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
-                LikeOuDislike likeOuDislikeUser= new LikeOuDislike();
-                likeOuDislikeUser.setTitreId(titre);
-                likeOuDislikeUser.setUtilistateurPseudo((Utilistateur) httpSession.getAttribute("utilisateurConnecte"));
-                if(iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser)!=null){
-                    LikeOuDislike like = iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser);
-                    likesUtilisateur.add(like);
-                }
-            }
-            playList.setListeTitres(titres);
-            modelMap.addAttribute("likesOuDislikesUser", likesUtilisateur);
-            modelMap.addAttribute("titresLectureActuelle", playList);
+            chargerLikeOuDislike(httpSession, modelMap, playList, titres);
         }else{
             PlayList playList =iPlayListServices.chercherPlayListParID(id);
             List<Titre> titres= playList.getListeTitres();
@@ -124,6 +104,8 @@ public class ContoleurFrontal {
 
         return welcome( httpSession,  modelMap);
     }
+
+
 
 
     //test
@@ -157,6 +139,7 @@ public class ContoleurFrontal {
     }
 
 
+
     @PostMapping(path = "/player", consumes = "application/x-www-form-urlencoded")
     public String seConnecter(HttpSession httpSession, WebRequest webRequest, ModelMap modelMap){
         //Connection utilisateur
@@ -166,9 +149,10 @@ public class ContoleurFrontal {
             utilistateur.setMotPasse(webRequest.getParameter("motPasse"));
             utilistateur.setCourriel(webRequest.getParameter("courriel"));
             try{
-                if(utilistateur.equals(iUtilisateurService.getUtilisateur(utilistateur.getPseudo()))){
-
-                httpSession.setAttribute("utilisateurConnecte", utilistateur);
+                Utilistateur utilisateurBD = iUtilisateurService.getUtilisateur(utilistateur.getPseudo());
+                if(utilistateur.equals(utilisateurBD)){
+                    if(utilisateurBD.getEstAdmin()) utilistateur.setEstAdmin(true);
+                    httpSession.setAttribute("utilisateurConnecte", utilistateur);
                 }
                 else{
                         modelMap.addAttribute("messageErreur", "tentative de connexion  non valide" );
@@ -182,5 +166,24 @@ public class ContoleurFrontal {
 
         }
         return welcome(httpSession, modelMap);
+    }
+
+
+    private void chargerLikeOuDislike(HttpSession httpSession, ModelMap modelMap, PlayList playList, List<Titre> titres) {
+        List<LikeOuDislike> likesUtilisateur=new LinkedList<>();
+
+        for(Titre titre : titres){
+            titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
+            LikeOuDislike likeOuDislikeUser= new LikeOuDislike();
+            likeOuDislikeUser.setTitreId(titre);
+            likeOuDislikeUser.setUtilistateurPseudo((Utilistateur) httpSession.getAttribute("utilisateurConnecte"));
+            if(iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser)!=null){
+                LikeOuDislike like = iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser);
+                likesUtilisateur.add(like);
+            }
+        }
+        playList.setListeTitres(titres);
+        modelMap.addAttribute("likesOuDislikesUser", likesUtilisateur);
+        modelMap.addAttribute("titresLectureActuelle", playList);
     }
 }

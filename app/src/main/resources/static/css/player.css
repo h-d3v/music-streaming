@@ -1,0 +1,38 @@
+.row.align-items-center.impair {
+  background-color: rgb(72,69,69);
+}
+
+body {
+  overflow-scrolling: auto;
+  overflow-y: scroll;
+  background: linear-gradient(to left, coral, lightcoral);
+  text-align:left;
+  color:#fff;
+  margin: 15px;
+  padding: 0px;
+}
+
+button, input[type="submit"], input[type="reset"] {
+  background: none;
+  color: red;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.display-4 {
+  color: rgb(207,203,199);
+}
+
+.container.player {
+  width: 100%;
+  /*max-width: 1167px;*/
+}
+
+.imageAlbum {
+  width: 100%;
+  height: auto;
+}
+
