@@ -23,13 +23,17 @@ public class TitreController {
     IPlayListServices playListServices;
 
     //test
-    @RequestMapping("/titreSearch.html")
+    @RequestMapping("/titreSearch")
     public ModelAndView titreSearch(HttpSession httpSession){
         ModelAndView modelAndView = new ModelAndView("titreSearch");
-        List<Titre> titreList=titreService.trouverTous();
-        List<PlayList> playLists=playListServices.chercherPlayListsParUtilisateur((Utilistateur) httpSession.getAttribute("utilisateurConecte"));
+        List<Titre> titreList = titreService.trouverTous();
         modelAndView.addObject("titres", titreList);
-        modelAndView.addObject("playlists",playLists);
+
+        if(httpSession.getAttribute("utilisateurConnecte")!=null) {
+            List<PlayList> playLists = playListServices.chercherPlayListsParUtilisateur((Utilistateur) httpSession.getAttribute("utilisateurConecte"));
+            modelAndView.addObject("playlists", playLists);
+        }
+
         return modelAndView;
     }
 }
