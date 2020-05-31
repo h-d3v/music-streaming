@@ -18,3 +18,12 @@ function chercherTitre() {
         }
     }
 }
+
+function jouerTitre() {
+    const cheminTitreAJouer=document.getElementById("chemin-titre").innerHTML;
+    const cheminTitrePlayer=document.getElementById("chemint-titre-player").innerHTML;
+    const nomTtreAJouer=document.getElementById("titre");
+    const artisteTitreAJouer=document.getElementById("titre-artiste");
+    const imageTitreAJouer=document.getElementById("titre-img");
+    //TODO fair en sorte que le player joue sur le clique et modifie les infos.
+}

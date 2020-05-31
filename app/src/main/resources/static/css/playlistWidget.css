@@ -1,9 +1,10 @@
 
 #container-audio-player{
-    margin:20px auto 0 auto;
+    margin:auto auto 0 auto;
     position: fixed;
     bottom: 5px;
     height: 100px;
+    background-color: black;
 }
 
 
@@ -27,7 +28,6 @@
 
 /* Global Reset */
 * {
-    font-family: 'Allerta', arial, Tahoma;
     box-sizing: border-box;
 }
 body {
@@ -46,10 +46,11 @@ h3{
     height: auto;
     padding: 20px;
     border-radius: 5px;
-    background-color: #444444;
+    background-color: black;
     color: #444;
     margin: 10px auto;
 }
+
 audio {
     width:100%;
 }
