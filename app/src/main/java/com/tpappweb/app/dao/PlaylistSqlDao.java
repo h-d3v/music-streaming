@@ -65,8 +65,8 @@ public class PlaylistSqlDao extends MySQLDAO<PlayList>{
     @Override
     public List<PlayList> findByObject(Object object) {
         if(object instanceof Utilistateur){
-            String sql = "SELECT utilisateurPseudo, nom, Playlist.id, dateCreation FROM Playlist JOIN Utilisateur ON Playlist.utilisateurPseudo = Utilisateur.pseudo";
-            return jdbcTemplate.query(sql, new PlaylistRowMapper());
+            String sql = "SELECT utilisateurPseudo, nom, Playlist.id, dateCreation FROM Playlist WHERE utilisateurPseudo=? ";
+            return jdbcTemplate.query(sql, new PlaylistRowMapper(), ((Utilistateur) object).getPseudo());
 
         }
 

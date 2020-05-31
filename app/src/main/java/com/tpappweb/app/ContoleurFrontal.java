@@ -39,13 +39,9 @@ public class ContoleurFrontal {
         if(httpSession.getAttribute("utilisateurConnecte")==null){
             return "index";
         } else {
-            if (modelMap.containsAttribute("playlistsUtilisateur")) {
-                modelMap.replace("playlistsUtilisateur", iPlayListServices.chercherPlayListsParUtilisateur(
-                        (Utilistateur) httpSession.getAttribute("utilisateurConnecte")));
-            }else{
-                modelMap.addAttribute("playlistsUtilisateur", iPlayListServices.chercherPlayListsParUtilisateur(
-                        (Utilistateur) httpSession.getAttribute("utilisateurConnecte")));
-            }
+            httpSession.setAttribute("playlistsUtilisateur", iPlayListServices.chercherPlayListsParUtilisateur(
+                    (Utilistateur) httpSession.getAttribute("utilisateurConnecte")) );
+
             modelMap.addAttribute("genres", iTitreService.trouverTousLesGenres());
         }
          return "player";
@@ -78,6 +74,8 @@ public class ContoleurFrontal {
 
 
 
+
+
     @RequestMapping("/seDeconnecter")
     public String seDeconnecter(HttpSession httpSession) {
         if (httpSession != null) {
@@ -97,7 +95,7 @@ public class ContoleurFrontal {
     public String afficherPlayList(HttpSession httpSession, ModelMap modelMap, @PathVariable("id") int id, @PathVariable("utilisateur")String utilisateur){
         if(httpSession.getAttribute("utilisateurConnecte")==null)return "index";
         if(modelMap.getAttribute("titresLectureActuelle")==null){
-            PlayList playList =iPlayListServices.chercherPlayListParID(id);
+            PlayList playList = iPlayListServices.chercherPlayListParID(id);
             List<Titre> titres= playList.getListeTitres();
             List<LikeOuDislike> likesUtilisateur=new LinkedList<>();
 
@@ -109,7 +107,6 @@ public class ContoleurFrontal {
                 if(iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser)!=null){
                     LikeOuDislike like = iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser);
                     likesUtilisateur.add(like);
-                    System.out.println("controlleur"+ likeOuDislikeUser.getLikeOuDislike() +"?/"+likeOuDislikeUser.getTitreId().getNom());
                 }
             }
             playList.setListeTitres(titres);
@@ -170,7 +167,7 @@ public class ContoleurFrontal {
             utilistateur.setCourriel(webRequest.getParameter("courriel"));
             try{
                 if(utilistateur.equals(iUtilisateurService.getUtilisateur(utilistateur.getPseudo()))){
-                    utilistateur.setPlayLists(iPlayListServices.chercherPlayListsParUtilisateur(utilistateur));
+
                 httpSession.setAttribute("utilisateurConnecte", utilistateur);
                 }
                 else{

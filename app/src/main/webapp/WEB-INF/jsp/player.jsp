@@ -94,10 +94,25 @@
                            </div>
 
                         <!-- Liste des Playlists -->
-                        <c:forEach items="${playlistsUtilisateur}" var="playList">
-                            <li class="list-group-item"><a href="/playlist/${sessionScope.utilisateurConnecte.pseudo}/${playList.id}"> <span>${playList.nom}</span> </a></li>
+                        <c:forEach items="${sessionScope.playlistsUtilisateur}" var="playList">
+                            <li id="playlist${playList.id}" class="list-group-item"><a href="/playlist/${sessionScope.utilisateurConnecte.pseudo}/${playList.id}"> <span>${playList.nom}</span> </a>
+                                <span type="button" class="oi oi-delete" style="text-align: right" onclick="supprimerPlayList(${playList.id})"></span>
+                            </li>
 
                         </c:forEach>
+                        <script>
+                            function supprimerPlayList(playListId){
+                                let xhttp = new XMLHttpRequest();
+                                xhttp.onreadystatechange = function () {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                       document.getElementById('playlist'+playListId).remove();
+                                    }
+                                };
+                                xhttp.open("DELETE",'/utilisateurs/'+'${sessionScope.utilisateurConnecte.pseudo}'+'/supprimerPlayList/'+playListId, true);
+                                xhttp.send();
+
+                            }
+                        </script>
 
                     </ul>
                 </section>
@@ -135,11 +150,11 @@
                                 <td class="col-2">${titre.nom}</td>
                                 <td class="col-2">${titre.nomArtiste}</td>
                                 <td class="col-2">3:${titre.duree}</td>
-                                <td class="col-2" type="button" onclick='ouvrirModal( ${titre.id} ,"${titre.nom}", "${titre.nomArtiste}")' data-toggle="modal" data-target="#modalAjouterTritre">
+                                <td class="col-2" type="button" title="Ajouter le titre" onclick='ouvrirModal( ${titre.id} ,"${titre.nom}", "${titre.nomArtiste}")' data-toggle="modal" data-target="#modalAjouterTritre">
                                     <span class="oi oi-plus"></span>
                                 </td>
 
-                                <td class="col-2" type="button" onclick='supprimerTitre( ${titre.id}, ${titresLectureActuelle.id}) '>
+                                <td class="col-2" type="button" title="Supprimer le titre"  onclick='supprimerTitre( ${titre.id}, ${titresLectureActuelle.id}) '>
                                     <span class="oi oi-minus"></span>
                                 </td>
                                 <td class="col-2">
@@ -151,7 +166,7 @@
                                             style = 'color:red'
                                             </c:if>
                                          </c:forEach>
-                                          title="heart" aria-hidden="false">
+                                          title="J'aime" aria-hidden="false">
 
                                     </span>
 
@@ -166,7 +181,7 @@
                                                 </c:if>
                                             </c:forEach>
                                           type="button" onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'dislike')"
-                                          class="oi oi-thumb-down" title="thumb down" aria-hidden="false">
+                                          class="oi oi-thumb-down" title="Je n'aime pas" aria-hidden="false">
 
                                     </span
                                     ><div id="nbrDislikes${titre.id}">${titre.nbrlikeOuDislike[1]}</div>
@@ -256,7 +271,7 @@
                                                     <div id="titreId" hidden ></div>
                                                     <div id="message"></div>
                                                     <select id="selectPlayList" class="custom-select"  name="PlayLists">
-                                                        <c:forEach items="${playlistsUtilisateur}" var="playList">
+                                                        <c:forEach items="${sessionScope.playlistsUtilisateur}" var="playList">
                                                       <option value="${playList.id}">${playList.nom}</option>
                                                         </c:forEach>
                                                     </select>

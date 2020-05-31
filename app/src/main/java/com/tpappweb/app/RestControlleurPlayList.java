@@ -39,7 +39,7 @@ public class RestControlleurPlayList {
         return new ResponseEntity<>(playList, HttpStatus.OK);
     }
 
-    @GetMapping("utilisateurs/{pseudo}/supprimerPlayList/{id}")
+    @DeleteMapping("utilisateurs/{pseudo}/supprimerPlayList/{id}")
         public ResponseEntity<Boolean> supprimerPlayList(@PathVariable("pseudo") String pseudo, @PathVariable("id") int id){
 
         PlayList playList = new PlayList() ;
