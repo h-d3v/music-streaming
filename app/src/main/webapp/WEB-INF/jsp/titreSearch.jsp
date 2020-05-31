@@ -47,15 +47,20 @@
                         <span aria-hidden="true"><i class="fa fa-times"></i></span>
                     </button>
                 </div>
-                <form id="formAjoutTitre">
                     <div class="modal-body">
+
+                            <c:if test="${playlists.size()>0}">
+                                <ul class="list-group sc-overflow">
+                                    <c:forEach items="${playlists}" var="unePlaylist">
+                                        <li class="list-group-item"><span>${unePlaylist.nom}</span><a onclick="ajoutertitre()"> <i class="fa fa-plus pr-1"></i></a></li>
+                                    </c:forEach>
+                                </ul>
+                            </c:if>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" onclick="<!--enregistrerTitre-->" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" onclick="<!--enregistrerTitre-->" class="btn btn-primary"><a href="player.jsp">Mon player</a></button>
                     </div>
-                </form>
-
             </div>
         </div>
     </div>
@@ -73,7 +78,7 @@
 
     <div class="row">
         <c:forEach items="${titres}" var="unTitre">
-            <div class="col-2 py-3 mx-auto col-xl-2 col-lg-4 col-md-6 col-sm-12"
+            <div id="${unTitre.id}" class="col-2 py-3 mx-auto col-xl-2 col-lg-4 col-md-6 col-sm-12"
                  style="min-width: 300px;min-height: 300px;">
                 <div class="card">
                     <a href="#"><img class="img-fluid card-img-top" style="height: 212px;width: 553px;"
@@ -84,8 +89,7 @@
                         <h8><c:if test="${!unTitre.genre.equals('null')}">Genre : ${unTitre.genre}</c:if></h8>
                     </div>
                     <!--Trigger pour le modal d'ajout d'un titre a une playlist-->
-                    <div class="card-footer text-center"  ><small><a href="#" data-toggle="modal" data-target="#modalAjouter"><i class="fa fa-plus pr-1"></i>Ajouter a une
-                        playlist<br/></a></small></div>
+                    <div class="card-footer text-center"   ><small><a href="/${unTitre.id}" data-toggle="modal" data-target="#modalAjouter"><i class="fa fa-plus pr-1"></i>Ajouter a une playlist<br/></a></small></div>
                 </div>
             </div>
         </c:forEach>
