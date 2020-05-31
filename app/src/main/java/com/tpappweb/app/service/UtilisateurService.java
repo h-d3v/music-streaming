@@ -24,17 +24,8 @@ public class UtilisateurService implements IUtilisateurService {
     public boolean modifierMotPasse(Utilistateur utilistateur, String nouveauMotPasse) {
         //mot de passe, courriel et pseudo comme dans la base de donnees
         if(utilistateur.equals(getUtilisateur(utilistateur.getPseudo()))){
-            /***
-             * TODO if(validerReglesDuMotPasse(nouveauMotPasse){
-             *
-             *    code non commente ci dessous
-             *
-             *     return true;
-             * }else return false;
-             */
             utilistateur.setMotPasse(nouveauMotPasse);
             return utilisateurSqlDao.update(utilistateur);
-
         }
 
         return false;

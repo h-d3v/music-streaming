@@ -27,11 +27,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav ml-auto">
 
-                <li class="nav-item" role="presentation"><a class="nav-link" href="">Mon compte : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/profile">
+                    Mon compte :
+                    ${sessionScope.utilisateurConnecte.pseudo}
+                    <c:if test="${sessionScope.utilisateurConnecte.estAdmin==true}"> ADMIN </c:if>
+                    </a>
+                </li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/seDeconnecter">Se Deconnecter</a></li>
-                <c:if test="${sessionScope.utilisateurConnecte.estAdmin}">
-                    <li class="nav-item" role="presentation"><a href="${pageContext.request.contextPath}/ajouterTitres"></a></li>
-                </c:if>
+
             </ul>
         </div>
     </div>
@@ -73,7 +77,7 @@
                                        </div>
                                        <form id="nomPlayListAEnregistrer">
                                        <div class="modal-body">
-                                           <div class="form-group"><input type="text"  class="form-control" name="nom" placeholder="Nom de la playlist" /></div>
+                                           <div class="form-group"><input type="text"  class="form-control" name="nom" placeholder="Nom de la playlist" required /></div>
                                        </div>
                                        <div class="modal-footer">
                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

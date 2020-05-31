@@ -30,43 +30,53 @@
 <div class="container profile profile-view" id="profile">
     <div class="row">
         <div class="col-md-12 alert-col relative">
+            <c:if test="${succes==true}">
             <div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="Close">&times;</a>
                 <strong>Success</strong> Votre mot de passe a ete changer !
             </div>
+            </c:if>
+            <c:if test="${succes==false}">
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="Close">&times;</a>
+                    <strong>Erreur</strong> Votre mot de passe n'a pu etre changer !
+                </div>
+            </c:if>
         </div>
     </div>
-    <form class="text-white">
-        <div class="form-row profile-row">
-            <div class="col-md-4 relative">
+    <c:if test="${sessionScope.utilisateurConnecte.estAdmin==true}">
+    <h1> Compte Administrateur</h1>
+    <a href="${pageContext.request.contextPath}/upload">Cliquez ici pour ajouter des musiques</a>
+    </c:if>
+    <form class="text-white" method="post" action="modifierMotPasse">
+        <div class="form-row">
+            <div class="col-md-12 relative">
                 <div class="avatar">
                     <div class="avatar-bg center">
                         <img src='https://avataaars.io/?avatarStyle=Circle&topType=ShortHairTheCaesar&accessoriesType=Sunglasses&hairColor=SilverGray&facialHairType=Blank&clotheType=Hoodie&clotheColor=PastelRed&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light' alt="avatar"/>
                     </div>
-                </div><input type="file" class="form-control" name="avatar-file" /></div>
-            <div class="col-md-8">
-                <h1 class="">{nom du profile} </h1>
+
+            <div class="col-md-12">
+                <h1>${sessionScope.utilisateurConnecte.pseudo} </h1>
+
+                <h2>Modifier votre mot de passe</h2>
                 <hr />
-                <div class="form-row ">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group"><label>Prenom </label><input class="form-control" type="text" name="firstname" /></div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group"><label>Nom </label><input class="form-control" type="text" name="lastname" /></div>
-                    </div>
-                </div>
+
                 <div class="form-group"><label>Email </label><input class="form-control" type="email" autocomplete="off" required name="email" /></div>
                 <div class="form-row">
+                    <div class="form-group"><label>Votre ancien mot de passe </label><input class="form-control" type="password" name="vieuxpassword" autocomplete="off" required /></div>
+                </div>
+                <div class="form-row">
                     <div class="col-sm-12 col-md-6">
-                        <div class="form-group"><label>Mot de passe </label><input class="form-control" type="password" name="password" autocomplete="off" required /></div>
+                        <div class="form-group"><label>Nouveau mot de passe </label><input class="form-control" type="password" name="Nouveaupassword" autocomplete="off" required /></div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div class="form-group"><label>Confirmer le mot de passe </label><input class="form-control" type="password" name="confirmpass" autocomplete="off" required /></div>
+                        <div class="form-group"><label>Confirmer le nouveau mot de passe </label><input class="form-control" type="password" name="confirmpass" autocomplete="off" required /></div>
                     </div>
                 </div>
                 <hr />
                 <div class="form-row">
-                    <div class="col-md-12 content-right"><button class="btn btn-success form-btn" type="submit">Sauvegarder </button></div>
+                    <div class="col-md-12 content-right"><button class="btn btn-success form-btn" type="submit">Enregistrer </button></div>
                 </div>
             </div>
         </div>

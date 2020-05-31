@@ -108,11 +108,7 @@ public class ContoleurFrontal {
 
 
 
-    //test
-    @RequestMapping("/profile")
-    public String voirProfile(HttpSession httpSession){
-        return "profile";
-    }
+
 
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
     public String  sinscrire(HttpSession httpSession, WebRequest webRequest, ModelMap modelMap) {
