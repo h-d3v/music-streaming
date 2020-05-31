@@ -6,8 +6,10 @@ import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.interfaces.ILikeOuDislikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -104,7 +106,12 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
     @Override
     public void ajouterLikeOuDislike(LikeOuDislike likeOuDislike) {
         if(likeOuDislike.getTitreId().getId()!=0 && likeOuDislike.getUtilistateurPseudo().getPseudo()!=null){
-            likeOuDislikeSQLDAO.create(likeOuDislike);
+            try {
+                likeOuDislikeSQLDAO.create(likeOuDislike);
+            }catch (DataIntegrityViolationException e){// Le like existe deja,donc on le modifie
+                likeOuDislikeSQLDAO.update(likeOuDislike);
+            }
+
         }
     }
 }

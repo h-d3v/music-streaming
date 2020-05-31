@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.annotation.SessionScope;
-
 
 @RestController
 public class RestControlleurLikeOuDislikeService {
@@ -33,15 +31,10 @@ public class RestControlleurLikeOuDislikeService {
         likeOuDislikeAcreer.setUtilistateurPseudo(utilistateur);
         likeOuDislikeAcreer.setTitreId(titre);
 
-        //TODO checker utilisateur connecte dans la session
 
          if ("like".equals(action)){
-             try {
                  likeOuDislikeAcreer.setLikeOuDislike(true);
                  iLikeOuDislikeService.ajouterLikeOuDislike(likeOuDislikeAcreer);
-             }catch (DataAccessException e){
-                 System.out.println(e.getCause().toString());
-             }
 
         }
         else if ("dislike".equals(action)){

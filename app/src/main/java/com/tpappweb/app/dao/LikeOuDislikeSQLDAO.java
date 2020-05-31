@@ -83,7 +83,7 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         }
         else {
             likeOuDislike = this.findByObject(likeOuDislike).get(0);
-            likeOuDislike.setLikeOuDislike(!likeOuDislike.getLikeOuDislike());
+            likeOuDislike.setLikeOuDislike(likeOuDislike.getLikeOuDislike());
             return findByObject(likeOuDislike).get(0);
         }
 
@@ -92,8 +92,13 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
     @Override
     public boolean update(LikeOuDislike x) {
         String sql= "UPDATE LikeOuDislike SET likeOuDislike=:likeOuDislike" +
-                   " WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo AND id=:id";
-        int i=jdbcTemplate.update(sql, new BeanPropertySqlParameterSource(x));
+                   " WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("utilisateurPseudo", x.getUtilistateurPseudo().getPseudo());
+        mapSqlParameterSource.addValue("titreId", x.getTitreId().getId());
+        mapSqlParameterSource.addValue("likeOuDislike", x.getLikeOuDislike());
+
+        int i=jdbcTemplate.update(sql, mapSqlParameterSource);
         return i==1;
     }
 

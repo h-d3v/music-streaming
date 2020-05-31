@@ -123,8 +123,8 @@
                                     <th scope="col" class="col-2">Durée</th>
                                     <th scope="col" class="col-2"></th>
                                     <th scope="col" class="col-2"></th>
-                                    <th scope="col" class="col-2"><span class="oi oi-heart" title="heart" aria-hidden="false"></span></th>
-                                    <th scope="col" class="col-2"><span class="oi oi-thumb-down" title="thumb down" aria-hidden="false"></span></th>
+                                    <th scope="col" class="col-2"></th>
+                                    <th scope="col" class="col-2"></th>
                                     <th scope="col" class="col-2">Genre</th>
                                 </tr>
                                 </thead>
@@ -138,21 +138,43 @@
                                 <td class="col-2" type="button" onclick='ouvrirModal( ${titre.id} ,"${titre.nom}", "${titre.nomArtiste}")' data-toggle="modal" data-target="#modalAjouterTritre">
                                     <span class="oi oi-plus"></span>
                                 </td>
+
                                 <td class="col-2" type="button" onclick='supprimerTitre( ${titre.id}, ${titresLectureActuelle.id}) '>
                                     <span class="oi oi-minus"></span>
                                 </td>
-                                <td class="col-2">0</td><!-- likesEtDIslike a mod dans le back end -->
-                                <td class="col-2">1</td>
+                                <td class="col-2"><span id="like${titre.id}" type="button" onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'like')" class="oi oi-heart" title="heart" aria-hidden="false"></span>0</td><!-- likesEtDIslike a mod dans le back end -->
+                                <td class="col-2"><span id="dislike${titre.id}" type="button" onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'dislike')" class="oi oi-thumb-down" title="thumb down" aria-hidden="false"></span>1</td>
                                 <td class="col-2">${titre.genre}</td>
                             </tr>
                             </c:forEach>
                                 </tbody>
                             </table>
+
+
+
+                                <script>
+                                    function ajouterLike(nom, titreId, action) {
+                                        let xhttp = new XMLHttpRequest();
+                                        xhttp.onreadystatechange = function () {
+                                            if (this.readyState == 4 && this.status == 200) {
+                                                if(action==='like') {
+                                                    document.getElementById("like"+titreId).style = 'color:red';
+                                                    document.getElementById("dislike"+titreId).style = 'color:white';
+                                                }else if(action==='dislike'){
+                                                    document.getElementById("dislike"+titreId).style = 'color:red';
+                                                    document.getElementById("like"+titreId).style = 'color:white';
+                                                }
+                                            }
+                                        };
+                                        xhttp.open("GET", "/like/"+ "?action="  + action+"&utilisateurPseudo=" +nom+"&titreId="+ titreId, true);
+                                        xhttp.send();
+                                    }
+                                </script>
+
                                 <script>
                                     function ouvrirModal(titreId, titreNom, titreArtiste){
                                         document.getElementById("modalAjouterTitre").innerHTML="Ajouter le titre "+titreNom +" de "+titreArtiste;
                                         document.getElementById("titreId").innerHTML=titreId;
-
                                     }
 
                                 </script>
