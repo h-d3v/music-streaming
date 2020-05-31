@@ -18,7 +18,6 @@
 </head>
 
 <body style="overflow-x: hidden">
-
 <header>
     <nav class="navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row bd-navbar">
         <div class="container"><a class="navbar-brand" href="#">RoseTube</a>
@@ -26,40 +25,54 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="player.jsp">Mon player</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mon compte
-                        : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="seDeconnecter">Se Deconnecter</a>
-                    </li>
+                    <c:choose>
+                    <c:when test="${sessionScope.utilisateurConnecte.pseudo!=null}">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mon compte : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="player.jsp">Mon player</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="seDeconnecter">Deconnexion</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/">Page principale</a></li>
+                    </c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-
     <!-- Modal pour ajouter un titre a une playlist-->
     <div class="modal fade" id="modalAjouter" tabindex="-1" role="dialog" aria-labelledby="modalAjouter" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" style="color: #1d2124" id="modalAjouterLabel">Ajouter un titre a une de vos playlist!</h5>
+                    <h5 class="modal-title" style="color: #1d2124" id="modalAjouterLabel">Ajouter un titre a une de vos playlist</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fa fa-times"></i></span>
                     </button>
                 </div>
                     <div class="modal-body">
-
-                            <c:if test="${playlists.size()>0}">
-                                <ul class="list-group sc-overflow">
-                                    <c:forEach items="${playlists}" var="unePlaylist">
-                                        <li class="list-group-item"><span>${unePlaylist.nom}</span><a onclick="ajoutertitre()"> <i class="fa fa-plus pr-1"></i></a></li>
-                                    </c:forEach>
-                                </ul>
-                            </c:if>
-
+                        <c:choose>
+                            <c:when test="${sessionScope.utilisateurConnecte.pseudo==null}">
+                                <h2 class="h2 text-center text-dark"> Allez a la page principale pour vous creer un compte et commencez à personnalisez vos playlists</h2>
+                            </c:when>
+                            <c:otherwise>
+                                    <ul class="list-group sc-overflow">
+                                        <c:forEach items="${playlists}" var="unePlaylist">
+                                            <li class="list-group-item"><span>${unePlaylist.nom}</span><a onclick=""> <i class="fa fa-plus pr-1"></i></a></li>
+                                        </c:forEach>
+                                    </ul>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" onclick="<!--enregistrerTitre-->" class="btn btn-primary"><a href="player.jsp">Mon player</a></button>
+                        <c:choose>
+                            <c:when test="${sessionScope.utilisateurConnecte.pseudo==null}">
+                                <a href="/"><button type="button"  class="btn btn-primary">Page principale</button></a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/player"><button type="button" onclick="" class="btn btn-primary">Mon player</button></a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
             </div>
         </div>
@@ -72,27 +85,54 @@
                 <i class="fa fa-search" style="color: black" aria-hidden="true"></i></span>
         </div>
         <input id="search" class="form-control py-1" type="text"
-               placeholder="Tapper un titre, le nom d'un artiste ou un genre de musique" aria-label="Search"
-               onkeyup="chercherTitre()">
+               placeholder="Tapper un titre, le nom d'un artiste ou un genre de musique" aria-label="Search" onkeyup="chercherTitre()">
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-bottom: 180px;">
         <c:forEach items="${titres}" var="unTitre">
-            <div id="${unTitre.id}" class="col-2 py-3 mx-auto col-xl-2 col-lg-4 col-md-6 col-sm-12"
+            <div id="" class="col-2 py-3 mx-auto col-xl-1 col-lg-4 col-md-5 col-sm-12"
                  style="min-width: 300px;min-height: 300px;">
                 <div class="card">
-                    <a href="#"><img class="img-fluid card-img-top" style="height: 212px;width: 553px;"
-                                     src="${unTitre.urlImage}" alt="cover du titre"/></a>
+                    <div class="containerImg">
+                    <img id="titre-img-${unTitre.id}" class="img-fluid card-img-top" style="height: 212px;width: 553px;" src="${unTitre.urlImage}" alt="cover du titre"/>
+                    <div class="overlay">
+                        <a onclick="jouerTitre(this)" id="${unTitre.id}" class="iconImgTitre" title="Play titre">
+                            <i  class="fa fa-play"></i>
+                        </a>
+                    </div>
+                    </div>
                     <div class="card-body">
-                        <h5>${unTitre.nom}</h5>
-                        <p>${unTitre.nomArtiste}</p>
-                        <h8><c:if test="${!unTitre.genre.equals('null')}">Genre : ${unTitre.genre}</c:if></h8>
+                        <h5 class="h5" id="titre-nom-${unTitre.id}">${unTitre.nom}</h5>
+                        <p id="titre-artiste-${unTitre.id}">${unTitre.nomArtiste}</p>
+                        <h6 class="h6"><c:if test="${!unTitre.genre.equals('') || !unTitre.genre.equals('')}">Genre : ${unTitre.genre}</c:if></h6>
+                        <p id="chemin-titre-${unTitre.id}" style="display: none">${unTitre.url}</p>
                     </div>
                     <!--Trigger pour le modal d'ajout d'un titre a une playlist-->
-                    <div class="card-footer text-center"   ><small><a href="/${unTitre.id}" data-toggle="modal" data-target="#modalAjouter"><i class="fa fa-plus pr-1"></i>Ajouter a une playlist<br/></a></small></div>
+                    <div class="card-footer text-center"><small><a href="/${unTitre.id}" data-toggle="modal" data-target="#modalAjouter"><i class="fa fa-plus pr-1"></i>Ajouter a une playlist<br/></a></small></div>
                 </div>
             </div>
         </c:forEach>
     </div>
 
+    <div   style="background-color: #040505A8;" class="rounded container-fluid fixed-bottom">
+        <h3 id="msg-player" class="h1 text-center" style="color:lightpink">Cliquez sur un titre</h3>
+        <div class="row align-items-center">
+            <div class="col-12 col-xs-10 col-md-2">
+                <img class="img-thumbnail rounded "  id="player-img" style="display:none;height: 105px; width: 115px" src="" alt="cover du titre"/>
+            </div>
+            <div class="col-6 col-xs-6 col-md-4 col-lg-5">
+                <h4 id="player-nom-titre" class="text-center h4 text-white"> </h4>
+            </div>
+            <div class="col-6 col-xs-6 col-md-4 col-lg-5">
+                <h4 id="player-artiste" class="text-center h4 text-white"> </h4>
+            </div>
+        </div>
+        <div class="row">
+            <audio controls autoplay class="">
+                <source id="player-titre-chemin" src="" type="audio/mp3">
+                Your browser does not support the audio tag.
+            </audio>
+        </div>
+    </div>
 </body>
+</html>
