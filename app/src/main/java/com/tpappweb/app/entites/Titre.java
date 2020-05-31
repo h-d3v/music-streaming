@@ -13,6 +13,15 @@ public class Titre {
     private int duree;
     private String genre;
     private String dateSortie;
+    private int[] nbrlikeOuDislike;
+
+    public int[] getNbrlikeOuDislike() {
+        return nbrlikeOuDislike;
+    }
+
+    public void setNbrlikeOuDislike(int[] likeOuDislike) {
+        this.nbrlikeOuDislike = likeOuDislike;
+    }
 
     public String getNomArtiste() {
         return nomArtiste;

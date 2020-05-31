@@ -124,7 +124,7 @@ public class LikeOuDislikeSQLDAO extends MySQLDAO<LikeOuDislike> {
         }
 
         else if(object instanceof LikeOuDislike){
-            String sql = "SELECT * FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
+            String sql = "SELECT likeOuDislike, titreId, utilisateurPseudo FROM LikeOuDislike WHERE titreId=:titreId AND utilisateurPseudo=:utilisateurPseudo";
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
             mapSqlParameterSource.addValue("titreId", ((LikeOuDislike) object).getTitreId().getId());
             mapSqlParameterSource.addValue("utilisateurPseudo", ((LikeOuDislike) object).getUtilistateurPseudo().getPseudo());

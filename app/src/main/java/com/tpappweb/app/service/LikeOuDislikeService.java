@@ -7,6 +7,7 @@ import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.interfaces.ILikeOuDislikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -75,7 +76,8 @@ public class LikeOuDislikeService implements ILikeOuDislikeService {
 
     @Override
     public LikeOuDislike chercherParLikeOuDislie(LikeOuDislike likeOuDislike) {
-        return likeOuDislikeSQLDAO.findByObject(likeOuDislike).get(0);
+        if(likeOuDislikeSQLDAO.findByObject(likeOuDislike).size()==0)return null;
+         return  likeOuDislikeSQLDAO.findByObject(likeOuDislike).get(0);
     }
 
     /***

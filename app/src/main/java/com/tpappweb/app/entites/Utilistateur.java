@@ -12,7 +12,16 @@ public class Utilistateur {
     private List<Utilistateur> abonnes;
     private List<PlayList> playLists;
     private List<Commentaire> commentaires;
+    private List<LikeOuDislike> likeOuDislikes;
     private boolean estAdmin;
+
+    public List<LikeOuDislike> getLikeOuDislikes() {
+        return likeOuDislikes;
+    }
+
+    public void setLikeOuDislikes(List<LikeOuDislike> likeOuDislikes) {
+        this.likeOuDislikes = likeOuDislikes;
+    }
 
     public boolean isEstAdmin() {
         return estAdmin;

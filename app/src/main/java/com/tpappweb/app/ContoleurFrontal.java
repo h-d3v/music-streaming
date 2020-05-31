@@ -1,8 +1,11 @@
 package com.tpappweb.app;
 
 
+import com.tpappweb.app.entites.LikeOuDislike;
 import com.tpappweb.app.entites.PlayList;
+import com.tpappweb.app.entites.Titre;
 import com.tpappweb.app.entites.Utilistateur;
+import com.tpappweb.app.service.interfaces.ILikeOuDislikeService;
 import com.tpappweb.app.service.interfaces.IPlayListServices;
 import com.tpappweb.app.service.interfaces.ITitreService;
 import com.tpappweb.app.service.interfaces.IUtilisateurService;
@@ -16,6 +19,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class ContoleurFrontal {
@@ -25,6 +30,8 @@ public class ContoleurFrontal {
     private IPlayListServices iPlayListServices;
     @Autowired
     private ITitreService iTitreService;
+    @Autowired
+    private ILikeOuDislikeService iLikeOuDislikeService;
 
 
     @GetMapping("/")
@@ -49,9 +56,21 @@ public class ContoleurFrontal {
         if(httpSession.getAttribute("utilisateurConnecte")==null)return "index";
         if(modelMap.getAttribute("titresLectureActuelle")==null){
             PlayList playList =iPlayListServices.creerPlaylistParGenre(genre);
+            List<Titre> titres= playList.getListeTitres();
+            for(Titre titre : titres){
+                titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
+            }
+            playList.setListeTitres(titres);
             modelMap.addAttribute("titresLectureActuelle", playList);
-        }else modelMap.replace("titresLectureActuelle", iPlayListServices.creerPlaylistParGenre(genre));
-
+        }else {
+            PlayList playList =iPlayListServices.creerPlaylistParGenre(genre);
+            List<Titre> titres= playList.getListeTitres();
+            for(Titre titre : titres){
+                titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
+            }
+            playList.setListeTitres(titres);
+            modelMap.replace("titresLectureActuelle", playList);
+        }
         return welcome(httpSession, modelMap);
     }
 
@@ -79,8 +98,32 @@ public class ContoleurFrontal {
         if(httpSession.getAttribute("utilisateurConnecte")==null)return "index";
         if(modelMap.getAttribute("titresLectureActuelle")==null){
             PlayList playList =iPlayListServices.chercherPlayListParID(id);
+            List<Titre> titres= playList.getListeTitres();
+            List<LikeOuDislike> likesUtilisateur=new LinkedList<>();
+
+            for(Titre titre : titres){
+                titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
+                LikeOuDislike likeOuDislikeUser= new LikeOuDislike();
+                likeOuDislikeUser.setTitreId(titre);
+                likeOuDislikeUser.setUtilistateurPseudo((Utilistateur) httpSession.getAttribute("utilisateurConnecte"));
+                if(iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser)!=null){
+                    LikeOuDislike like = iLikeOuDislikeService.chercherParLikeOuDislie(likeOuDislikeUser);
+                    likesUtilisateur.add(like);
+                    System.out.println("controlleur"+ likeOuDislikeUser.getLikeOuDislike() +"?/"+likeOuDislikeUser.getTitreId().getNom());
+                }
+            }
+            playList.setListeTitres(titres);
+            modelMap.addAttribute("likesOuDislikesUser", likesUtilisateur);
             modelMap.addAttribute("titresLectureActuelle", playList);
-        }else modelMap.replace("titresLectureActuelle", iPlayListServices.chercherPlayListParID(id));
+        }else{
+            PlayList playList =iPlayListServices.chercherPlayListParID(id);
+            List<Titre> titres= playList.getListeTitres();
+            for(Titre titre : titres){
+                titre.setNbrlikeOuDislike(iLikeOuDislikeService.nbrLikeDislikesParTitre(titre));
+            }
+            playList.setListeTitres(titres);
+            modelMap.replace("titresLectureActuelle", playList );
+        }
 
         return welcome( httpSession,  modelMap);
     }

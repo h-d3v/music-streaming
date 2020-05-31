@@ -142,8 +142,35 @@
                                 <td class="col-2" type="button" onclick='supprimerTitre( ${titre.id}, ${titresLectureActuelle.id}) '>
                                     <span class="oi oi-minus"></span>
                                 </td>
-                                <td class="col-2"><span id="like${titre.id}" type="button" onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'like')" class="oi oi-heart" title="heart" aria-hidden="false"></span>0</td><!-- likesEtDIslike a mod dans le back end -->
-                                <td class="col-2"><span id="dislike${titre.id}" type="button" onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'dislike')" class="oi oi-thumb-down" title="thumb down" aria-hidden="false"></span>1</td>
+                                <td class="col-2">
+                                    <span id="like${titre.id}" type="button"
+                                          onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'like')"
+                                          class="oi oi-heart"
+                                            <c:forEach items="${likesOuDislikesUser}" var="like">
+                                            <c:if test="${like.titreId.id==titre.id && like.likeOuDislike==true}">
+                                            style = 'color:red'
+                                            </c:if>
+                                         </c:forEach>
+                                          title="heart" aria-hidden="false">
+
+                                    </span>
+
+                                    <div id="nbrLikes${titre.id}">${titre.nbrlikeOuDislike[0]}</div>
+
+                                </td>
+                                <td  class="col-2">
+                                    <span id="dislike${titre.id}"
+                                            <c:forEach items="${likesOuDislikesUser}" var="like">
+                                                <c:if test="${like.titreId.id==titre.id && like.likeOuDislike==false}">
+                                                    style = 'color:red'
+                                                </c:if>
+                                            </c:forEach>
+                                          type="button" onclick="ajouterLike('${sessionScope.utilisateurConnecte.pseudo}', ${titre.id},'dislike')"
+                                          class="oi oi-thumb-down" title="thumb down" aria-hidden="false">
+
+                                    </span
+                                    ><div id="nbrDislikes${titre.id}">${titre.nbrlikeOuDislike[1]}</div>
+                                </td>
                                 <td class="col-2">${titre.genre}</td>
                             </tr>
                             </c:forEach>
@@ -157,6 +184,7 @@
                                         let xhttp = new XMLHttpRequest();
                                         xhttp.onreadystatechange = function () {
                                             if (this.readyState == 4 && this.status == 200) {
+                                                afficherLikes(titreId);
                                                 if(action==='like') {
                                                     document.getElementById("like"+titreId).style = 'color:red';
                                                     document.getElementById("dislike"+titreId).style = 'color:white';
@@ -170,6 +198,22 @@
                                         xhttp.send();
                                     }
                                 </script>
+
+                                <script>
+                                   function afficherLikes(titreId) {
+                                        let xhr= new XMLHttpRequest();
+                                        xhr.onreadystatechange = function () {
+                                            if (this.readyState == 4 && this.status == 200) {
+                                                let tab =this.responseText.split(":");
+                                                document.getElementById('nbrLikes'+titreId).innerText=tab[0];
+                                                document.getElementById('nbrDislikes'+titreId).innerText=tab[1];
+                                            }
+                                        }
+                                       xhr.open("GET", "/titre/"+titreId+"/likes", true);
+                                       xhr.send();
+                                    }
+                                </script>
+
 
                                 <script>
                                     function ouvrirModal(titreId, titreNom, titreArtiste){
