@@ -41,7 +41,7 @@ public class ContoleurFrontal {
             }
             modelMap.addAttribute("genres", iTitreService.trouverTousLesGenres());
         }
-         return "player";
+        return "player";
     }
 
     @RequestMapping("/playlist/{genre}")
@@ -128,11 +128,11 @@ public class ContoleurFrontal {
             try{
                 if(utilistateur.equals(iUtilisateurService.getUtilisateur(utilistateur.getPseudo()))){
                     utilistateur.setPlayLists(iPlayListServices.chercherPlayListsParUtilisateur(utilistateur));
-                httpSession.setAttribute("utilisateurConnecte", utilistateur);
+                    httpSession.setAttribute("utilisateurConnecte", utilistateur);
                 }
                 else{
-                        modelMap.addAttribute("messageErreur", "tentative de connexion  non valide" );
-                    }
+                    modelMap.addAttribute("messageErreur", "tentative de connexion  non valide" );
+                }
 
             }catch (EmptyResultDataAccessException e){
                 modelMap.addAttribute("messageErreurCnx", "tentative de connexion  non valide" );

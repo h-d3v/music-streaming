@@ -1,0 +1,11 @@
+#visit_list .card-img-top {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
+
+.divTitre{
+    min-width: 300px;
+    min-height: 300px;
+    width: 381px;
+}
