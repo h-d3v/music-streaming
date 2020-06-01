@@ -122,6 +122,7 @@ public class ContoleurFrontal {
         utilistateur.setPseudo(webRequest.getParameter("pseudo"));
         utilistateur.setMotPasse(webRequest.getParameter("motPasse"));
         utilistateur.setCourriel(webRequest.getParameter("courriel"));
+        utilistateur.setEstAdmin(false);
 
         try{
             if(iUtilisateurService.ajouterUtilisateur(utilistateur)){
