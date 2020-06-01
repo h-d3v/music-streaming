@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/scrollbar-1.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/player.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/img/open-iconic-master/font/css/open-iconic-bootstrap.min.css">
-
+    <script src="${pageContext.request.contextPath}/js/player.js"></script>
 
 </head>
 
@@ -34,6 +34,7 @@
                     <c:if test="${sessionScope.utilisateurConnecte.estAdmin==true}"> ADMIN </c:if>
                     </a>
                 </li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/titreSearch">Explorer</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/seDeconnecter">Se Deconnecter</a></li>
 
             </ul>
@@ -45,15 +46,11 @@
         <div class="row">
             <div class="col-md-3 col-lg-3 col-xl-3">
                 <section>
+                    <h4>Genres</h4>
                     <ul class="list-group sc-overflow" style="max-height: 200px;">
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/">Accueil</a></li>
-                        <li class="list-group-item"><a href="/titresSearch">Rechercher</a></li>
-                        <li class="list-group-item">
-                            Genres</li>
-                        <ul>
-                                <c:forEach items="${genres}" var="genre">
-                                   <li><a class="nav-link" href='/playlist/${genre}/'> ${genre} </a></li>
-                    </c:forEach>
+                        <c:forEach items="${genres}" var="genre">
+                            <li><a class="nav-link list-group-item" href='/playlist/${genre}/'> ${genre} </a></li>
+                         </c:forEach>
                         </ul>
                     </ul>
                 </section>
@@ -80,24 +77,10 @@
                                            <div class="form-group"><input type="text"  class="form-control" name="nom" placeholder="Nom de la playlist" required /></div>
                                        </div>
                                        <div class="modal-footer">
-                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                                            <button type="button" onclick="enregistrerPlayList()"  class="btn btn-primary">Enregistrer</button>
                                        </div>
                                        </form>
-                                       <script>
-                                           function enregistrerPlayList() {
-                                               let xhttp = new XMLHttpRequest();
-                                               xhttp.onreadystatechange = function() {
-                                                   if (this.readyState == 4 && this.status == 200) {
-                                                       location.reload();
-                                                   }
-                                               };
-                                               xhttp.open("GET", "/utilisateurs/${sessionScope.utilisateurConnecte.pseudo}/addPlayList?nom="
-                                                   +document.getElementById("nomPlayListAEnregistrer").elements[0].value  , true);
-                                               xhttp.send();
-                                           }
-
-                                       </script>
 
                                    </div>
                                </div>
@@ -114,19 +97,6 @@
                             </li>
 
                         </c:forEach>
-                        <script>
-                            function supprimerPlayList(playListId){
-                                let xhttp = new XMLHttpRequest();
-                                xhttp.onreadystatechange = function () {
-                                    if (this.readyState == 4 && this.status == 200) {
-                                       document.getElementById('playlist'+playListId).remove();
-                                    }
-                                };
-                                xhttp.open("DELETE",'/utilisateurs/'+'${sessionScope.utilisateurConnecte.pseudo}'+'/supprimerPlayList/'+playListId, true);
-                                xhttp.send();
-
-                            }
-                        </script>
 
                     </ul>
                 </section>
@@ -210,63 +180,7 @@
 
 
 
-                                <script>
-                                    function ajouterLike(nom, titreId, action) {
-                                        let xhttp = new XMLHttpRequest();
-                                        xhttp.onreadystatechange = function () {
-                                            if (this.readyState == 4 && this.status == 200) {
-                                                afficherLikes(titreId);
-                                                if(action==='like') {
-                                                    document.getElementById("like"+titreId).style = 'color:red';
-                                                    document.getElementById("dislike"+titreId).style = 'color:white';
-                                                }else if(action==='dislike'){
-                                                    document.getElementById("dislike"+titreId).style = 'color:red';
-                                                    document.getElementById("like"+titreId).style = 'color:white';
-                                                }
-                                            }
-                                        };
-                                        xhttp.open("GET", "/like/"+ "?action="  + action+"&utilisateurPseudo=" +nom+"&titreId="+ titreId, true);
-                                        xhttp.send();
-                                    }
-                                </script>
 
-                                <script>
-                                   function afficherLikes(titreId) {
-                                        let xhr= new XMLHttpRequest();
-                                        xhr.onreadystatechange = function () {
-                                            if (this.readyState == 4 && this.status == 200) {
-                                                let tab =this.responseText.split(":");
-                                                document.getElementById('nbrLikes'+titreId).innerText=tab[0];
-                                                document.getElementById('nbrDislikes'+titreId).innerText=tab[1];
-                                            }
-                                        }
-                                       xhr.open("GET", "/titre/"+titreId+"/likes", true);
-                                       xhr.send();
-                                    }
-                                </script>
-
-
-                                <script>
-                                    function ouvrirModal(titreId, titreNom, titreArtiste){
-                                        document.getElementById("message").innerHTML ="";
-                                        document.getElementById("modalAjouterTitre").innerHTML="Ajouter le titre "+titreNom +" de "+titreArtiste;
-                                        document.getElementById("titreId").innerHTML=titreId;
-                                    }
-                                </script>
-
-                                <script>
-                                   function supprimerTitre(titreId, idPlayList){
-                                       let xhttp = new XMLHttpRequest();
-                                       xhttp.onreadystatechange = function(){
-                                           if (this.readyState == 4 && this.status == 200){
-                                               location.reload();
-                                           }
-
-                                       };
-                                       xhttp.open("GET", "/playlist/"+idPlayList+"/supprimerTitre?titreId="+titreId  , true);
-                                       xhttp.send();
-                                   }
-                                </script>
 
 
                                 <!-- Modal -->
@@ -294,7 +208,7 @@
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                                                 <button type="button" onclick="enregistrerTitreDansPlayList()" class="btn btn-primary">Enregistrer</button>
                                             </div>
 
@@ -302,48 +216,8 @@
                                     </div>
                                 </div>
 
-                                <script>
-                                    function enregistrerTitreDansPlayList() {
-                                        let e = document.getElementById("selectPlayList");
-                                        let idPlayList = e.options[e.selectedIndex].value;
-                                        let idTitre = document.getElementById("titreId").innerHTML;
-                                        let xhttp = new XMLHttpRequest();
-                                        xhttp.onreadystatechange = function(){
-                                            if (this.readyState == 4 && this.status == 200){
-                                                document.getElementById("message").innerHTML = "Le titre a bien ete enregistre dans la Playlist";
-                                            }
-                                            else if (this.readyState == 4 && this.status == 409){
-                                                document.getElementById("message").innerHTML = "Le titre se trouve deja dans la playlist";
-                                            }
-                                        };
-                                        xhttp.open("GET","/playlist/"+idPlayList+"/ajouterTitre?titreId="+idTitre  , true);
-                                        xhttp.send();
 
 
-                                    }
-                                </script>
-
-
-                                <script>
-                                    function lireTitre(titreId) {
-                                        let xhttp = new XMLHttpRequest();
-                                        xhttp.onreadystatechange = function() {
-                                            if (this.readyState == 4 && this.status == 200) {
-                                                let reponse = xhttp.responseText;
-                                                let json = JSON.parse(reponse);
-                                                document.getElementById("titreLecture").innerText=json.nom;
-                                                document.getElementById("nomArtisteLecture").innerText=json.nomArtiste;
-                                                document.getElementById("imagePath").src="/"+json.urlImage;
-                                                document.getElementById("mp3fichier").src="/"+json.url;
-                                                document.getElementById("mp3fichier").setAttribute("autoplay",true);
-
-                                            }
-                                        };
-                                        xhttp.open("GET","/titre/"+titreId  , true);
-                                        xhttp.send();
-                                    }
-
-                                </script>
                     </div>
 
                         </c:if>

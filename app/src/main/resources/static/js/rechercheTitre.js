@@ -21,6 +21,34 @@ function chercherTitre() {
         }
     }
 }
+function enregistrerTitreDansPlayList() {
+    let e = document.getElementById("selectPlayList");
+    let idPlayList = e.options[e.selectedIndex].value;
+    let idTitre = document.getElementById("titreId").innerHTML;
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            document.getElementById("message").innerHTML = "Le titre a bien ete enregistre dans la Playlist";
+        }
+        else if (this.readyState == 4 && this.status == 409){
+            document.getElementById("message").innerHTML = "Le titre se trouve deja dans la playlist";
+        }
+    };
+    xhttp.open("GET","/playlist/"+idPlayList+"/ajouterTitre?titreId="+idTitre  , true);
+    xhttp.send();
+
+
+}
+
+
+function ouvrirModal(titreId, titreNom, titreArtiste) {
+
+    document.getElementById("message").innerHTML = "";
+    document.getElementById("modalAjouterTitre").innerHTML = "Ajouter le titre " + titreNom + " de " + titreArtiste;
+    document.getElementById("titreId").innerHTML = titreId;
+}
+
+
 
 function jouerTitre(x) {
 

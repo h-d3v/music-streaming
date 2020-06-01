@@ -22,7 +22,6 @@ public class TitreController {
     @Autowired
     IPlayListServices playListServices;
 
-    //test
     @RequestMapping("/titreSearch")
     public ModelAndView titreSearch(HttpSession httpSession){
         ModelAndView modelAndView = new ModelAndView("titreSearch");

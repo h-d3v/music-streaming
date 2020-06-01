@@ -9,12 +9,12 @@
     <link href="css/playlistWidget.css" rel="stylesheet">
     <link href="css/itemList.css" rel="stylesheet">
     <link href="css/searchBar.css" rel="stylesheet">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="js/rechercheTitre.js"></script>
+    <script src="${pageContext.request.contextPath}/js/rechercheTitre.js"></script>
 </head>
 
 <body style="overflow-x: hidden">
@@ -56,11 +56,14 @@
                                 <h2 class="h2 text-center text-dark"> Allez a la page principale pour vous creer un compte et commencez à personnalisez vos playlists</h2>
                             </c:when>
                             <c:otherwise>
-                                    <ul class="list-group sc-overflow">
-                                        <c:forEach items="${playlists}" var="unePlaylist">
-                                            <li class="list-group-item"><span>${unePlaylist.nom}</span><a onclick=""> <i class="fa fa-plus pr-1"></i></a></li>
-                                        </c:forEach>
-                                    </ul>
+                                <div id="titreId" hidden ></div>
+                                <h4 id="modalAjouterTitre"></h4>
+                                <div id="message" style="color: #1d2124"></div>
+                                <select id="selectPlayList" class="custom-select"  name="PlayLists">
+                                    <c:forEach items="${sessionScope.playlistsUtilisateur}" var="playList">
+                                        <option value="${playList.id}">${playList.nom}</option>
+                                    </c:forEach>
+                                </select>
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -70,7 +73,9 @@
                                 <a href="/"><button type="button"  class="btn btn-primary">Page principale</button></a>
                             </c:when>
                             <c:otherwise>
-                                <a href="/player"><button type="button" onclick="" class="btn btn-primary">Mon player</button></a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                <button type="button" onclick="enregistrerTitreDansPlayList()" class="btn btn-primary">Enregistrer</button>
+
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -108,11 +113,12 @@
                         <p id="chemin-titre-${unTitre.id}" style="display: none">${unTitre.url}</p>
                     </div>
                     <!--Trigger pour le modal d'ajout d'un titre a une playlist-->
-                    <div class="card-footer text-center"><small><a href="/${unTitre.id}" data-toggle="modal" data-target="#modalAjouter"><i class="fa fa-plus pr-1"></i>Ajouter a une playlist<br/></a></small></div>
+                    <div class="card-footer text-center"><small><a href="#" type="button" onclick='ouvrirModal( ${unTitre.id} ,"${unTitre.nom}", "${unTitre.nomArtiste}")' data-toggle="modal" data-target="#modalAjouter"><i class="fa fa-plus pr-1"></i>Ajouter a une playlist<br/></a></small></div>
                 </div>
             </div>
         </c:forEach>
     </div>
+
 
     <div   style="background-color: #040505A8;" class="rounded container-fluid fixed-bottom">
         <h3 id="msg-player" class="h1 text-center" style="color:lightpink">Cliquez sur un titre</h3>

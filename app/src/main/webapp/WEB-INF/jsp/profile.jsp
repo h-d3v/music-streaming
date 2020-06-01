@@ -19,8 +19,8 @@
         <div class="container"><a class="navbar-brand" href="#">RoseTube</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="Explore">Explorer</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mes playlists</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/titreSearch">Explorer</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/">Mes playlists</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="seDeconnecter">Se Deconnecter</a></li>
                 </ul>
             </div>
