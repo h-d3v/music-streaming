@@ -1,11 +1,11 @@
-function enregistrerPlayList() {
+function enregistrerPlayList(utilisateur) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             location.reload();
         }
     };
-    xhttp.open("GET", "/utilisateurs/${sessionScope.utilisateurConnecte.pseudo}/addPlayList?nom="
+    xhttp.open("GET", "/utilisateurs/"+utilisateur+"/addPlayList?nom="
         +document.getElementById("nomPlayListAEnregistrer").elements[0].value  , true);
     xhttp.send();
 }
@@ -97,6 +97,7 @@ function ouvrirModal(titreId, titreNom, titreArtiste){
     document.getElementById("titreId").innerHTML=titreId;
 }
 
+
 function ouvrirModalComment(titreId) {
     alert(titreId);
     document.getElementById("titreIdComment").innerHTML= titreId;
@@ -105,17 +106,18 @@ function ouvrirModalComment(titreId) {
 
 
 
-function supprimerPlayList(playListId){
+function supprimerPlayList(playListId, utilisateur){
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById('playlist'+playListId).remove();
         }
     };
-    xhttp.open("DELETE",'/utilisateurs/'+'${sessionScope.utilisateurConnecte.pseudo}'+'/supprimerPlayList/'+playListId, true);
+    xhttp.open("DELETE",'/utilisateurs/'+utilisateur+'/supprimerPlayList/'+playListId, true);
     xhttp.send();
 
 }
+
 
 
 

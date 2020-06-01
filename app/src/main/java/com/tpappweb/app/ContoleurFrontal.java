@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
@@ -111,7 +112,7 @@ public class ContoleurFrontal {
 
 
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
-    public String  sinscrire(HttpSession httpSession, WebRequest webRequest, ModelMap modelMap) {
+    public String sinscrire(HttpSession httpSession, WebRequest webRequest, ModelMap modelMap) {
 
         if("".equals(webRequest.getParameter("pseudo"))){
             modelMap.addAttribute("messageErreurSignUp", "nom d'utilisateur invalide ou existant");
@@ -121,6 +122,7 @@ public class ContoleurFrontal {
         utilistateur.setPseudo(webRequest.getParameter("pseudo"));
         utilistateur.setMotPasse(webRequest.getParameter("motPasse"));
         utilistateur.setCourriel(webRequest.getParameter("courriel"));
+        utilistateur.setEstAdmin(false);
 
         try{
             if(iUtilisateurService.ajouterUtilisateur(utilistateur)){
@@ -131,10 +133,8 @@ public class ContoleurFrontal {
             modelMap.addAttribute("messageErreurSignUp", "nom d'utilisateur existant existant");
         }
 
-        return welcome(httpSession, modelMap);
+        return(welcome(httpSession,modelMap));
     }
-
-
 
     @PostMapping(path = "/player", consumes = "application/x-www-form-urlencoded")
     public String seConnecter(HttpSession httpSession, WebRequest webRequest, ModelMap modelMap){
@@ -161,7 +161,7 @@ public class ContoleurFrontal {
 
 
         }
-        return welcome(httpSession, modelMap);
+        return welcome(httpSession, modelMap) ;
     }
 
 

@@ -58,48 +58,42 @@
                         <c:forEach items="${genres}" var="genre">
                             <li><a class="nav-link list-group-item" href='/playlist/${genre}/'> ${genre} </a></li>
                         </c:forEach>
+
                     </ul>
+
                 </section>
                 <section>
                     <h4>Mes Playlists</h4>
                     <ul class="list-group sc-overflow" style="max-height: 280px;">
-                        <!-- Button trigger modal -->
-                        <li type="button" class="list-group-item" data-toggle="modal"
-                            data-target="#modalCommencerPlayList">
+                         <!-- Button trigger modal -->
+                        <li type="button" class="list-group-item"  data-toggle="modal" data-target="#modalCommencerPlayList">
                             Creer une nouvelle PlayList
                         </li>
 
-                        <!-- Modal nouvelle playlist-->
-                        <div class="modal fade" id="modalCommencerPlayList" tabindex="-1" role="dialog"
-                             aria-labelledby="modalCommencerPlayList" aria-hidden="true">
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalCommencerPlayList" tabindex="-1" role="dialog" aria-labelledby="modalCommencerPlayList" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" style="color: #1d2124" id="modalCommencerPlayListLabel">
-                                            Nouvelle PlayList</h5>
+                                        <h5 class="modal-title" style="color: #1d2124" id="modalCommencerPlayListLabel">Nouvelle PlayList</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <form id="nomPlayListAEnregistrer">
                                         <div class="modal-body">
-                                            <div class="form-group"><input type="text" class="form-control" name="nom"
-                                                                           placeholder="Nom de la playlist" required/>
-                                            </div>
+                                            <div class="form-group"><input type="text"  class="form-control" name="nom" placeholder="Nom de la playlist" required /></div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Fermer
-                                            </button>
-                                            <button type="button" onclick="enregistrerPlayList()"
-                                                    class="btn btn-primary">Enregistrer
-                                            </button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                            <button type="button" onclick="enregistrerPlayList('${sessionScope.utilisateurConnecte.pseudo}')"  class="btn btn-primary">Enregistrer</button>
                                         </div>
                                     </form>
 
                                 </div>
                             </div>
                         </div>
+
 
                         <!-- Liste des Playlists -->
                         <c:forEach items="${sessionScope.playlistsUtilisateur}" var="playList">
@@ -315,7 +309,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>
