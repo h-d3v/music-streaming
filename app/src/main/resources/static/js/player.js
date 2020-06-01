@@ -20,7 +20,6 @@ function lireTitre(titreId) {
             document.getElementById("imagePath").src="/"+json.urlImage;
             document.getElementById("mp3fichier").src="/"+json.url;
             document.getElementById("mp3fichier").setAttribute("autoplay",true);
-
         }
     };
     xhttp.open("GET","/titre/"+titreId  , true);
@@ -64,6 +63,17 @@ function ajouterLike(nom, titreId, action) {
     xhttp.send();
 }
 
+function ajouterComment(userPseudo) {
+    const comment= document.getElementById("text-area-comment").value;
+    const titreId= document.getElementById("titreIdComment").innerHTML;
+    let xhttp =new XMLHttpRequest();
+    xhttp.onreadystatechange=function(){
+        alert(this.responseText);
+    };
+    xhttp.open("GET", "/addcomment/?comment="+comment+"&titreId="+titreId+"&userPseudo="+userPseudo, true);
+    xhttp.send();
+}
+
 
 function afficherLikes(titreId) {
     let xhr= new XMLHttpRequest();
@@ -73,7 +83,7 @@ function afficherLikes(titreId) {
             document.getElementById('nbrLikes'+titreId).innerText=tab[0];
             document.getElementById('nbrDislikes'+titreId).innerText=tab[1];
         }
-    }
+    };
     xhr.open("GET", "/titre/"+titreId+"/likes", true);
     xhr.send();
 }
@@ -86,6 +96,15 @@ function ouvrirModal(titreId, titreNom, titreArtiste){
     document.getElementById("modalAjouterTitre").innerHTML="Ajouter le titre "+titreNom +" de "+titreArtiste;
     document.getElementById("titreId").innerHTML=titreId;
 }
+
+function ouvrirModalComment(titreId) {
+    alert(titreId);
+    document.getElementById("titreIdComment").innerHTML= titreId;
+    alert(document.getElementById("titreIdComment").innerHTML);
+}
+
+
+
 function supprimerPlayList(playListId){
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -111,3 +130,5 @@ function supprimerTitre(titreId, idPlayList){
     xhttp.open("GET", "/playlist/"+idPlayList+"/supprimerTitre?titreId="+titreId  , true);
     xhttp.send();
 }
+
+

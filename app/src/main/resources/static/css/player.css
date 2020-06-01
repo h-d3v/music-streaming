@@ -36,3 +36,17 @@ button, input[type="submit"], input[type="reset"] {
   height: auto;
 }
 
+.active-pink-textarea.md-form label.active {
+  color: #f48fb1;
+}
+.pink-textarea textarea.md-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+.pink-textarea.md-form .prefix.active {
+  color: #f48fb1;
+}
+.active-pink-textarea.md-form textarea.md-textarea:focus:not([readonly])+label {
+  color: #f48fb1;
+}
+

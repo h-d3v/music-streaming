@@ -4,6 +4,7 @@ package com.tpappweb.app;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tpappweb.app.entites.Commentaire;
 import com.tpappweb.app.entites.Titre;
+import com.tpappweb.app.entites.Utilistateur;
 import com.tpappweb.app.service.interfaces.ICommentaireService;
 import com.tpappweb.app.service.interfaces.ITitreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +47,20 @@ public class RestControlleurCommentaire {
         return new ResponseEntity<>(commentaire, HttpStatus.OK);
     }
 
-    @PostMapping("commentaire/")
-    public ResponseEntity<Boolean> ajouterCommentaire(@RequestBody Commentaire commentaire){
-        Boolean reponse = iCommentaireService.ajouterCommentaire(commentaire);
+    @GetMapping("/addcomment")
+    public boolean ajouterCommentaire(@RequestParam ("comment") String comment, @RequestParam("titreId") String titreId, @RequestParam("userPseudo") String userPseudo){
+        Commentaire commentaire = new Commentaire();
+        Titre titre=new Titre();
+        Utilistateur utilistateur= new Utilistateur();
 
-        return  new ResponseEntity<>(reponse,HttpStatus.OK);
+        utilistateur.setPseudo(userPseudo);
+        titre.setId(Integer.parseInt(titreId));
+
+        commentaire.setUtilistateur(utilistateur);
+        commentaire.setTitre(titre);
+        commentaire.setCommentaire(comment);
+
+        return iCommentaireService.ajouterCommentaire(commentaire);
     }
 
     @DeleteMapping("titre/{idTitre}/commentaire/{id}")

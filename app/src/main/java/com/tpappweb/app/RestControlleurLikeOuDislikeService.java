@@ -52,7 +52,4 @@ public class RestControlleurLikeOuDislikeService {
             return likesouDislikes[0] +":"+likesouDislikes[1];
     }
 
-
-
-
 }
