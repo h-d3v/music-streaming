@@ -27,9 +27,9 @@
                 <ul class="nav navbar-nav ml-auto">
                     <c:choose>
                     <c:when test="${sessionScope.utilisateurConnecte.pseudo!=null}">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mon compte : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="player.jsp">Mon player</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="seDeconnecter">Deconnexion</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/profile">Mon compte : ${sessionScope.utilisateurConnecte.pseudo}</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/">Mon player</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/seDeconnecter">Deconnexion</a></li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/">Page principale</a></li>

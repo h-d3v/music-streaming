@@ -18,7 +18,8 @@ public class ProfilControlleur {
 
     @RequestMapping("/profile")
     public String voirProfile(HttpSession httpSession){
-        return "profile";
+        if(httpSession.getAttribute("utilisateurConnecte")!=null) return "profile";
+        return "index";
     }
     @PostMapping("modifierMotPasse")
         public String modifierMotPasse(WebRequest webRequest, ModelMap modelMap, HttpSession httpSession){
